@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-  <link rel="stylesheet" href="./styles.css"/>
-  <link rel="stylesheet" href="./headerStyles.css"/>
-  <link rel="stylesheet" href="./mediaQueries.css"/>
+  <link rel="stylesheet" href="CSS/headerStyles.css">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/mediaQueries.css">
   <title>Paciente</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
     <div id="menu_container" style="display: none;" onclick="handleMenu()"></div>
     
     <div class="navigation">
-      <div class="dropdown_container">
+      <!-- <div class="dropdown_container">
         <div class="notifications">
           <ul class="notification_list">
             <li> Hoje tem consulta </li>
@@ -28,7 +28,7 @@
         <button class="material-icons" onclick="handleNotification()" onblur="hideNotification()">
           notifications
         </button>
-      </div>
+      </div> -->
 
       <button onclick="handleMenu()">
         <img id="profile_image" src="../../assets/sample_image.png">
@@ -115,10 +115,10 @@
   </main>
 
   
-  <script src="header.js"> </script>
+  <script src="JS/header.js"> </script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-  <script src="dataExample.js"></script>
-  <script src="./datesCarousel.js"></script>
-  <script src="./emotionInputs.js"></script>
+  <script src="JS/dataExample.js"></script>
+  <script src="JS/datesCarousel.js"></script>
+  <script src="JS/emotionInputs.js"></script>
 </body>
 </html>
