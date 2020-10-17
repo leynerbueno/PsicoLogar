@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Lista de Pacientes</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/modal.css">
+    <link rel="stylesheet" href="CSS/headerStyles.css">
+  </head>
+  <body>
+    <div class="modal_cadastro_overlay" id="modal_cadastro_overlay" onclick="fecharModalCadastro()"></div>
+    <div class="modal_cadastro" id="modal_cadastro">
+      <button class="closer" onclick="fecharModalCadastro()">X</button>
+      <div class="titulo_modal_cadastro">Adicionar Novo Paciente</div>
+      <div class="formulario_adicionar_paciente">
+        <div class="campo_formulario_acidionar">
+          <input required id="matricula_cadastro" placeholder="Matrícula do Paciente">
+        </div>
+        <div class="campo_formulario_acidionar">
+          <select name="consulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta">
+            <option value="segunda-feira">Seg</option>
+            <option value="terça-feira">Ter</option>
+            <option value="quarta-feira">Qua</option>
+            <option value="quinta-feira">Qui</option>
+            <option value="sexta-feira">Sex</option>
+            <option value="sábado">Sáb</option>
+          </select>
+        </div>
+        <div class="feedback_cadastro" id="feedback_cadastro"></div>
+        <button class="botao_salvar" onclick="cadastrarNovoPaciente(mockListaPacientesParaAdicionar)">Salvar</button>
+      </div>
+    </div>
+    <div class="componente_lista_container">
+      <div id="header">
+        <span id="logo"> PsicoLogar </span>
+        <div id="menu_container" style="display: none;" onclick="handleMenu()"></div>
+        <div class="navigation">
+          <button onclick="handleMenu()">
+            <img id="profile_image" src="../../assets/sample_image.png">
+          </button>
+        </div>
+      </div>
+    
+      <div id="menu_content" onblur="handleMenu()">
+        <div class="menu_header" >
+          <span class="material-icons" id="close-menu-icon" onclick="handleMenu()" style="cursor: pointer;">
+            close
+          </span>
+          <span class="menu_title" style="padding-top: 40px;">
+            Joana C. Silva
+          </span>
+          <img id="profile_image" src="../../assets/sample_image.png">
+        </div>
+        <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
+          <li> <a href="#"> Meu Perfil </a> </li>
+          <li> <a href="#"> Sair </a> </li>
+        </ul>
+      </div>
+
+      <div class="lista_header">
+        <div class="lista_titulo_adicionar">
+          <h1>Lista de Pacientes</h1>
+          <button class="botao_adicionar" onclick="abrirModalCadastro()">
+            +
+            <!-- <div class="sinal_adicao_vertical"></div>
+            <div class="sinal_adicao_horizontal"></div> -->
+          </button>
+        </div>
+        <div class="lista_legenda">
+          <p class="legenda_descricao">Próxima Consulta:</p>
+          <div class="legenda_dia">
+            <div class="legenda_dia_consulta"></div>
+          </div>
+        </div>
+      </div>
+      <div class="lista_pacientes" id="lista_pacientes"></div>
+    </div>
+
+    <script src='JS/pacientesMock.js'></script>
+    <script src='JS/pacientesParaAdicionarMock.js'></script>
+    <script src='JS/main.js'></script>
+    <script src="JS/header.js"> </script>
+    
+
+  </body>
+</html>
