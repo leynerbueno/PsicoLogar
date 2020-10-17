@@ -3,9 +3,12 @@ package com.example.PsicoLogar.Entity;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.example.PsicoLogar.Resource.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,10 +25,15 @@ public class Diario extends BaseEntity {
 	private String comentarioPaciente;
 	private String comentarioPsicologo;
 	private String detalhes;
+	
+	@Temporal(TemporalType.DATE)
 	private LocalDate dataDoDiario;
 	
+	@Column(name = "paciente_id", nullable = false)
+	private int pacienteId;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "paciente_id", referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", insertable = false,updatable = false)
 	@JsonIgnoreProperties("paciente")
 	private Paciente paciente;
 
@@ -117,5 +125,19 @@ public class Diario extends BaseEntity {
 	public void setDataDoDiario() {
 		this.dataDoDiario = LocalDate.now();
 	}
+
+	public int getPacienteId() {
+		return pacienteId;
+	}
+
+	public void setPacienteId(int pacienteId) {
+		this.pacienteId = pacienteId;
+	}
+
+	public void setDataDoDiario(LocalDate dataDoDiario) {
+		this.dataDoDiario = dataDoDiario;
+	}
+	
+	
 
 }

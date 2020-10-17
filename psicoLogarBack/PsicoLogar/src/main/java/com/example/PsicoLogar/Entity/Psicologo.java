@@ -3,6 +3,7 @@ package com.example.PsicoLogar.Entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,8 +16,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Psicologo extends BaseEntity{
 	private String CRP;
 	
+	@Column(name = "usuario_id", nullable = false)
+	private int usuarioId;
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="usuario_id", referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
 	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "psicologo")
@@ -48,5 +52,14 @@ public class Psicologo extends BaseEntity{
 		this.paciente = paciente;
 	}
 
+	public int getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
+	
 	
 }
