@@ -3,13 +3,21 @@
   justify-content: space-between;
   width: 100vw;
   margin-top: 1.5rem;
+  padding-left: 16px;
 }
-.header-container p{
-  font: 700 2rem Poppins;
+#logo{
+  font-size: 38px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
   color: #fbfbfb;
   margin-top: 0.8rem;
   margin-left: 0.6rem;
 }
+
+button{
+  cursor: pointer;
+}
+
 .buttons-container{
   display: flex;
   align-items: center;
@@ -33,6 +41,7 @@
 .buttons-container a.btn-Login:hover{
   color:#fbfbfb;
   background: #fbfbfb98;
+  cursor: pointer;
 }
 .buttons-container a.btn-Singup{
   color:#fbfbfb;
@@ -41,6 +50,7 @@
 .buttons-container a.btn-Singup:hover{
   color:#3E3C3C;
   background: #01667300;
+  cursor: pointer;
 }
 .body-container{
   display: flex;

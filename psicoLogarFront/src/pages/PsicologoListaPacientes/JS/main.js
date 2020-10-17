@@ -94,21 +94,21 @@ function cadastrarNovoPaciente() {
 
     paciente.length > 0 ?
     feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!" :
-    feedbackCadastro.innerHTML = "Paciente Não Encontrado";
+    feedbackCadastro.innerHTML = "Paciente Não Encontrado...";
 
     listarPacientes(paciente, diaConsulta);
 }
 
 function abrirModalCadastro() {
-    var modalCadastro = document.getElementById("modal_adicionar_paciente");
+    var modalCadastro = document.getElementById("modal_cadastro");
     var overlayModal = document.getElementById("modal_cadastro_overlay");
 
-    modalCadastro.style.display = "block";
+    modalCadastro.style.display = "flex";
     overlayModal.style.display = "block";
 }
 
 function fecharModalCadastro() {
-    var modalCadastro = document.getElementById("modal_adicionar_paciente");
+    var modalCadastro = document.getElementById("modal_cadastro");
     var overlayModal = document.getElementById("modal_cadastro_overlay");
 
     modalCadastro.style.display = "none";

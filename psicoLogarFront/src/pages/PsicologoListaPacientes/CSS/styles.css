@@ -6,160 +6,16 @@
     font-family: 'Poppins', sans-serif;
   }
 
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+}
+
 body {
     background: url('../../../assets/background-image.png');
     background-attachment: fixed;
-
-    position: relative;
   }
-.modal_cadastro_overlay {
-    width: 100%;
-    height: 100%;
-
-    background-color: white;
-    opacity: 50%;
-
-    z-index: 15;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    display: none;
-}
-.modal_adicionar_paciente {
-    width: 620px;
-    height: 340px;
-    padding: 28px 40px 28px 28px;
-
-    border-radius: 10px;
-
-    background-color: #83b1b6;
-
-    z-index: 20;
-    position: fixed;
-    top: 15%;
-    left: 20%;
-
-    display: none;
-}
-.header_modal_cadastro {
-    height: 30px;
-
-    margin-bottom: 60px;
-
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-}
-.tituloModalCadastro {
-    font-size: 24px;
-    color: white;
-    font-family: "Poppins";
-    font-weight: normal;
-}
-.botao_fechar_modal {
-    margin-left: auto;
-
-    height: 30px;
-    width: 30px;
-}
-.botao_fechar_modal:hover {
-    opacity: 60%;
-    cursor: pointer;
-}
-.fechar {
-    height: 30px;
-    width: 4px;
-
-    border-radius: 2px;
-
-    background-color: #FFFFFF;
-}
-.fechar_ascendente {
-    transform: rotate(45deg);
-    z-index: 1;
-}
-.fechar_descendente {
-    transform: rotate(90deg);
-    z-index: 2;
-}
-.campo_formulario_acidionar {
-    margin: 28px 0 0 10px;
-}
-label {
-    font-size: 18px;
-    color: #FFFFFF;
-    font-family: "Poppins";
-    font-weight: normal;
-}
-input {
-    width: 260px;
-    height: 24px;
-
-    margin-left: 8px;
-
-    border-radius: 4px;
-    border-style: solid;
-    border-color: #226d75;
-    border-width: 1px;
-
-    font-size: 14px;
-    color: #226d75;
-    font-family: "Poppins";
-}
-select {
-    width: 60px;
-    height: 24px;
-
-    margin-left: 8px;
-
-    border-radius: 4px;
-    border-style: solid;
-    border-color: #226d75;
-    border-width: 1px;
-
-    font-family: "Poppins";
-}
-.feedback_cadastro {
-    width: 100%;
-    height: 28px;
-
-    display: flex;
-    justify-content: center;
-
-    font-size: 18px;
-    color: #FFFFFF;
-    font-family: "Poppins";
-    font-weight: normal;
-
-    margin: 28px 0 0 10px;
-}
-.botao_salvar {
-    width: 100px;
-    height: 36px;
-
-    position: absolute;
-    top: 80%;
-    left: 80%;
-
-    font-size: 18px;
-    color: #FFFFFF;
-    font-family: "Poppins";
-    font-weight: normal;
-
-    border-radius: 9px;
-    border-style: solid;
-    border-color: #FFFFFF;
-    border-width: 1px;
-
-    background-color: #1DA1F2;
-}
-.botao_salvar:hover {
-    opacity: 60%;
-    cursor: pointer;
-}
 .componente_lista_container{
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -189,6 +45,11 @@ h1{
     width: 56px;
     height: 56px;
 
+    text-align: center;
+    line-height: 56px;
+    font-size: 48px;
+    color: black;
+
     margin-left: auto;
 
     border-radius: 28px;
@@ -198,36 +59,11 @@ h1{
 
     background-color: #fbfbfb;
 }
-button:hover {
+.botao_adicionar:hover {
     color:#fbfbfb;
     background: #fbfbfb98;
     cursor: pointer;
-}
-.sinal_adicao_vertical{
-    width: 4px;
-    height: 30px;
-
-    position: absolute;
-    left: 26px;
-    top: 13px;
-
-    border-radius: 2px;
-    border: none;
-
-    background-color: #3E3C3C;
-}
-.sinal_adicao_horizontal{
-    width: 30px;
-    height: 4px;
-
-    position: absolute;
-    left: 13px;
-    top: 26px;
-
-    border-radius: 2px;
-    border: none;
-
-    background-color: #3E3C3C;
+    transition: background 0.5s;
 }
 .lista_legenda{
     display: flex;

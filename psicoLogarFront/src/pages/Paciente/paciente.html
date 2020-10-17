@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-  <link rel="stylesheet" href="CSS/styles.css"/>
-  <link rel="stylesheet" href="CSS/headerStyles.css"/>
-  <link rel="stylesheet" href="CSS/mediaQueries.css"/>
+  <link rel="stylesheet" href="CSS/headerStyles.css">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/mediaQueries.css">
   <title>Paciente</title>
 </head>
 <body>
   <div id="header">
-    <span id="logo" style="padding: 28px;"> LOGO </span>
+    <span id="logo"> PsicoLogar </span>
 
     <div id="menu_container" style="display: none;" onclick="handleMenu()"></div>
     
     <div class="navigation">
-      <div class="dropdown_container">
-        <!-- <div class="notifications">
+      <!-- <div class="dropdown_container">
+        <div class="notifications">
           <ul class="notification_list">
             <li> Hoje tem consulta </li>
             <li> Pratique a técnica de respiração </li>
@@ -52,29 +52,17 @@
       <li> <a href="#"> Meu Perfil </a> </li>
       <li> <a href="#"> Sair </a> </li>
     </ul>
-  </div>
 
+  </div>
   <main>
     <section>
       <div id="days-carousel"></div>
     </section>
 
     <section>
-      <div id="about-patient-container">
-        <h2>Sobre o paciente:</h2>
-        <div class="textarea-container">
-          <textarea placeholder="O paciente..."></textarea>
-        </div>
-
-      </div>
-    </section>
-
-    <hr class="dashed-line"/>
-
-    <section>
       <div id="content">
         <div id="emotions-container">
-          <h2>Como o paciente esté se sentindo:</h2>
+          <h2>Como você está se sentindo hoje?</h2>
 
           <div class="emotion-container">
             <input id="emotion-input1" type="range" min="0" max="100" value="0">
@@ -113,19 +101,10 @@
         </div>
 
         <div id="note-container">
-          <h2>Contando um pouco mais:</h2>
+          <h2>Gostaria de contar um pouco mais?</h2>
           <div class="textarea-container">
             <textarea placeholder="Hoje estou me sentindo..."></textarea>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div id="psychologist-comments-container">
-        <h2>Comentários do psicólogo:</h2>
-        <div class="textarea-container">
-          <textarea placeholder="O paciente..."></textarea>
         </div>
       </div>
     </section>

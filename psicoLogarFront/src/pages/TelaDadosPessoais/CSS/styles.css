@@ -1,5 +1,5 @@
 body {
-    background-image: url("../../assets/background-image.png");
+    background-image: url("../../../assets/background-image.png");
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     color: #FFFFFF;
@@ -105,4 +105,24 @@ input, select {
 
 #salvar:hover {
 	transform: scale(1.2);
+}
+
+.botao_voltar {
+    width: 56px;
+    height: 56px;
+
+    margin: 20px auto auto 20px;
+
+    border-radius: 28px;
+    border: 1px solid #00285C;
+
+    position: relative;
+
+    background-color: #fbfbfb;
+}
+
+button:hover {
+    color:#fbfbfb;
+    background: #fbfbfb98;
+    cursor: pointer;
 }
