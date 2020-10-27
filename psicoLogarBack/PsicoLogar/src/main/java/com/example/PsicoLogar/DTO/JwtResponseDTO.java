@@ -1,7 +1,7 @@
 package com.example.PsicoLogar.DTO;
 
 public class JwtResponseDTO {
-	private  String token;
+	private final String token;
 
 	public JwtResponseDTO(String token) {
 		this.token = token;
@@ -11,7 +11,4 @@ public class JwtResponseDTO {
 		return this.token;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
-	}
 }
