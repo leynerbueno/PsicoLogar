@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.example.PsicoLogar.Resource.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,7 +24,7 @@ public class Diario extends BaseEntity {
 	private String comentarioPsicologo;
 	private String detalhes;
 	
-	@Temporal(TemporalType.DATE)
+	
 	private LocalDate dataDoDiario;
 	
 	@Column(name = "paciente_id", nullable = false)
