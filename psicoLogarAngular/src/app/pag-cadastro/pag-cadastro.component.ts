@@ -11,17 +11,7 @@ export class PagCadastroComponent implements OnInit {
   
  
   
-  ngOnInit(): void {
-    //codigo para mudar a img
-    window.addEventListener('load', function () {
-      document.getElementById('alterar-foto').addEventListener('change', function () {
-          if (this.files && this.files[0]) {
-              var img = document.getElementById('img-user');
-              img.src = URL.createObjectURL(this.files[0]);
-          }
-      });
-  });
-      
+  ngOnInit(): void {  
 }
 
  //Código para esconder/mostrar campo CRP
@@ -38,8 +28,16 @@ closeCRP(){
   }
 }
 
-
-
- 
+//codigo para mudar a img
+url="../../assets/user.png";
+getImage(evente){
+  if(evente.target.files){
+    let reader = new FileReader();
+    reader.readAsDataURL(evente.target.files[0]);
+    reader.onload=(evente:any)=>{
+      this.url=evente.target.result;
+    }
+  }
+ }
 
 }

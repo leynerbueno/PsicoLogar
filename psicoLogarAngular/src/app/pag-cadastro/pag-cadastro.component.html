@@ -11,11 +11,11 @@
       <div class="body-container">
         <div id="body-formulario">
           <form>
-              <div class ="userFoto">
-                  <img id="img-user" src="../../assets/user.png" alt="Foto de perfil">
-                  <label for="alterar-foto" id="label-alt-foto"> Alterar foto </label>
-                  <input type="file" value="Alterar Foto" id="alterar-foto"  class="hidden">
-              </div>
+            <div class ="userFoto">
+              <img [src]="url" alt="Foto de perfil">
+              <label for="alterar-foto" id="label-alt-foto"> Alterar foto </label>
+              <input type="file" id="alterar-foto" class="hidden" (change)="getImage($event)">
+            </div>
               <div class="userDados">
                 <div class="inputField">
                   <label>Nome:</label>
