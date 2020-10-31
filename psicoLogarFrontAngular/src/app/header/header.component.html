@@ -1,0 +1,37 @@
+<div id="header">
+  <span id="logo"> LOGO </span>
+  <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}"  (click)="handleMenu()"></div>
+  <div class="navigation">
+    <div class="dropdown_container">
+      <div class="notifications" [ngStyle]="{'display': openNotificacao ? 'block' : 'none'}">
+        <ul class="notification_list">
+          <li> Hoje tem consulta </li>
+          <li> Pratique a técnica de respiração </li>
+          <li> Hoje tem consulta </li>
+        </ul>
+      </div>
+      <button class="material-icons" (click)="handleNotification()" onblur="handleNotification()">
+        notifications
+      </button>
+    </div>
+    <button (click)="handleMenu()">
+      <img id="profile_image" src="../../assets/sample_image.png">
+    </button>
+  </div>
+</div>
+
+<div id="menu_content" onblur="handleMenu()" [ngStyle]="{'right': openMenu ? '0px' : '-20vw'}" >
+  <div class="menu_header" >
+    <span class="material-icons" (click)="handleMenu()" style="cursor: pointer;">
+      close
+    </span>
+    <span class="menu_title">
+      Joana C. Silva
+    </span>
+    <img id="profile_image" src="../../assets/sample_image.png">
+  </div>
+  <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
+    <li> <a href="#"> Meu Perfil </a> </li>
+    <li> <a href="#"> Sair </a> </li>
+  </ul>
+</div>
