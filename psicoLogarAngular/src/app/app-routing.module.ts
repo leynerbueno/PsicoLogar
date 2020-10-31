@@ -5,9 +5,9 @@ import { HomeComponent } from './home/home.component';
 import { PagCadastroComponent } from './pag-cadastro/pag-cadastro.component';
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'cadastro/usuario', component: PagCadastroComponent},
-  {path:'perfil', component: PerfilComponent}
+  { path: '', component: HomeComponent },
+  { path: 'cadastro/usuario', component: PagCadastroComponent },
+  { path: 'perfil', component: PerfilComponent }
 ];
 
 @NgModule({

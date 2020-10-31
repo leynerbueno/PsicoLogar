@@ -8,35 +8,38 @@
         <a class="btn-Singup" (click)="goToPagCadastro()">Cadastrar</a>
       </div>
     </div>
-    <!--Conteudo do corpo da home page-->
+     <!--Conteudo do corpo da home page-->
     <div class="body-container">
       <h2 class="titulo"> <span>Meu diário</span> psicológico</h2>
-      <div class="img-home">
-        <img src="../../assets/pghome.jpg" alt="Consulta">
-      </div>
-      <p class="sobre">
-        <span>Seja bem-vindo<br></span>
-        is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-      </p>
-    </div>
-
+        <div class="img-home">
+          <img src="../../assets/pghome.jpg" alt="Consulta">
+        </div>
+        <p class="sobre">
+           <span>Seja bem-vindo<br></span> 
+            is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </p>
+    </div> 
+       
   </div>
 </div>
-<!--Conteudo do modal login-->
-<div class="modal_login_overlay" id="modal_login_overlay" (click)="fecharModalLogin()">
-</div>
-<div class="modal_login" id="modal_login">
-  <button class="closer" (click)="fecharModalLogin()">X</button>
-  <div class="titulo_modal_login">Entre no seu diário</div>
-  <form class="formulario_login" action="">
-    <div class="email_senha">
-      <input type="text" placeholder="Login">
-    </div>
-    <div class="email_senha">
-      <input type="password" placeholder="Senha">
-    </div>
-  </form>
-  <button class="botao_salvar" href="//">Entrar</button>
-  <a class="link_cadastro" (click)="goToPagCadastro()">Crie seu cadastro</a>
-</div>
+  <!--Conteudo do modal login-->
+  <div class="modal_login_overlay" id="modal_login_overlay" (click)="fecharModalLogin()">
+  </div>
+  <div class="modal_login" id="modal_login">
+    <button class="closer" (click)="fecharModalLogin()">X</button>
+    <div class="titulo_modal_login">Entre no seu diário</div>
+    <form class="formulario_login" action="">
+      <div class="email_senha">
+        <input type="text" placeholder="Login">
+      </div>
+      <div class="email_senha">
+        <input type="password"  placeholder="Senha">
+      </div>
+    </form>
+    <button class="botao_salvar" href="//">Entrar</button>
+    <a class="link_cadastro" (click)="goToPagCadastro()">Crie seu cadastro</a>
+  </div>
+
+
+

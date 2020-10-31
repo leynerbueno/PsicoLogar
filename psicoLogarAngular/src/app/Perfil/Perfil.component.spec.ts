@@ -5,19 +5,19 @@ import { DebugElement } from '@angular/core';
 
 import { PerfilComponent } from './Perfil.component';
 
-describe('DadosPessoaisComponent', () => {
-  let component: DadosPessoaisComponent;
-  let fixture: ComponentFixture<DadosPessoaisComponent>;
+describe('PerfilComponent', () => {
+  let component: PerfilComponent;
+  let fixture: ComponentFixture<PerfilComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DadosPessoaisComponent ]
+      declarations: [ PerfilComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DadosPessoaisComponent);
+    fixture = TestBed.createComponent(PerfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-import { FooterComponent } from './components/footer/footer/footer.component';
+import { FooterComponent } from './Components/footer/footer.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,13 +9,13 @@ import { PagCadastroComponent } from './pag-cadastro/pag-cadastro.component';
 import { PerfilComponent } from './Perfil/Perfil.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     FooterComponent,
     HomeComponent,
     PagCadastroComponent,
     PerfilComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule
