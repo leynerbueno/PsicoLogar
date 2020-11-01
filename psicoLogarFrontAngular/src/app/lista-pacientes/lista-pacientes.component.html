@@ -1,0 +1,67 @@
+<body>
+  <div class="modal_cadastro_overlay" id="modal_cadastro_overlay" (click)="fecharModalCadastro()"></div>
+  <div class="modal_cadastro" id="modal_cadastro">
+    <button class="closer" (click)="fecharModalCadastro()">X</button>
+    <div class="titulo_modal_cadastro">Adicionar Novo Paciente</div>
+    <div class="formulario_adicionar_paciente">
+      <div class="campo_formulario_acidionar">
+        <input required id="matricula_cadastro" placeholder="Matrícula do Paciente">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <select name="consulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta">
+          <option value="segunda-feira">Seg</option>
+          <option value="terça-feira">Ter</option>
+          <option value="quarta-feira">Qua</option>
+          <option value="quinta-feira">Qui</option>
+          <option value="sexta-feira">Sex</option>
+          <option value="sábado">Sáb</option>
+        </select>
+      </div>
+      <div class="feedback_cadastro" id="feedback_cadastro"></div>
+      <button class="botao_salvar" (click)="cadastrarNovoPaciente()">Salvar</button>
+    </div>
+  </div>
+  <div class="componente_lista_container">
+    <div id="header">
+      <span id="logo"> PsicoLogar </span>
+      <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}" (click)="handleMenu()"></div>
+      <div class="navigation">
+        <button (click)="handleMenu()">
+          <img id="profile_image" src="../../assets/sample_image.png">
+        </button>
+      </div>
+    </div>
+  
+    <div id="menu_content" (blur)="handleMenu()" [ngStyle]="{'right': openMenu ? '0px' : '-20vw'}" >
+      <div class="menu_header" >
+        <span class="material-icons" id="close-menu-icon" (click)="handleMenu()" style="cursor: pointer;">
+          close
+        </span>
+        <span class="menu_title" style="padding-top: 40px;">
+          Joana C. Silva
+        </span>
+        <img id="profile_image" src="../../assets/sample_image.png">
+      </div>
+      <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
+        <li> <a href="#"> Meu Perfil </a> </li>
+        <li> <a href="#"> Sair </a> </li>
+      </ul>
+    </div>
+
+    <div class="lista_header">
+      <div class="lista_titulo_adicionar">
+        <h1>Lista de Pacientes</h1>
+        <button class="botao_adicionar" (click)="abrirModalCadastro()">
+          +
+        </button>
+      </div>
+      <div class="lista_legenda">
+        <p class="legenda_descricao">Próxima Consulta:</p>
+        <div class="legenda_dia">
+          <div class="legenda_dia_consulta"></div>
+        </div>
+      </div>
+    </div>
+    <div class="lista_pacientes" id="lista_pacientes"></div>
+  </div>
+</body>

@@ -7,15 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { PagCadastroComponent } from './pag-cadastro/pag-cadastro.component';
 import { PagPsicologoComponent } from './pag-psicologo/pag-psicologo.component';
 import { HeaderComponent } from './header/header.component';
+import { ListaPacientesComponent } from './lista-pacientes/lista-pacientes.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     PagCadastroComponent,
     PagPsicologoComponent,
-    HeaderComponent
-  ],
+    HeaderComponent,
+      ListaPacientesComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule
