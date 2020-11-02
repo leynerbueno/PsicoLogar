@@ -1,26 +1,35 @@
-.header-container{
+.header-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding-left: 16px;
   background-color: #fbfbfb;
 }
-#logo{
-  font-size: 40px;
+
+#logo {
+  height: 50%;
+  align-items: center;
+}
+
+#logo img {
+  width: 50%;
+  height: 50%;
+}
+
+h1 {
+  font-size: 14px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   color: #3E3C3C;
- margin-right: 1%;
 }
 
-.button-container{
+.button-container {
   display: flex;
   justify-items: center;
   align-items: center;
-  margin-top: 0.3%;
 }
 
-.button-container a img{
+.button-container a img {
   width: 7%;
 }
 
