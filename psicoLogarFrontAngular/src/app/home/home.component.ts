@@ -28,9 +28,6 @@ export class HomeComponent implements OnInit {
   }
 
   goToPagCadastro(){
-    this.router.navigate(['/cadastro/usuario'])
-  }
-  goToPsicologo(){
-    this.router.navigate(['/psicologo'])
+    this.router.navigate(['/cadastro'])
   }
 }

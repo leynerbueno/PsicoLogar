@@ -2,7 +2,10 @@
   <div id="container">
     <!--Conteudo do topo da home page-->
     <div class="header-container">
-      <div id="logo">PsicoLogar</div>
+      <div id="logo">
+        <img src="../../assets/logo.svg" alt="Logo PsicoLogar">
+        <h1>PsicoLogar</h1>
+      </div>
       <div class="buttons-container">
         <a class="btn-Login" (click)="abrirModalLogin()">Entrar</a>
         <a class="btn-Singup" (click)="goToPagCadastro()">Cadastrar</a>
@@ -10,14 +13,15 @@
     </div>
      <!--Conteudo do corpo da home page-->
     <div class="body-container">
-      <h2 class="titulo"> <span>Meu diário</span> psicológico</h2>
+      <h2 class="titulo"> <span>Meu Diário</span> Psicológico</h2>
         <div class="img-home">
           <img src="../../assets/pghome.jpg" alt="Consulta">
         </div>
         <p class="sobre">
-           <span>Seja bem-vindo<br></span> 
-            is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+           <span>Seja Bem-Vindo<br></span> 
+            Mantenha seus acontecimentos anotados, prontos para uma reflexão diária.<br> 
+            Tenha suas emoções nomeadas e prontas para análise.<br>
+            Mantenha seu psicológo a parte de todos os acontecimentos do seu dia.
         </p>
     </div> 
        
@@ -28,7 +32,7 @@
   </div>
   <div class="modal_login" id="modal_login">
     <button class="closer" (click)="fecharModalLogin()">X</button>
-    <div class="titulo_modal_login">Entre no seu diário</div>
+    <div class="titulo_modal_login">Entre no seu Diário</div>
     <form class="formulario_login" action="">
       <div class="email_senha">
         <input type="text" placeholder="Login">
@@ -37,7 +41,7 @@
         <input type="password"  placeholder="Senha">
       </div>
     </form>
-    <button class="botao_salvar" (click)="goToPsicologo()">Entrar</button>
+    <button class="botao_salvar" href="//">Entrar</button>
     <a class="link_cadastro" (click)="goToPagCadastro()">Crie seu cadastro</a>
   </div>
 
