@@ -1,3 +1,5 @@
+import { FooterComponent } from './Components/footer/footer.component';
+import { PerfilComponent } from './Pages/perfil/perfil.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,14 +12,16 @@ import { HeaderComponent } from './Components/header/header.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     CadastroComponent,
     PsicologoComponent,
     HeaderComponent,
-      ListaPacientesComponent
-   ],
+    ListaPacientesComponent,
+    PerfilComponent,
+    FooterComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule
