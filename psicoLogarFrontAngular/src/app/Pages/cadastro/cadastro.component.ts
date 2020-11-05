@@ -1,14 +1,14 @@
 import { Router } from '@angular/router';
-import { CadastroService } from './../core/service/cadastro.service';
+import { CadastroService } from '../../Core/service/cadastro.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-pag-cadastro',
-  templateUrl: './pag-cadastro.component.html',
-  styleUrls: ['./pag-cadastro.component.css']
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css']
 })
-export class PagCadastroComponent implements OnInit {
+export class CadastroComponent implements OnInit {
   form: FormGroup;
   constructor(private service: CadastroService, private router: Router, private formBuilder: FormBuilder) { }
 
