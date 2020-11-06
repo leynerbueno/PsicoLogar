@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.PsicoLogar.Entity.Diario;
+
 
 public abstract class BaseService<Entity extends BaseEntity, Repository extends BaseRepository<Entity>> {
 	
