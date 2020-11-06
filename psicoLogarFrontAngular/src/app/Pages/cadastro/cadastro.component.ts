@@ -40,7 +40,7 @@ export class CadastroComponent implements OnInit {
   }
 
   //codigo para mudar a img
-  url = "../../assets/user.png";
+  url = "../../../../assets/user.png";
   getImage(evente) {
     if (evente.target.files) {
       let reader = new FileReader();

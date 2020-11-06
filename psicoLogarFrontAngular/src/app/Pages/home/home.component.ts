@@ -30,4 +30,8 @@ export class HomeComponent implements OnInit {
   goToPagCadastro(){
     this.router.navigate(['/cadastro'])
   }
+
+  goToPagListaPacientes() {
+    this.router.navigate(['listaPacientes']);
+  }
 }

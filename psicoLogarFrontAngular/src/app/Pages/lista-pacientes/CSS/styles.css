@@ -11,7 +11,7 @@ input:focus, textarea:focus, select:focus, button:focus {
 }
 
 body {
-    background: url('../../../assets/Fundo.png');
+    background: url('../../../../assets/Fundo.png');
     background-attachment: fixed;
   }
 .componente_lista_container{

@@ -5,5 +5,5 @@ import { BaseService } from './base.service';
   providedIn: 'root'
 })
 export class CadastroService extends BaseService {
-  baseUrl = this.baseUrl + "/usuario";
+  baseUrl = this.baseUrl + "/usuarios";
 }

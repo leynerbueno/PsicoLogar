@@ -2,6 +2,8 @@ package com.example.PsicoLogar.Entity;
 
 import javax.persistence.Entity;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.example.PsicoLogar.Resource.BaseEntity;
 
 @Entity
@@ -36,7 +38,7 @@ public class Usuario extends BaseEntity {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 
 	public String getGenero() {

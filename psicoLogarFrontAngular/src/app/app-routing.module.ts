@@ -7,7 +7,7 @@ import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  {path:'cadastro/usuario', component: CadastroComponent},
+  {path:'cadastro', component: CadastroComponent},
   {path: 'psicologo', component: PsicologoComponent},
   {path: 'listaPacientes', component: ListaPacientesComponent}
 ];

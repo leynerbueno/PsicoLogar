@@ -1,3 +1,4 @@
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { PerfilComponent } from './Pages/perfil/perfil.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +11,7 @@ import { CadastroComponent } from './Pages/cadastro/cadastro.component';
 import { PsicologoComponent } from './Pages/psicologo/psicologo.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
