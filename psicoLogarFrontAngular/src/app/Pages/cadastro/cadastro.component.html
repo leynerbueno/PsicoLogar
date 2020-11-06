@@ -13,9 +13,12 @@
     <div id="body-formulario">
       <form [formGroup]="form">
         <div class="userFoto">
-          <img id="img-user" [src]="url" alt="Foto de perfil">
+          <img id="img-user"
+            src="{{imageBase64 ? imageBase64 : 'https://leics-fire.gov.uk/wp-content/uploads/2017/04/person-placeholder-300x300.png'}}"
+            alt="Foto de perfil">
           <label for="alterar-foto" id="label-alt-foto"> Alterar foto </label>
-          <input type="file" id="alterar-foto" class="hidden" (change)="getImage($event)">
+          <input type="file" id="alterar-foto" class="hidden" accept=".png,.jpg,.jpeg"
+            (change)="getImage($event.target.files)">
         </div>
         <div class="userDados">
           <div class="inputField">

@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CadastroComponent implements OnInit {
   form: FormGroup;
+  imageBase64;
   constructor(private service: CadastroService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -40,23 +41,26 @@ export class CadastroComponent implements OnInit {
   }
 
   //codigo para mudar a img
-  url = "../../../../assets/user.png";
-  getImage(evente) {
-    if (evente.target.files) {
-      let reader = new FileReader();
-      reader.readAsDataURL(evente.target.files[0]);
-      reader.onload = (evente: any) => {
-        this.url = evente.target.result;
-      }
-    }
+  getImage(files: FileList) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+      this.imageBase64 = reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Erro: ', error);
+    };
   }
 
   submit() {
     const usuario = this.form.value;
-    console.log(usuario);
+    usuario.foto= this.imageBase64;
     this.service.create(usuario).subscribe(
       data => this.router.navigate([""]),
       error => console.log(error)
     );
   }
+  
 }
