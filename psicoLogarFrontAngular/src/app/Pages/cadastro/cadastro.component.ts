@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastroComponent implements OnInit {
   form: FormGroup;
   imageBase64;
+
   constructor(private service: CadastroService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -45,10 +46,12 @@ export class CadastroComponent implements OnInit {
     const file = files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
+
     reader.onload = () => {
       console.log(reader.result);
       this.imageBase64 = reader.result;
     };
+    
     reader.onerror = function (error) {
       console.log('Erro: ', error);
     };
