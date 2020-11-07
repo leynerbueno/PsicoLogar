@@ -23,38 +23,38 @@
           <h2>Como o paciente esté se sentindo:</h2>
 
           <div class="emotion-container">
-            <input id="emotion-input1" type="range" min="0" max="100" value="0">
+            <input id="emotion-input1" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
             <div id="emotion-input-range1" class="emotion-input-range"></div>
-            <img src="../../assets/emotion-example.svg"/>
-            <h3>Exemplo</h3>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 1</h3>
           </div>
 
           <div class="emotion-container">
-            <input id="emotion-input2" type="range" min="0" max="100" value="0">
+            <input id="emotion-input2" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
             <div id="emotion-input-range2" class="emotion-input-range"></div>
-            <img src="../../assets/emotion-example.svg"/>
-            <h3>Exemplo</h3>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 2</h3>
           </div>
           
           <div class="emotion-container">
-            <input id="emotion-input3" type="range" min="0" max="100" value="0">
+            <input id="emotion-input3" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
             <div id="emotion-input-range3" class="emotion-input-range"></div>
-            <img src="../../assets/emotion-example.svg"/>
-            <h3>Exemplo</h3>
+            <img src="../../../../assets/emotion-example.svg"/>
+            <h3>Emoção 3</h3>
           </div>
 
           <div class="emotion-container">
-            <input id="emotion-input4" type="range" min="0" max="100" value="0">
+            <input id="emotion-input4" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
             <div id="emotion-input-range4" class="emotion-input-range"></div>
-            <img src="../../assets/emotion-example.svg"/>
-            <h3>Exemplo</h3>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 4</h3>
           </div>
 
           <div class="emotion-container">
-            <input id="emotion-input5" type="range" min="0" max="100" value="0">
+            <input id="emotion-input5" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
             <div id="emotion-input-range5" class="emotion-input-range"></div>
-            <img src="../../assets/emotion-example.svg"/>
-            <h3>Exemplo</h3>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 5</h3>
           </div>
         </div>
 
@@ -76,7 +76,7 @@
       </div>
     </section>
 
-    <button class="material-icons" id="save-button">
+    <button class="material-icons" id="save-button" (click)="salvarEmocoes()">
       save
     </button>
   </main>
