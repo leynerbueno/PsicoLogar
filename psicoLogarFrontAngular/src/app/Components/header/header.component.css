@@ -1,8 +1,8 @@
 #header {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 64px;
   background: #FFFFFF;
   color: #313131;
@@ -13,11 +13,13 @@
 }
 
 #logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #313131;
-  margin-top: 2rem;
-  margin-left: 2rem;
+  height: 50%;
+  align-items: center;
+}
+
+#logo img {
+  width: 50%;
+  height: 50%;
 }
 
 #profile_image {
@@ -53,7 +55,7 @@
 }
 
 #menu_container {
-  background-color: rgba(0,0,0, 0.48);
+  background-color: rgba(0, 0, 0, 0.48);
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -77,7 +79,6 @@
   position: absolute;
   border-radius: 512px;
   color: #313131;
-  
 }
 
 .menu_header {
@@ -91,6 +92,7 @@
   color: #313131;
   font-size: 20px;
 }
+
 #menu_options li a {
   text-decoration: none;
   color: #313131;
@@ -112,12 +114,14 @@
   z-index: 1;
   color: #313131;
 }
+
 .notifications span {
   display: flex;
   flex-direction: row-reverse;
   border: none;
   color: #313131;
 }
+
 .notifications ul {
   border: 1px solid #DCDCDC;
   background-color: #FFFFFF;
@@ -125,12 +129,14 @@
   list-style-type: none;
   color: #313131;
 }
+
 .notifications li {
   padding: 16px;
   cursor: pointer;
   color: #313131;
   font-size: 16px;
 }
+
 .notifications li:hover {
   background-color: #DCDCDC;
   color: #313131;

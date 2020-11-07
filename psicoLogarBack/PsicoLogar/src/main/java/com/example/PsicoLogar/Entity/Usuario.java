@@ -15,7 +15,7 @@ public class Usuario extends BaseEntity {
 	private String senha;
 	private String genero;
 	private String telefone;
-	private String data_nascimento;
+	private String dataNascimento;
 	private String endereco;
 
 	public String getFoto() {
@@ -66,12 +66,12 @@ public class Usuario extends BaseEntity {
 		this.telefone = telefone;
 	}
 
-	public String getData_nascimento() {
-		return data_nascimento;
+	public String getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setData_nascimento(String data_nascimento) {
-		this.data_nascimento = data_nascimento;
+	public void setDataNascimento(String data_nascimento) {
+		this.dataNascimento = data_nascimento;
 	}
 
 	public String getEndereco() {

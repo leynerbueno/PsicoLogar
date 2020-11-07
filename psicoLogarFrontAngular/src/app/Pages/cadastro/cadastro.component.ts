@@ -1,5 +1,5 @@
+import { UsuarioService } from './../../Core/service/usuario.service';
 import { Router } from '@angular/router';
-import { CadastroService } from '../../Core/service/cadastro.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,7 +12,7 @@ export class CadastroComponent implements OnInit {
   form: FormGroup;
   imageBase64;
 
-  constructor(private service: CadastroService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private service: UsuarioService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -48,10 +48,9 @@ export class CadastroComponent implements OnInit {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
-      console.log(reader.result);
       this.imageBase64 = reader.result;
     };
-    
+
     reader.onerror = function (error) {
       console.log('Erro: ', error);
     };
@@ -59,11 +58,11 @@ export class CadastroComponent implements OnInit {
 
   submit() {
     const usuario = this.form.value;
-    usuario.foto= this.imageBase64;
+    usuario.foto = this.imageBase64;
     this.service.create(usuario).subscribe(
       data => this.router.navigate([""]),
       error => console.log(error)
     );
   }
-  
+
 }

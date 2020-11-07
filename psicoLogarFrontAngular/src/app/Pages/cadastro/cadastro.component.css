@@ -7,13 +7,12 @@
 }
 
 #logo {
-  height: 50%;
-  align-items: center;
+  height: 100%;
+  width: 10%;
 }
-
 #logo img {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  
 }
 
 h1 {

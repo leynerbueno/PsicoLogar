@@ -18,7 +18,7 @@ export abstract class BaseService {
     })
   };
 
-  create(Entity): Observable<any> {
+  public create(Entity): Observable<any> {
     return this.httpClient.post(this.baseUrl, Entity, this.httpOptions);
   }
 
@@ -30,11 +30,11 @@ export abstract class BaseService {
     return this.httpClient.get(this.baseUrl + "/" + id);
   }
   
-  update(id, Entity): Observable<any> {
-    return this.httpClient.put(this.baseUrl + "/" + id, Entity);
+  public update(id, Entity): Observable<any> {
+    return this.httpClient.put(this.baseUrl + "/" + id, Entity, this.httpOptions);
   }
 
-  delete(id): Observable<any> {
-    return this.httpClient.delete(this.baseUrl + "/" + id);
+  public delete(id): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "/" + id, this.httpOptions);
   }
 }

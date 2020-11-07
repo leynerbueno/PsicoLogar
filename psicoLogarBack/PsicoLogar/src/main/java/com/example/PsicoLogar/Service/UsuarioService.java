@@ -19,7 +19,6 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 
 	@Override
 	public Usuario insert(Usuario entity) {
-
 		String urlDaImagem = this.saveBase64(entity.getFoto());
 		entity.setFoto(urlDaImagem);
 		return super.insert(entity);
