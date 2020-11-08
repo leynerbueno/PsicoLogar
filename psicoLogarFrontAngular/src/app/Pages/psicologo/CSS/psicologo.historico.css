@@ -1,0 +1,124 @@
+.historico-diarios-content {
+  max-width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+#historico-diarios {
+  display: flex;
+  flex-direction: row;
+  margin: 35px 0;
+  position: relative;
+}
+
+::ng-deep .continue-hr {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.16);
+  margin: 0 13px;
+  width: 30px;
+  height: 2px;
+}
+
+::ng-deep .day-item-container {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .day-item-container:first-child .day-item:first-child {
+  margin-left: 20px;
+}
+
+::ng-deep .day-item-container hr.separator-hr {
+  background: rgba(255, 255, 255, 0.418);
+  margin: 0 13px;
+  width: 30px;
+  height: 2px;
+}
+
+::ng-deep .day-item {
+  height: 65px;
+  width: 65px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 1px solid #00285C;
+  background-color: #fbfbfb;
+  color: #3E3C3C;
+
+  border-radius: 10px;
+}
+
+::ng-deep .day-item:hover {
+  cursor: pointer;
+  color:#fbfbfb;
+  background: #fbfbfb98;
+}
+
+::ng-deep .day-item h3 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+::ng-deep .today-item {
+  height: 65px;
+  width: 65px;
+  margin-right: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 1px solid #00285C;
+  background-color: #fbfbfb;
+  color: #3E3C3C;
+
+  border-radius: 10px;
+}
+
+::ng-deep .today-item:hover {
+  cursor: pointer;
+  color:#fbfbfb;
+  background: #fbfbfb98;
+}
+
+::ng-deep .today-item h4 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  color: #313131;
+}
+
+::ng-deep .day-item p {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+::-webkit-scrollbar
+{
+	height: 8px;
+	background-color: #fbfbfb;
+}
+
+::-webkit-scrollbar:hover
+{
+  cursor: pointer;
+	background-color: #fbfbfb98;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+  border: 1px solid #00285C;
+  background-color: #635e5e;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+  cursor: pointer;
+  background: #fbfbfb;
+}
