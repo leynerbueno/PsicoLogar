@@ -12,11 +12,18 @@ button {
   cursor: pointer;
 }
 
-#note-container {
+#notas-container {
   display: flex;
   flex-direction: column;
   padding: 0 53px;
   width: 65.390625%;
+}
+
+#notas-container h2 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 35px;
 }
 
 .textarea-container {
@@ -61,19 +68,19 @@ button {
   background: rgba(255, 255, 255, 0.25);
 }
 
-#about-patient-container {
+#sobre-paciente-container {
   padding: 0 83px;
   display: flex;
   flex-direction: column;
 }
 
-#about-patient-container h2 {
+#sobre-paciente-container h2 {
   font-size: 24px;
   font-weight: normal;
-  margin-bottom: 20px;
+  margin: 20px 0 20px 0;
 }
 
-#about-patient-container div {
+#sobre-paciente-container div {
   margin-bottom: 40px;
 }
 
@@ -82,20 +89,20 @@ hr.dashed-line {
   margin-bottom: 40px;
 }
 
-#psychologist-comments-container {
+#psicologo-comentarios-container {
   margin-top: 40px;
   padding: 0 83px;
   display: flex;
   flex-direction: column;
 }
 
-#psychologist-comments-container h2 {
+#psicologo-comentarios-container h2 {
   font-size: 24px;
   font-weight: normal;
   margin-bottom: 20px;
 }
 
-#psychologist-comments-container div {
+#psicologo-comentarios-container div {
   margin-bottom: 40px;
 }
 

@@ -5,21 +5,21 @@
   padding: 0 30px;
 }
 
-#emotions-container {
+#emocoes-container {
   display: flex;
   flex-direction: column;
   padding: 0 53px;
   width: 34.609375%;
 }
 
-#emotions-container h2, #note-container h2 {
+#emocoes-container h2 {
   font-weight: normal;
   font-size: 24px;
   line-height: 24px;
   margin-bottom: 35px;
 }
 
-.emotion-container {
+.emocao-container {
   width: 100%;
   height: 65px;
   background: rgba(255, 255, 255, 0.16);
@@ -32,11 +32,11 @@
   margin-bottom: 17.6px;
 }
 
-.emotion-container:last-child {
+.emocao-container:last-child {
   margin-bottom: 0;
 }
 
-.emotion-container input {
+.emocao-container input {
   -webkit-appearance: none;
   background: transparent;
   cursor: grab;
@@ -47,11 +47,11 @@
   z-index: 15;
 }
 
-.emotion-container input:active {
+.emocao-container input:active {
   cursor: grabbing;
 }
 
-.emotion-container input::-webkit-slider-thumb {
+.emocao-container input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
@@ -59,13 +59,13 @@
   background: transparent;
 }
 
-.emotion-container input::-moz-range-thumb {
+.emocao-container input::-moz-range-thumb {
   width: 25px;
   height: 65px;
   background: transparent;
 }
 
-.emotion-container img {
+.emocao-container img {
   position: absolute;
   width: 36px;
   height: 36px;
@@ -73,7 +73,7 @@
   z-index: 10;
 }
 
-.emotion-container h3 {
+.emocao-container h3 {
   position: absolute;
   z-index: 10;
   left: 0; 
@@ -87,7 +87,7 @@
   line-height: 18px;
 }
 
-.emotion-input-range {
+.emocao-input-range {
   position: absolute;
   z-index: 5;
   background: rgba(255, 255, 255, 0.16);

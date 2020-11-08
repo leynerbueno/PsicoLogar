@@ -13,38 +13,40 @@ export class PsicologoComponent implements OnInit {
     this.renderHistoricoDiarios();
   }
 
-  obtemInputRange(emocao) {
-    switch (emocao) {
-      case 'emotion-input1':
-        return 'emotion-input-range1';
-      case 'emotion-input2':
-        return 'emotion-input-range2';
-      case 'emotion-input3':
-        return 'emotion-input-range3';
-      case 'emotion-input4':
-        return 'emotion-input-range4';
-      case 'emotion-input5':
-        return 'emotion-input-range5';
-    }
-  }
-
   emocao1 = 0;
   emocao2 = 0;
   emocao3 = 0;
   emocao4 = 0;
   emocao5 = 0;
 
+
+
+  obtemInputRange(emocao) {
+    switch (emocao) {
+      case 'emocao-input1':
+        return 'emocao-input-range1';
+      case 'emocao-input2':
+        return 'emocao-input-range2';
+      case 'emocao-input3':
+        return 'emocao-input-range3';
+      case 'emocao-input4':
+        return 'emocao-input-range4';
+      case 'emocao-input5':
+        return 'emocao-input-range5';
+    }
+  }
+
   alteraEstadoEmocao(emocao, valor) {
     switch (emocao) {
-      case 'emotion-input1':
+      case 'emocao-input1':
         this.emocao1 = valor;
-      case 'emotion-input2':
+      case 'emocao-input2':
         this.emocao2 = valor;
-      case 'emotion-input3':
+      case 'emocao-input3':
         this.emocao3 = valor;
-      case 'emotion-input4':
+      case 'emocao-input4':
         this.emocao4 = valor;
-      case 'emotion-input5':
+      case 'emocao-input5':
         this.emocao5 = valor;
     }
   }
@@ -61,14 +63,6 @@ export class PsicologoComponent implements OnInit {
     emotionInputRangeElement.style.width = emotionInputvalue + '%';
 
     this.alteraEstadoEmocao(emotionInput, emotionInputvalue);
-  }
-
-  salvarEmocoes() {
-    alert(`"Emoção 1 = "${this.emocao1}
-    \"Emoção 2 = "${this.emocao2}"
-    \"Emoção 3 = "${this.emocao3}"
-    \"Emoção 4 = "${this.emocao4}"
-    \"Emoção 5 = "${this.emocao5}"`);
   }
 
   mockDatas = [
@@ -181,5 +175,24 @@ export class PsicologoComponent implements OnInit {
     historico.appendChild(todayItemContainer);
 
   } 
+
+  salvarDiario() {
+
+    const sobrePacienteElement = document.getElementById('sobre-paciente-texto');
+    const sobrePaciente = (<HTMLInputElement>(sobrePacienteElement)).value;
+    const comentarioPsicologoElement = document.getElementById('notas-texto');
+    const comentarioPsicologo = (<HTMLInputElement>(comentarioPsicologoElement)).value;
+    const sentimentosPacienteElement = document.getElementById('psicologo-comentarios-texto');
+    const sentimentosPaciente = (<HTMLInputElement>(sentimentosPacienteElement)).value;
+
+    alert(`Emoção 1 = ${this.emocao1}
+    \Emoção 2 = ${this.emocao2}
+    \Emoção 3 = ${this.emocao3}
+    \Emoção 4 = ${this.emocao4}
+    \Emoção 5 = ${this.emocao5}
+    \Sobre o Paciente: ${sobrePaciente}
+    \Comentários do Psicólogo: ${comentarioPsicologo}
+    \Sentimentos do Paciente: ${sentimentosPaciente}`);
+  }
 
 }
