@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div id="body">
+  <main>
+    <section>
+      <div class="historico-diarios-content">
+        <div id="historico-diarios"></div>
+      </div>
+    </section>
+
+    <section>
+      <div id="about-patient-container">
+        <h2>Sobre o paciente:</h2>
+        <div class="textarea-container">
+          <textarea placeholder="O paciente..."></textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="dashed-line"/>
+
+    <section>
+      <div id="content">
+        <div id="emotions-container">
+          <h2>Como o paciente esté se sentindo:</h2>
+
+          <div class="emotion-container">
+            <input id="emotion-input1" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
+            <div id="emotion-input-range1" class="emotion-input-range"></div>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 1</h3>
+          </div>
+
+          <div class="emotion-container">
+            <input id="emotion-input2" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
+            <div id="emotion-input-range2" class="emotion-input-range"></div>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 2</h3>
+          </div>
+          
+          <div class="emotion-container">
+            <input id="emotion-input3" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
+            <div id="emotion-input-range3" class="emotion-input-range"></div>
+            <img src="../../../../assets/emotion-example.svg"/>
+            <h3>Emoção 3</h3>
+          </div>
+
+          <div class="emotion-container">
+            <input id="emotion-input4" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
+            <div id="emotion-input-range4" class="emotion-input-range"></div>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 4</h3>
+          </div>
+
+          <div class="emotion-container">
+            <input id="emotion-input5" type="range" min="0" max="100" value="0" (mousemove)="alterarEmocao($event)">
+            <div id="emotion-input-range5" class="emotion-input-range"></div>
+            <img src="../../../assets/emotion-example.svg"/>
+            <h3>Emoção 5</h3>
+          </div>
+        </div>
+
+        <div id="note-container">
+          <h2>Contando um pouco mais:</h2>
+          <div class="textarea-container">
+            <textarea placeholder="Hoje estou me sentindo..."></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="psychologist-comments-container">
+        <h2>Comentários do psicólogo:</h2>
+        <div class="textarea-container">
+          <textarea placeholder="O paciente..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <button class="material-icons" id="save-button" (click)="salvarEmocoes()">
+      save
+    </button>
+  </main>
+</div>
+
+ 

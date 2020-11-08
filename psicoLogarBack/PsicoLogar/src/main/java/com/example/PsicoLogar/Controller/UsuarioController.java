@@ -9,7 +9,7 @@ import com.example.PsicoLogar.Resource.BaseController;
 import com.example.PsicoLogar.Service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController  extends BaseController<Usuario,UsuarioRepository,UsuarioService> {
 
 }

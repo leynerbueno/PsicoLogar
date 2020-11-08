@@ -1,7 +1,8 @@
 CREATE TABLE `psicologo` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `crp` varchar(150) NOT NULL,
-   `usuario_id` INT NOT NULL
+   `usuario_id` INT NOT NULL,
+  `crp` varchar(150) NOT NULL
+  
 );
 
 INSERT INTO psicologo VALUES 
