@@ -241,6 +241,11 @@ export class PsicologoComponent implements OnInit {
   emocao3 = 0;
   emocao4 = 0;
   emocao5 = 0;
+  camposTexto = {
+    sobrePaciente: '',
+    comentarioPsicologo: '',
+    sentimentosPaciente: '',
+  }
 
   usuario = this.mockRetornoBanco.Usuario;
   hoje = '8Nov'
@@ -284,6 +289,20 @@ export class PsicologoComponent implements OnInit {
     }
   }
 
+  alteraEstadoComentario(campo, comentario){
+    switch (campo) {
+      case 'sentimentosPaciente':
+        this.camposTexto[campo] = comentario;
+        break;
+      case 'comentarioPsicologo':
+        this.camposTexto[campo] = comentario;
+        break;
+      case 'sobrePaciente':
+        this.camposTexto[campo] = comentario;
+        break;
+    }
+  }
+
   alterarEmocao(e){
     if(this.exibindoHoje && this.usuario === 'Paciente'){
       let emotionInput = e.path[0].id;
@@ -302,6 +321,22 @@ export class PsicologoComponent implements OnInit {
     }
   }
   //FIM - controle emocoes
+
+  //INICIO - controle campos texto
+
+    alterarEstadoTexto(e){
+      console.log('entrou na alteracao de texto');
+      console.log(e);
+
+      let textInputId = e.path[0].id;
+      let textInputElement = document.getElementById(textInputId);
+
+      let textInputvalue = String((<HTMLInputElement>(textInputElement)).value);
+
+      console.log(textInputvalue);
+    }
+
+  //INICIO - controle campos texto
 
   //INICIO - preenchimento automatico do diario conforme retorno do back
   obterValorEmocaoDiarioSelecionado(emocao, diario) {
@@ -362,15 +397,38 @@ export class PsicologoComponent implements OnInit {
     }
   }
 
+  definirTexto(diarioSelecionado, campo){
+    
+    let comentarioDiario = diarioSelecionado[campo];
+    let comentarioEstadoAtual = this.camposTexto[campo];
+
+    let comentarioDefinida = this.exibindoHoje && comentarioEstadoAtual != '' ? comentarioEstadoAtual : comentarioDiario;
+    
+    return comentarioDefinida;
+  }
+
   preencheCamposTexto(diarioSelecionado){
     const comentarioPsicologoElement = document.getElementById('notas-texto');
-    (<HTMLInputElement>(comentarioPsicologoElement)).value = diarioSelecionado.sentimentosPaciente;
+    let comentarioPaciente = this.definirTexto(diarioSelecionado, 'sentimentosPaciente');
+    (<HTMLInputElement>(comentarioPsicologoElement)).value = comentarioPaciente;
+
+    if(this.exibindoHoje){
+      this.alteraEstadoComentario('sentimentosPaciente', comentarioPaciente);
+    }
 
     if(this.usuario === 'Psicologo'){
       const sobrePacienteElement = document.getElementById('sobre-paciente-texto');
-      (<HTMLInputElement>(sobrePacienteElement)).value = diarioSelecionado.sobrePaciente;
+      let sobrePaciente = this.definirTexto(diarioSelecionado, 'sobrePaciente');
+      (<HTMLInputElement>(sobrePacienteElement)).value = sobrePaciente;
+      
       const sentimentosPacienteElement = document.getElementById('psicologo-comentarios-texto');
-      (<HTMLInputElement>(sentimentosPacienteElement)).value = diarioSelecionado.comentarioPsicologo;
+      let comentarioPsicologo = this.definirTexto(diarioSelecionado, 'comentarioPsicologo');
+      (<HTMLInputElement>(sentimentosPacienteElement)).value = comentarioPsicologo;
+
+      if(this.exibindoHoje){
+        this.alteraEstadoComentario('sobrePaciente', sobrePaciente);
+        this.alteraEstadoComentario('comentarioPsicologo', comentarioPsicologo);
+      }
     }
   }
 

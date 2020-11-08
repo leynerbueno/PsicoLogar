@@ -63,7 +63,12 @@
         <div id="notas-container">
           <h2>Contando um pouco mais:</h2>
           <div class="textarea-container">
-            <textarea id="notas-texto" placeholder="Hoje estou me sentindo..."></textarea>
+            <textarea
+              id="notas-texto"
+              placeholder="Hoje estou me sentindo..."
+              (change)="alterarEstadoTexto($event)"
+            >
+            </textarea>
           </div>
         </div>
       </div>
