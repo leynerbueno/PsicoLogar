@@ -84,9 +84,9 @@ export class PsicologoComponent implements OnInit {
         emocao3: 15,
         emocao4: 15,
         emocao5: 15,
-        sobrePaciente: '15Jan',
-        comentarioPsicologo: '15Jan',
-        sentimentosPaciente: '15Jan',
+        sobrePaciente: '27Jan',
+        comentarioPsicologo: '27Jan',
+        sentimentosPaciente: '27Jan',
       },
       {
         day: 10,
@@ -268,14 +268,19 @@ export class PsicologoComponent implements OnInit {
     switch (emocao) {
       case 'emocao-input1':
         this.emocao1 = valor;
+        break;
       case 'emocao-input2':
         this.emocao2 = valor;
+        break;
       case 'emocao-input3':
         this.emocao3 = valor;
+        break;
       case 'emocao-input4':
         this.emocao4 = valor;
+        break;
       case 'emocao-input5':
         this.emocao5 = valor;
+        break;
     }
   }
 
@@ -287,7 +292,7 @@ export class PsicologoComponent implements OnInit {
       let emotionInputElement = document.getElementById(emotionInput)
       let emotionInputRangeElement = document.getElementById(emotionInputRange);
 
-      let emotionInputvalue = String((<HTMLInputElement>(emotionInputElement)).value)
+      let emotionInputvalue = String((<HTMLInputElement>(emotionInputElement)).value);
 
       emotionInputRangeElement.style.width = emotionInputvalue + '%';
 
@@ -299,7 +304,7 @@ export class PsicologoComponent implements OnInit {
   //FIM - controle emocoes
 
   //INICIO - preenchimento automatico do diario conforme retorno do back
-  obterValorEmocao(emocao, diario) {
+  obterValorEmocaoDiarioSelecionado(emocao, diario) {
     switch (emocao) {
       case 1:
         return diario.emocao1;
@@ -314,6 +319,30 @@ export class PsicologoComponent implements OnInit {
     }
   }
 
+  obterValorEstadoEmocaoHoje(emocao) {
+    switch (emocao) {
+      case 1:
+        return this.emocao1;
+      case 2:
+        return this.emocao2;
+      case 3:
+        return this.emocao3;
+      case 4:
+        return this.emocao4;
+      case 5:
+        return this.emocao5;
+    }
+  }
+
+  definirValorEmocao(i, diarioSelecionado){
+    let emocaoDiario = this.obterValorEmocaoDiarioSelecionado(i, diarioSelecionado);
+    let emocaoHojeEstadoAtual = this.obterValorEstadoEmocaoHoje(i);
+
+    let emocaoDefinida = this.exibindoHoje && emocaoHojeEstadoAtual != 0 ? emocaoHojeEstadoAtual : emocaoDiario;
+    
+    return emocaoDefinida;
+  }
+
   preencheEmocoes(diarioSelecionado){
     let baseEmotionInputId = 'emocao-input';
     let baseEmotionInputRangeId = 'emocao-input-range';
@@ -322,11 +351,13 @@ export class PsicologoComponent implements OnInit {
       let emotionInputElement = document.getElementById(baseEmotionInputId+i)
       let emotionInputRangeElement = document.getElementById(baseEmotionInputRangeId+i);
 
-      (<HTMLInputElement>(emotionInputElement)).value = this.obterValorEmocao(i, diarioSelecionado);
-      emotionInputRangeElement.style.width = this.obterValorEmocao(i, diarioSelecionado) + '%';
+      let emocao = this.definirValorEmocao(i, diarioSelecionado);
+
+      (<HTMLInputElement>(emotionInputElement)).value = emocao;
+      emotionInputRangeElement.style.width = emocao + '%';
 
       if(this.exibindoHoje){
-        this.alteraEstadoEmocao(baseEmotionInputId+i, this.obterValorEmocao(i, diarioSelecionado));
+        this.alteraEstadoEmocao(baseEmotionInputId+i, emocao);
       }
     }
   }
@@ -359,14 +390,16 @@ export class PsicologoComponent implements OnInit {
   //INICIO - altera dia historico
 
   alteraDiaHistorico(elemento){
-    console.log(elemento);
     let diarioId = elemento.path[1].id;
-    console.log(diarioId);
+
     let diarioSelecionado = document.getElementById(diarioId);
     diarioSelecionado.className = 'dia-selecionado-item';
     let diarioEmExibicao = document.getElementById(this.idDiaExibido);
     diarioEmExibicao.className = 'day-item';
 
+    this.idDiaExibido = diarioId;
+    this.exibindoHoje = diarioId == this.hoje;
+    this.preencheDiario(diarioId)
   }
 
   //FIM - altera dia historico
@@ -391,7 +424,7 @@ export class PsicologoComponent implements OnInit {
 
   geraTodayItem(id, divClickId) {
     return `<hr class="separator-hr">
-      <button id="${id} class="dia-selecionado-item">
+      <button id="${id}" style="margin-right: 20px;" class="dia-selecionado-item">
         <div id="${divClickId}" class="div-click"></div>
         <h4>Hoje</h4>
       </button>`
@@ -401,7 +434,6 @@ export class PsicologoComponent implements OnInit {
     let historico = document.getElementById('historico-diarios');
     let hojeRenderizado = false;
     let dayItemContainer;
-    let buttonId = '';
     let divClickId = 0
 
     this.mockRetornoBanco.mockDiarios.map((diario) => {
@@ -409,14 +441,12 @@ export class PsicologoComponent implements OnInit {
       if((diario.day.toString()+diario.month) == this.hoje){
         let todayitem = this.geraTodayItem(this.hoje, divClickId);
         dayItemContainer = this.geraDayItemContainer(todayitem);
-        buttonId = this.hoje;
 
         hojeRenderizado = true;
         this.preencheDiario(this.hoje);
       }else{
         let dayitem = this.geraDayItem(diario, divClickId);
         dayItemContainer = this.geraDayItemContainer(dayitem);
-        buttonId = (diario.day + diario.month).toString();
       }
 
       historico.appendChild(dayItemContainer);

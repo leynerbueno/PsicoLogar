@@ -83,7 +83,6 @@
 ::ng-deep .dia-selecionado-item {
   height: 65px;
   width: 65px;
-  margin-right: 20px;
 
   display: flex;
   justify-content: center;
@@ -101,11 +100,17 @@
   cursor: pointer;
 }
 
-::ng-deep .today-item h4 {
+::ng-deep .dia-selecionado-item h3 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+::ng-deep .dia-selecionado-item h4 {
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
-  color: #313131;
+  color: #fbfbfb;
 }
 
 ::ng-deep .day-item p {
