@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-psicologo',
   templateUrl: './psicologo.component.html',
-  styleUrls: ['./psicologo.component.css']
+  styleUrls: ['./CSS/psicologo.historico.css', './CSS/psicologo.emocoes.css', './CSS/psicologo.component.css']
 })
 export class PsicologoComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-    // this.adicionarMouseMove();
+    this.renderHistoricoDiarios();
   }
 
   obtemInputRange(emocao) {
@@ -70,4 +70,116 @@ export class PsicologoComponent implements OnInit {
     \"Emoção 4 = "${this.emocao4}"
     \"Emoção 5 = "${this.emocao5}"`);
   }
+
+  mockDatas = [
+    {
+      day: 12,
+      month: 'Jan',
+    },
+    {
+      day: 13,
+      month: 'Jan',
+    },
+    {
+      day: 15,
+      month: 'Jan',
+    },
+    {
+      day: 18,
+      month: 'Jan',
+    },
+    {
+      day: 21,
+      month: 'Jan',
+    },
+    {
+      day: 27,
+      month: 'Jan',
+    },
+    {
+      day: 10,
+      month: 'Fev',
+    },
+    {
+      day: 16,
+      month: 'Fev',
+    },
+    {
+      day: 18,
+      month: 'Fev',
+    },
+    {
+      day: 22,
+      month: 'Fev',
+    },
+    {
+      day: 26,
+      month: 'Fev',
+    },
+    {
+      day: 29,
+      month: 'Fev',
+    },
+    {
+      day: 2,
+      month: 'Mar',
+    },
+    {
+      day: 6,
+      month: 'Mar',
+    },
+    {
+      day: 8,
+      month: 'Mar',
+    },
+    {
+      day: 9,
+      month: 'Mar',
+    },
+    {
+      day: 11,
+      month: 'Mar',
+    },
+  ]
+
+  geraDayItemContainer(dayitem) {
+    const dayItemContainer = document.createElement('div');
+    dayItemContainer.className = 'day-item-container';
+    dayItemContainer.innerHTML = dayitem;
+    
+    return dayItemContainer;
+  }
+
+  geraDayItem(data) {
+    return `<hr id="${data.day}+${data.month}" class="separator-hr">
+      <button class="day-item">
+        <h3>${data.day}</h3>
+        <p>${data.month}</p>
+      </button>`
+  }
+
+  geraTodayItem() {
+    return `<hr id="hoje" class="separator-hr">
+      <button class="today-item">
+        <h4>Hoje</h4>
+      </button>`
+  }
+
+  renderHistoricoDiarios() {
+    let historico = document.getElementById('historico-diarios');
+
+    this.mockDatas.map((data) => {
+      let dayitem = this.geraDayItem(data);
+      let dayItemContainer = this.geraDayItemContainer(dayitem);
+
+      historico.appendChild(dayItemContainer);
+    })
+
+    let todayitem = this.geraTodayItem();
+    let todayItemContainer = this.geraDayItemContainer(todayitem);
+
+    historico.appendChild(todayItemContainer);
+
+  } 
+
 }
