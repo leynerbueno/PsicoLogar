@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { CadastroComponent } from './Pages/cadastro/cadastro.component';
-import { PsicologoComponent } from './Pages/psicologo/psicologo.component';
+import { DiarioComponent } from './Pages/diario/diario.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     HomeComponent,
     CadastroComponent,
-    PsicologoComponent,
+    DiarioComponent,
     HeaderComponent,
     ListaPacientesComponent,
     PerfilComponent,
