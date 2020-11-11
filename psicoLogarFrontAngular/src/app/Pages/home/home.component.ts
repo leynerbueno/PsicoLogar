@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css','./pagHome.css','modal.css']
+  styleUrls: ['./home.component.css', './pagHome.css', 'modal.css']
 })
 export class HomeComponent implements OnInit {
-  form : FormGroup;
+  form: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) { 
+  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) {
     this.form = this.fb.group({
       'email': ['', Validators.required],
       'senha': ['', Validators.required]
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  abrirModalLogin(){
+  abrirModalLogin() {
     const modal = document.getElementById("modal_login");
     const overlay = document.getElementById("modal_login_overlay");
     modal.style.display = "flex";
@@ -31,19 +31,20 @@ export class HomeComponent implements OnInit {
   fecharModalLogin() {
     const modal = document.getElementById("modal_login");
     const overlay = document.getElementById("modal_login_overlay");
-      modal.style.display = "none";
-      overlay.style.display = "none";
+    modal.style.display = "none";
+    overlay.style.display = "none";
   }
 
-  goToPagCadastro(){
+  goToPagCadastro() {
     this.router.navigate(['/cadastro'])
   }
 
   submit() {
     const credenciais = this.form.value;
+    console.log(credenciais);
     this.authService.login(credenciais).subscribe(
-      data => this.router.navigate(['listaPacientes']),
-      erro => { console.log(erro);}
+      data => this.router.navigateByUrl('/listaPacientes'),
+      erro => { console.log(erro) }
     );
   }
 }
