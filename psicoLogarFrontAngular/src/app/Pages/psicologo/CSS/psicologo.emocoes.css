@@ -1,0 +1,96 @@
+#content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 30px;
+}
+
+#emocoes-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 53px;
+  width: 34.609375%;
+}
+
+#emocoes-container h2 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 35px;
+}
+
+.emocao-container {
+  width: 100%;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-bottom: 17.6px;
+}
+
+.emocao-container:last-child {
+  margin-bottom: 0;
+}
+
+.emocao-container input {
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  height: 65px;
+  width: 100%;
+  position: absolute;
+  z-index: 15;
+}
+
+/* .emocao-container input:active {
+  cursor: grabbing;
+} */
+
+.emocao-container input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 65px;
+  background: transparent;
+}
+
+.emocao-container input::-moz-range-thumb {
+  width: 25px;
+  height: 65px;
+  background: transparent;
+}
+
+.emocao-container img {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  left: 18px;
+  z-index: 10;
+}
+
+.emocao-container h3 {
+  position: absolute;
+  z-index: 10;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  text-align: center;
+  width: 100px;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 18px;
+}
+
+.emocao-input-range {
+  position: absolute;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  height: 65px;
+}

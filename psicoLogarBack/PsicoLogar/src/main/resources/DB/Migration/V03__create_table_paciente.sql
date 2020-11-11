@@ -6,7 +6,7 @@ CREATE TABLE `paciente` (
 );
 
 INSERT INTO paciente VALUES 
-    (NULL, 4, "4ª feira", 1),
-	(NULL, 5, "5ª feira", 1),
-	(NULL, 6, "2ª feira", 2),
-	(NULL, 7, "6ª feira", 3);
+    (NULL,"4ª feira",4, 1),
+	(NULL,"5ª feira",5, 1),
+	(NULL,"2ª feira",6, 2),
+	(NULL,"6ª feira",7, 3);

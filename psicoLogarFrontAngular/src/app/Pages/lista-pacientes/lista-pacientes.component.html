@@ -1,0 +1,43 @@
+<body>
+  <div class="modal_cadastro_overlay" id="modal_cadastro_overlay" (click)="fecharModalCadastro()"></div>
+  <div class="modal_cadastro" id="modal_cadastro">
+    <button class="closer" (click)="fecharModalCadastro()">X</button>
+    <div class="titulo_modal_cadastro">Adicionar Novo Paciente</div>
+    <div class="formulario_adicionar_paciente">
+      <div class="campo_formulario_acidionar">
+        <input required id="matricula_cadastro" placeholder="Matrícula do Paciente">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <select name="consulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta">
+          <option value="segunda-feira">Seg</option>
+          <option value="terça-feira">Ter</option>
+          <option value="quarta-feira">Qua</option>
+          <option value="quinta-feira">Qui</option>
+          <option value="sexta-feira">Sex</option>
+          <option value="sábado">Sáb</option>
+        </select>
+      </div>
+      <div class="feedback_cadastro" id="feedback_cadastro"></div>
+      <button class="botao_salvar" (click)="cadastrarNovoPaciente()">Salvar</button>
+    </div>
+  </div>
+  <div class="componente_lista_container">
+    <app-header-Logado></app-header-Logado>
+
+    <div class="lista_header">
+      <div class="lista_titulo_adicionar">
+        <h1>Lista de Pacientes</h1>
+        <button class="botao_adicionar" (click)="abrirModalCadastro()">
+          +
+        </button>
+      </div>
+      <div class="lista_legenda">
+        <p class="legenda_descricao">Próxima Consulta:</p>
+        <div class="legenda_dia">
+          <div class="legenda_dia_consulta"></div>
+        </div>
+      </div>
+    </div>
+    <div class="lista_pacientes" id="lista_pacientes"></div>
+  </div>
+</body>
