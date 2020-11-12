@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { tokenReference } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
 import { map, distinctUntilChanged } from 'rxjs/operators';
@@ -20,15 +21,15 @@ export class AuthService {
   public populate() {
     // Se o JWT for detectado, tente obter e armazenar as informações do usuário
     if (this.jwtService.getToken()) {
-      this.httpClient.get(this.baseUrl )
+      this.httpClient.get(this.baseUrl + '/login')
         .subscribe(
           data => this.setAuth(data),
           err => this.purgeAuth()
         );
-      } else {
-        // Remova qualquer possível remanescente de estados de autenticação anteriores
-        this.purgeAuth();
-      }
+    } else {
+      // Remova qualquer possível remanescente de estados de autenticação anteriores
+      this.purgeAuth();
+    }
   }
 
   private setAuth(usuario) {
@@ -50,11 +51,13 @@ export class AuthService {
   public login(credentials): Observable<any> {
     return this.httpClient.post(this.baseUrl + '/login', credentials)
       .pipe(map(
-        user => {
-           // Salvar JWT enviado do servidor no localstorage
-          this.jwtService.saveToken(user['token']);
+        // O pipe intercepta o resultado e permite a visualização
+        //Concatena operadores e devolve um único retorno
+        token => {
+          // Salvar JWT enviado do servidor no localstorage
+          this.jwtService.saveToken(token['token']);
           this.populate();
-          return user;
+          return token;
         }
       ));
   }

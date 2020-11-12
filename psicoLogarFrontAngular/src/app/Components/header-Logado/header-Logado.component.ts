@@ -30,5 +30,6 @@ export class HeaderLogadoComponent implements OnInit {
   logout() {
     this.authService.purgeAuth();
     this.router.navigate(['/']);
+    console.log("SAIU")
   }
 }

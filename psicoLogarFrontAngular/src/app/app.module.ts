@@ -12,7 +12,10 @@ import { PsicologoComponent } from './Pages/psicologo/psicologo.component';
 import { HeaderCadastroComponent } from './Components/header-Cadastro/header-Cadastro.component';
 import { HeaderLogadoComponent } from './Components/header-Logado/header-Logado.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './Core/service/auth-guard.service';
+import { AuthService } from './Core/service/auth.service';
+import { HttpTokenInterceptor } from './Core/interceptors/http-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

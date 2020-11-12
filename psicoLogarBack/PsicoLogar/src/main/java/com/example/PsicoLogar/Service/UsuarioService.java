@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,6 +21,15 @@ import com.example.PsicoLogar.Resource.BaseService;
 @Service
 public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	public Usuario getUser() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Optional<Usuario> optional = usuarioRepository.findByEmail(user.getUsername());
+		return optional.get();
+	}
+	
 	@Override
 	public Usuario insert(Usuario entity) {
 		String urlDaImagem = this.saveBase64(entity.getFoto());
