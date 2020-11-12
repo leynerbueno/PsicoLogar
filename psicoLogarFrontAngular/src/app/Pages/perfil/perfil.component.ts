@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../Core/service/usuario.service';
 
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/Core/service/auth.service';
 
 @Component({
   selector: 'app-Perfil',
@@ -10,13 +11,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  id = 9;
+  currentUser;
+  isAuthenticated: boolean;
   form: FormGroup;
   imageBase64;
   usuario = {};
-  constructor(private service: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private service: UsuarioService,private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.authService.isAuthenticated.subscribe(
+      (isAuthenticated) => this.isAuthenticated = isAuthenticated);
+    this.authService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+      }
+    );
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
       email: ['', Validators.required],
@@ -27,7 +36,7 @@ export class PerfilComponent implements OnInit {
       crp: ['', Validators.required]
     });
 
-    this.service.getOne(this.id).subscribe(
+    this.service.getOne(this.currentUser.id).subscribe(
       dadosUsuario => {
         this.imageBase64 = dadosUsuario.foto;
         this.form.patchValue(dadosUsuario);
@@ -54,7 +63,7 @@ export class PerfilComponent implements OnInit {
   submit() {
     const usuario = this.form.value;
     usuario.foto = this.imageBase64;
-    this.service.update(this.id, usuario).subscribe(
+    this.service.update(this.currentUser.id, usuario).subscribe(
       data => this.router.navigate(['perfil']),
       erro => console.log(erro)
     );
