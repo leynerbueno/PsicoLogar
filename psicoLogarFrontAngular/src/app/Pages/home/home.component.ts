@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   submit() {
     const credenciais = this.form.value;
+    console.log(credenciais);
     this.authService.login(credenciais).subscribe(
       data => this.router.navigateByUrl('/listaPacientes'),
       erro => { alert("Erro ao logar!") }

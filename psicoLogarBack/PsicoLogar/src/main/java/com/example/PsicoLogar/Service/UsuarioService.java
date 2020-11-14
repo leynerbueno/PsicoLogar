@@ -23,17 +23,19 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	public Usuario getUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Optional<Usuario> optional = usuarioRepository.findByEmail(user.getUsername());
 		return optional.get();
 	}
-	
+
 	@Override
 	public Usuario insert(Usuario entity) {
-		String urlDaImagem = this.saveBase64(entity.getFoto());
-		entity.setFoto(urlDaImagem);
+		if (entity.getFoto() != null && !entity.getFoto().startsWith("http")) {
+			String urlDaImagem = saveBase64(entity.getFoto());
+			entity.setFoto(urlDaImagem);
+		}
 		return super.insert(entity);
 	}
 

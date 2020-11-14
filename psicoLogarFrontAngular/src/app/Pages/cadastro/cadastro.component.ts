@@ -21,8 +21,9 @@ export class CadastroComponent implements OnInit {
       senha: ['', Validators.required],
       genero: ['', Validators.required],
       telefone: ['', Validators.required],
-      data_nascimento: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
+      tipoUsuario: ['', Validators.required],
       crp: ['', Validators.required]
     });
   }

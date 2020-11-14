@@ -1,6 +1,6 @@
 CREATE TABLE `paciente` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `consulta` varchar(150) NOT NULL,
+  `consulta` varchar(150) NULL,
   `usuario_id` INT NOT NULL,
   `psicologo_id` int
 );

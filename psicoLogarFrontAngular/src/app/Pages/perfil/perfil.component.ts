@@ -29,6 +29,7 @@ export class PerfilComponent implements OnInit {
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
       email: ['', Validators.required],
+      senha: ['', Validators.required],
       genero: ['', Validators.required],
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
