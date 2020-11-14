@@ -15,8 +15,8 @@ export class CadastroComponent implements OnInit {
   form: FormGroup;
   formCredencials: FormGroup;
   imageBase64;
-  usuario;
-  credenciais;
+
+
 
   constructor(private usuarioService: UsuarioService, private authService: AuthService, private pacienteService: PacienteService, private psicologoService: PsicologoService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -63,34 +63,44 @@ export class CadastroComponent implements OnInit {
     };
   }
 
-  submit() {
-    this.usuario = this.form.value;
-    this.usuario.foto = this.imageBase64;
-    this.usuarioService.create(this.usuario).subscribe(
-      data => this.router.navigateByUrl(''),
-      erro => { alert("Erro ao criar Usuario!") }
-    );
-    console.log(this.usuario);
+  logaUsuario(usuario) {
+    setTimeout(() => {
+      console.log(usuario);
     const credenciais = {
-      email: this.usuario.email,
-      senha: this.usuario.senha
+      email: usuario.email,
+      senha: usuario.senha
     }
     console.log(credenciais);
-    this.authService.login(this.credenciais).subscribe(
+    this.authService.login(credenciais).subscribe(
       data => {
-        if (this.usuario.tipoUsuario === 'Psicologo') {
-          this.psicologoService.create(this.usuario).subscribe(
+        if (usuario.tipoUsuario === 'Psicologo') {
+          this.psicologoService.create(usuario).subscribe(
             data => this.router.navigateByUrl('/listaPacientes'),
-            erro => { alert("Erro ao cadastrar o Psicologo!") }
+            erro => { //alert("Erro ao cadastrar o Psicologo!") 
+            }
           );
         } else {
-          this.pacienteService.create(this.usuario).subscribe(
+          this.pacienteService.create(usuario).subscribe(
             data => this.router.navigateByUrl('psicologo'),
-            erro => { alert("Erro ao cadastrar o Paciente!") }
+            erro => { //alert("Erro ao cadastrar o Paciente!")
+            }
           );
         }
       },
-      erro => alert("Erro ao logar!")
+      erro => {//alert("Erro ao logar!")
+      }
     );
+    }, 5000);
+  }
+
+  submit() {
+    const usuario = this.form.value;
+    usuario.foto = this.imageBase64;
+    this.usuarioService.create(usuario).subscribe(
+      data => this.router.navigateByUrl(''),
+      erro => { //alert("Erro ao criar Usuario!") 
+      }
+    );
+    this.logaUsuario(usuario);
   }
 }
