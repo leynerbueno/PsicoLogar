@@ -13,13 +13,13 @@ CREATE TABLE usuario (
 
 /*Inserts de Psicologos*/
 INSERT INTO usuario VALUES 
-    (NULL,NULL, "André", "andre.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Psicologo"),
-	(NULL,NULL, "Juan", "juan.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Psicologo"),
-	(NULL,NULL, "Leyner", "leyner.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Psicologo");
+    (NULL,NULL, "André", "andre.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Psicologo"),
+	(NULL,NULL, "Juan", "juan.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Psicologo"),
+	(NULL,NULL, "Leyner", "leyner.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Psicologo");
 	
 /*Inserts de Pacientes*/
 INSERT INTO usuario VALUES 
-    (NULL,NULL, "Joana", "joana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Paciente"),
-	(NULL,NULL, "Thais", "thais.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Paciente"),
-	(NULL,NULL, "Mariana","mariana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Paciente"),
-	(NULL,NULL, "Juliana", "juliana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990/01/01", "Rua aleatoria, 888","Paciente");
+    (NULL,NULL, "Joana", "joana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Paciente"),
+	(NULL,NULL, "Thais", "thais.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Paciente"),
+	(NULL,NULL, "Mariana","mariana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Paciente"),
+	(NULL,NULL, "Juliana", "juliana.silva@gmail.com", "$2y$12$sSLCsH9Q.irGZhYl2zaQweO5wIhlExwiqZyerdmMSVzSRr.h0.zzS", "Masculino", "5555-6666", "1990-01-01", "Rua aleatoria, 888","Paciente");

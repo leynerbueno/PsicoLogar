@@ -91,6 +91,7 @@ public class Usuario extends BaseEntity {
 	}
 
 	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
-	
+
 }
