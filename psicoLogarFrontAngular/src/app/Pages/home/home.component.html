@@ -33,15 +33,15 @@
   <div class="modal_login" id="modal_login">
     <button class="closer" (click)="fecharModalLogin()">X</button>
     <div class="titulo_modal_login">Entre no seu Diário</div>
-    <form class="formulario_login" action="">
+    <form class="formulario_login" [formGroup]="form" (ngSubmit)="submit()">
       <div class="email_senha">
-        <input type="text" placeholder="Login">
+        <input type="text" placeholder="Login" formControlName="email">
       </div>
       <div class="email_senha">
-        <input type="password"  placeholder="Senha">
+        <input type="password"  placeholder="Senha" formControlName="senha">
       </div>
+      <button class="botao_salvar" type="submit">Entrar</button>
     </form>
-    <button class="botao_salvar" (click)="goToPagListaPacientes()">Entrar</button>
     <a class="link_cadastro" (click)="goToPagCadastro()">Esqueci minha senha</a>
   </div>
 

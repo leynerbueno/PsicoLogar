@@ -19,20 +19,20 @@ public class Paciente extends BaseEntity {
 	private String consulta;
 	
 	@Column(name = "usuario_id", nullable = false)
-	private int usuarioId;
+	private Long usuarioId;
 	
-	@Column(name = "psicologo_id", nullable = false)
-	private int psicologoId;
+	//@Column(name = "psicologo_id")
+	//private int psicologoId;
 	
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
 	private Usuario usuario;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
-	@JsonIgnoreProperties("paciente")
-	private Psicologo psicologo;
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
+	//@JsonIgnoreProperties("paciente")
+	//private Psicologo psicologo;
 
 	@OneToMany(mappedBy = "paciente")
 	@JsonIgnoreProperties("paciente")
@@ -54,13 +54,13 @@ public class Paciente extends BaseEntity {
 		this.consulta = consulta;
 	}
 
-	public Psicologo getPsicologo() {
-		return psicologo;
-	}
+	//public Psicologo getPsicologo() {
+	//	return psicologo;
+	//}
 
-	public void setPsicologo(Psicologo psicologo) {
-		this.psicologo = psicologo;
-	}
+	//public void setPsicologo(Psicologo psicologo) {
+	//	this.psicologo = psicologo;
+	//}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -70,21 +70,22 @@ public class Paciente extends BaseEntity {
 		this.usuario = usuario;
 	}
 
-	public int getUsuarioId() {
+	public Long getUsuarioId() {
 		return usuarioId;
 	}
 
-	public void setUsuarioId(int usuarioId) {
+	public void setUsuarioId(Long usuarioId) {
+		System.out.println(usuarioId);
 		this.usuarioId = usuarioId;
 	}
 
-	public int getPsicologoId() {
-		return psicologoId;
-	}
+	//public int getPsicologoId() {
+	//	return psicologoId;
+	//}
 
-	public void setPsicologoId(int psicologoId) {
-		this.psicologoId = psicologoId;
-	}
+	//public void setPsicologoId(int psicologoId) {
+	//	this.psicologoId = psicologoId;
+	//}
 
 	
 }

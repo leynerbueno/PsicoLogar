@@ -2,6 +2,7 @@
   max-width: 100%;
   overflow: hidden;
   overflow-x: scroll;
+  margin-bottom: 30px;
 }
 
 #historico-diarios {
@@ -35,6 +36,20 @@
   height: 2px;
 }
 
+::ng-deep .div-click {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 65px;
+  width: 65px;
+
+  background-color: white;
+  opacity: 0%;
+
+  z-index: 10;
+}
+
 ::ng-deep .day-item {
   height: 65px;
   width: 65px;
@@ -43,6 +58,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  position: relative;
 
   border: 1px solid #00285C;
   background-color: #fbfbfb;
@@ -63,10 +80,9 @@
   line-height: 24px;
 }
 
-::ng-deep .today-item {
+::ng-deep .dia-selecionado-item {
   height: 65px;
   width: 65px;
-  margin-right: 20px;
 
   display: flex;
   justify-content: center;
@@ -74,23 +90,27 @@
   flex-direction: column;
 
   border: 1px solid #00285C;
-  background-color: #fbfbfb;
-  color: #3E3C3C;
+  color:#fbfbfb;
+  background-color: #fbfbfb98;
 
   border-radius: 10px;
 }
 
-::ng-deep .today-item:hover {
+::ng-deep .dia-selecionado-item:hover {
   cursor: pointer;
-  color:#fbfbfb;
-  background: #fbfbfb98;
 }
 
-::ng-deep .today-item h4 {
+::ng-deep .dia-selecionado-item h3 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+::ng-deep .dia-selecionado-item h4 {
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
-  color: #313131;
+  color: #fbfbfb;
 }
 
 ::ng-deep .day-item p {

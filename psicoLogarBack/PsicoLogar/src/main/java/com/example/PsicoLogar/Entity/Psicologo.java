@@ -17,15 +17,15 @@ public class Psicologo extends BaseEntity{
 	private String CRP;
 	
 	@Column(name = "usuario_id", nullable = false)
-	private int usuarioId;
+	private Long usuarioId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "psicologo")
-	@JsonIgnoreProperties("psicologo")
-	private List<Paciente> paciente;
+	//@OneToMany(mappedBy = "psicologo")
+	//@JsonIgnoreProperties("psicologo")
+	//private List<Paciente> pacientes;
 	
 	
 	public Usuario getUsuario() {
@@ -44,22 +44,21 @@ public class Psicologo extends BaseEntity{
 		this.CRP = CRP;
 	}
 
-	public List<Paciente> getPaciente() {
-		return paciente;
-	}
+	//public List<Paciente> getPacientes() {
+	//	return pacientes;
+	//}
 
-	public void setPaciente(List<Paciente> paciente) {
-		this.paciente = paciente;
-	}
+	//public void setPacientes(List<Paciente> pacientes) {
+	//	this.pacientes = pacientes;
+//	}
 
-	public int getUsuarioId() {
+	public Long getUsuarioId() {
 		return usuarioId;
 	}
 
-	public void setUsuarioId(int usuarioId) {
+	public void setUsuarioId(Long usuarioId) {
 		this.usuarioId = usuarioId;
 	}
 
-	
 	
 }

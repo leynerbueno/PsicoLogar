@@ -1,19 +1,27 @@
+import { AuthService } from './../../Core/service/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css','./pagHome.css','modal.css']
+  styleUrls: ['./home.component.css', './pagHome.css', 'modal.css']
 })
 export class HomeComponent implements OnInit {
+  form: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      email: ['', Validators.required],
+      senha: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  abrirModalLogin(){
+  abrirModalLogin() {
     const modal = document.getElementById("modal_login");
     const overlay = document.getElementById("modal_login_overlay");
     modal.style.display = "flex";
@@ -23,15 +31,20 @@ export class HomeComponent implements OnInit {
   fecharModalLogin() {
     const modal = document.getElementById("modal_login");
     const overlay = document.getElementById("modal_login_overlay");
-      modal.style.display = "none";
-      overlay.style.display = "none";
+    modal.style.display = "none";
+    overlay.style.display = "none";
   }
 
-  goToPagCadastro(){
+  goToPagCadastro() {
     this.router.navigate(['/cadastro'])
   }
 
-  goToPagListaPacientes() {
-    this.router.navigate(['listaPacientes']);
+  submit() {
+    const credenciais = this.form.value;
+    console.log(credenciais);
+    this.authService.login(credenciais).subscribe(
+      data => this.router.navigateByUrl('/listaPacientes'),
+      erro => { alert("Erro ao logar!") }
+    );
   }
 }
