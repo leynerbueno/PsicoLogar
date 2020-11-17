@@ -36,7 +36,6 @@ public abstract class BaseController<Entity extends BaseEntity, Repository exten
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Entity> cadastrar(@Valid @RequestBody Entity entity) {
-		System.out.println(entity);
 		Entity newEntity = service.insert(entity);
 		return ResponseEntity.status(201).body(newEntity);
 	}

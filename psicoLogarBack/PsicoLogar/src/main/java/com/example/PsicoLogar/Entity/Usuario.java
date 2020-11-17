@@ -30,6 +30,14 @@ public class Usuario extends BaseEntity {
 		this.foto = foto;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public String getNome() {
 		return nome;
 	}
