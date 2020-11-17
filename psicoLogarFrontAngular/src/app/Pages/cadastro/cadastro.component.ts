@@ -22,6 +22,7 @@ export class CadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
+      id: ['', Validators.required],
       nome: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
@@ -63,44 +64,49 @@ export class CadastroComponent implements OnInit {
     };
   }
 
-  logaUsuario(usuario) {
-    setTimeout(() => {
-      console.log(usuario);
-    const credenciais = {
-      email: usuario.email,
-      senha: usuario.senha
-    }
-    console.log(credenciais);
-    this.authService.login(credenciais).subscribe(
-      data => {
-        if (usuario.tipoUsuario === 'Psicologo') {
-          this.psicologoService.create(usuario).subscribe(
-            data => this.router.navigateByUrl('/listaPacientes'),
-            erro => { //alert("Erro ao cadastrar o Psicologo!") 
-            }
-          );
-        } else {
-          this.pacienteService.create(usuario).subscribe(
-            data => this.router.navigateByUrl('psicologo'),
-            erro => { //alert("Erro ao cadastrar o Paciente!")
-            }
-          );
-        }
-      },
-      erro => {//alert("Erro ao logar!")
-      }
-    );
-    }, 5000);
-  }
-
   submit() {
     const usuario = this.form.value;
     usuario.foto = this.imageBase64;
+
     this.usuarioService.create(usuario).subscribe(
-      data => this.router.navigateByUrl(''),
-      erro => { //alert("Erro ao criar Usuario!") 
+      data => this.router.navigateByUrl('/psicologo'),
+      erro => {
+        alert("Erro ao criar Usuario!")
       }
     );
-    this.logaUsuario(usuario);
   }
+
+  logaUsuario(usuario) {
+    setTimeout(() => {
+      console.log(usuario);
+      const credenciais = {
+        email: usuario.email,
+        senha: usuario.senha
+      }
+      console.log(credenciais);
+      this.authService.login(credenciais).subscribe(
+        data => {
+          if (usuario.tipoUsuario === 'Psicologo') {
+            this.psicologoService.create(usuario).subscribe(
+              data => this.router.navigateByUrl('/listaPacientes'),
+              erro => {
+                alert("Erro ao cadastrar o Psicologo!")
+              }
+            );
+          } else {
+            this.pacienteService.create(usuario).subscribe(
+              data => this.router.navigateByUrl('psicologo'),
+              erro => {
+                alert("Erro ao cadastrar o Paciente!")
+              }
+            );
+          }
+        },
+        erro => {
+          alert("Erro ao logar!")
+        }
+      );
+    }, 5000);
+  }
+
 }
