@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-psicologo',
-  templateUrl: './psicologo.component.html',
-  styleUrls: ['./CSS/psicologo.historico.css', './CSS/psicologo.emocoes.css', './CSS/psicologo.component.css']
+  selector: 'app-diario',
+  templateUrl: './diario.component.html',
+  styleUrls: ['./CSS/diario.historico.css', './CSS/diario.emocoes.css', './CSS/diario.component.css']
 })
-export class PsicologoComponent implements OnInit {
+export class DiarioComponent implements OnInit {
 
   constructor() { }
 
@@ -14,7 +14,8 @@ export class PsicologoComponent implements OnInit {
   }
 
   mockRetornoBanco = {
-    Usuario: 'Paciente',
+    // Usuario: 'Paciente',
+    Usuario: 'Psicologo',
     mockDiarios: [
       {
         day: 12,
@@ -316,7 +317,8 @@ export class PsicologoComponent implements OnInit {
       emotionInputRangeElement.style.width = emotionInputvalue + '%';
 
       this.alteraEstadoEmocao(emotionInput, emotionInputvalue);
-    } else{
+    }
+    if(!this.exibindoHoje && this.usuario === 'Paciente'){
       alert('Lamento, só é possível alterar o diário de hoje :(');
     }
   }
@@ -324,16 +326,19 @@ export class PsicologoComponent implements OnInit {
 
   //INICIO - controle campos texto
 
-    alterarEstadoTexto(e){
-      console.log('entrou na alteracao de texto');
-      console.log(e);
+    alterarTexto(e){
+        let textInputId = e.path[0].id;
+        let textInputElement = document.getElementById(textInputId);
 
-      let textInputId = e.path[0].id;
-      let textInputElement = document.getElementById(textInputId);
+        let textInputvalue = String((<HTMLInputElement>(textInputElement)).value);
 
-      let textInputvalue = String((<HTMLInputElement>(textInputElement)).value);
+        this.alteraEstadoComentario('sentimentosPaciente', textInputvalue)
+    }
 
-      console.log(textInputvalue);
+    alertaTextoNaoEditavel(){
+      if(!this.exibindoHoje && this.usuario === 'Paciente'){
+        alert('Lamento, só é possível alterar o diário de hoje :(');
+      }
     }
 
   //INICIO - controle campos texto
@@ -398,7 +403,6 @@ export class PsicologoComponent implements OnInit {
   }
 
   definirTexto(diarioSelecionado, campo){
-    
     let comentarioDiario = diarioSelecionado[campo];
     let comentarioEstadoAtual = this.camposTexto[campo];
 
@@ -412,8 +416,13 @@ export class PsicologoComponent implements OnInit {
     let comentarioPaciente = this.definirTexto(diarioSelecionado, 'sentimentosPaciente');
     (<HTMLInputElement>(comentarioPsicologoElement)).value = comentarioPaciente;
 
-    if(this.exibindoHoje){
+    if(this.exibindoHoje && this.usuario === 'Paciente'){
       this.alteraEstadoComentario('sentimentosPaciente', comentarioPaciente);
+      comentarioPsicologoElement.removeAttribute('readonly');
+    }
+
+    if(!this.exibindoHoje){
+      comentarioPsicologoElement.setAttribute('readonly', 'readonly');
     }
 
     if(this.usuario === 'Psicologo'){
@@ -471,25 +480,41 @@ export class PsicologoComponent implements OnInit {
     return dayItemContainer;
   }
 
+  calculaEmocaoPredominante(diario){
+    if(this.usuario == 'Psicologo' && diario != null){
+      // let emocaoMedia = (diario.emocao1 + diario.emocao2 + diario.emocao3 + diario.emocao4 + diario.emocao5) / 5;
+      let emocaoMedia = (diario.emocao1 + diario.emocao2 + diario.emocao3 + diario.emocao4 + diario.emocao5) * 3;
+      
+      if(emocaoMedia <= 165){return "emocao-ruim"};
+      if(emocaoMedia >= 330){return "emocao-boa"};
+      
+      return "emocao-neutra";
+    }
+  }
+
   geraDayItem(diario, divClickId) {
     return `<hr class="separator-hr">
       <button id="${diario.day + diario.month}" class="day-item">
         <div id="${divClickId}" class="div-click"></div>
+        <div class="${this.usuario == 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
         <h3>${diario.day}</h3>
         <p>${diario.month}</p>
       </button>`
   }
 
-  geraTodayItem(id, divClickId) {
+  geraTodayItem(id, divClickId, diario) {
     return `<hr class="separator-hr">
       <button id="${id}" style="margin-right: 20px;" class="dia-selecionado-item">
         <div id="${divClickId}" class="div-click"></div>
+        <div class="${this.usuario == 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
         <h4>Hoje</h4>
       </button>`
   }
 
   renderHistoricoDiarios() {
     let historico = document.getElementById('historico-diarios');
+    historico.innerHTML = '';
+
     let hojeRenderizado = false;
     let dayItemContainer;
     let divClickId = 0
@@ -497,7 +522,7 @@ export class PsicologoComponent implements OnInit {
     this.mockRetornoBanco.mockDiarios.map((diario) => {
       divClickId++;
       if((diario.day.toString()+diario.month) == this.hoje){
-        let todayitem = this.geraTodayItem(this.hoje, divClickId);
+        let todayitem = this.geraTodayItem(this.hoje, divClickId, diario);
         dayItemContainer = this.geraDayItemContainer(todayitem);
 
         hojeRenderizado = true;
@@ -514,7 +539,7 @@ export class PsicologoComponent implements OnInit {
     })
 
     if(!hojeRenderizado){
-      let todayitem = this.geraTodayItem(this.hoje, divClickId);
+      let todayitem = this.geraTodayItem(this.hoje, divClickId, null);
       dayItemContainer = this.geraDayItemContainer(todayitem);
   
       historico.appendChild(dayItemContainer);
@@ -539,6 +564,14 @@ export class PsicologoComponent implements OnInit {
     \Sobre o Paciente: ${sobrePaciente}
     \Comentários do Psicólogo: ${comentarioPsicologo}
     \Sentimentos do Paciente: ${sentimentosPaciente}`);
+  }
+
+  TrocaUsuario(){
+    this.usuario = this.usuario == 'Paciente' ? 'Psicologo' : 'Paciente';
+    this.hoje = '8Nov';
+    this.exibindoHoje = true;
+    this.idDiaExibido = '8Nov';
+    this.renderHistoricoDiarios();
   }
 
 }
