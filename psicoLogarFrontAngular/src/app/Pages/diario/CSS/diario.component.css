@@ -131,6 +131,31 @@ hr.dashed-line {
   cursor: pointer;
 }
 
+#troca-usuario-button {
+  width: 56px;
+  height: 56px;
+
+  border-radius: 28px;
+  border: 1px solid #00285C;
+  background-color: #fbfbfb;
+  color: #3E3C3C;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  z-index: 20;
+  bottom: 40px;
+  right: 110px;
+}
+
+#troca-usuario-button:hover {
+  color:#fbfbfb;
+  background: #fbfbfb98;
+  cursor: pointer;
+}
+
 
 #save-button span {
   width: 40px;
