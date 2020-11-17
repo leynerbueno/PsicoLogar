@@ -20,6 +20,7 @@ public abstract class BaseService<Entity extends BaseEntity, Repository extends 
 	}
 	
 	public Entity insert(Entity entity) {
+		System.out.println(entity);
 		return repository.save(entity);
 	}
 	
