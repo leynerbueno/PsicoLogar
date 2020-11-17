@@ -22,31 +22,7 @@
     </div>
   </div>
   <div class="componente_lista_container">
-    <div id="header">
-      <span id="logo"> PsicoLogar </span>
-      <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}" (click)="handleMenu()"></div>
-      <div class="navigation">
-        <button (click)="handleMenu()">
-          <img id="profile_image" src="../../assets/sample_image.png">
-        </button>
-      </div>
-    </div>
-  
-    <div id="menu_content" (blur)="handleMenu()" [ngStyle]="{'right': openMenu ? '0px' : '-20vw'}" >
-      <div class="menu_header" >
-        <span class="material-icons" id="close-menu-icon" (click)="handleMenu()" style="cursor: pointer;">
-          close
-        </span>
-        <span class="menu_title" style="padding-top: 40px;">
-          Joana C. Silva
-        </span>
-        <img id="profile_image" src="../../assets/sample_image.png">
-      </div>
-      <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
-        <li> <a href="#"> Meu Perfil </a> </li>
-        <li> <a href="#"> Sair </a> </li>
-      </ul>
-    </div>
+    <app-header-Logado></app-header-Logado>
 
     <div class="lista_header">
       <div class="lista_titulo_adicionar">

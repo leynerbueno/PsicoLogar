@@ -14,17 +14,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Diario extends BaseEntity {
 
-	private Long afetividade;
-	private Long alegria;
-	private Long autruismo;
-	private Long amor;
-	private Long bemEstar;
+	private Long emocao1;
+	private Long emocao2;
+	private Long emocao3;
+	private Long emocao4;
+	private Long emocao5;
 	private Long emocaoGeral;
 	private String comentarioPaciente;
 	private String comentarioPsicologo;
 	private String detalhes;
-	
-	
 	private LocalDate dataDoDiario;
 	
 	@Column(name = "paciente_id", nullable = false)
@@ -36,6 +34,46 @@ public class Diario extends BaseEntity {
 	private Paciente paciente;
 
 
+	public Long getEmocao1() {
+		return emocao1;
+	}
+
+	public void setEmocao1(Long emocao1) {
+		this.emocao1 = emocao1;
+	}
+
+	public Long getEmocao2() {
+		return emocao2;
+	}
+
+	public void setEmocao2(Long emocao2) {
+		this.emocao2 = emocao2;
+	}
+
+	public Long getEmocao3() {
+		return emocao3;
+	}
+
+	public void setEmocao3(Long emocao3) {
+		this.emocao3 = emocao3;
+	}
+
+	public Long getEmocao4() {
+		return emocao4;
+	}
+
+	public void setEmocao4(Long emocao4) {
+		this.emocao4 = emocao4;
+	}
+
+	public Long getEmocao5() {
+		return emocao5;
+	}
+
+	public void setEmocao5(Long emocao5) {
+		this.emocao5 = emocao5;
+	}
+
 	public Paciente getPaciente() {
 		return paciente;
 	}
@@ -44,45 +82,6 @@ public class Diario extends BaseEntity {
 		this.paciente = paciente;
 	}
 
-	public Long getAfetividade() {
-		return afetividade;
-	}
-
-	public void setAfetividade(Long afetividade) {
-		this.afetividade = afetividade;
-	}
-
-	public Long getAlegria() {
-		return alegria;
-	}
-
-	public void setAlegria(Long alegria) {
-		this.alegria = alegria;
-	}
-
-	public Long getAutruismo() {
-		return autruismo;
-	}
-
-	public void setAutruismo(Long autruismo) {
-		this.autruismo = autruismo;
-	}
-
-	public Long getAmor() {
-		return amor;
-	}
-
-	public void setAmor(Long amor) {
-		this.amor = amor;
-	}
-
-	public Long getBemEstar() {
-		return bemEstar;
-	}
-
-	public void setBemEstar(Long bemEstar) {
-		this.bemEstar = bemEstar;
-	}
 
 	public Long getEmocaoGeral() {
 		return emocaoGeral;

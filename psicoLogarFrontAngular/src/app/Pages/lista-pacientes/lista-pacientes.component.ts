@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-lista-pacientes',
   templateUrl: './lista-pacientes.component.html',
-  styleUrls: ['./CSS/headerStyles.css', './CSS/modal.css', './CSS/styles.css', './CSS/itemLista.css']
+  styleUrls: ['./CSS/modal.css', './CSS/styles.css', './CSS/itemLista.css']
 })
 export class ListaPacientesComponent implements OnInit {
 
@@ -192,10 +192,5 @@ listarDiasDaSemana(diaConsulta) {
 
   }
   
-  openMenu = false;
-
-  handleMenu = () => {
-    this.openMenu = !this.openMenu;
-  }
-
+  
 }

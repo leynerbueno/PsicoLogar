@@ -8,6 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import com.example.PsicoLogar.Config.JwtTokenUtil;
 import com.example.PsicoLogar.DTO.JwtResponseDTO;
 import com.example.PsicoLogar.DTO.UserDTO;
 import com.example.PsicoLogar.Service.JwtUserDetailsService;
+import com.example.PsicoLogar.Service.UsuarioService;
 
 
 
@@ -33,6 +35,9 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDTO authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getEmail(), authenticationRequest.getSenha());
@@ -41,6 +46,11 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponseDTO(token));
 	}
 
+	@GetMapping("/login")
+	public ResponseEntity<?> getUsuarioCorrente() {
+		return ResponseEntity.ok(usuarioService.getUser());
+	}
+	
 	private void authenticate(String email, String senha) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, senha));

@@ -1,5 +1,6 @@
 package com.example.PsicoLogar.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,8 +16,19 @@ public class Usuario extends BaseEntity {
 	private String senha;
 	private String genero;
 	private String telefone;
+	@Column(name="data_nascimento")
 	private String dataNascimento;
 	private String endereco;
+	private String tipoUsuario;
+	
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public String getFoto() {
 		return foto;
@@ -70,8 +82,8 @@ public class Usuario extends BaseEntity {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String data_nascimento) {
-		this.dataNascimento = data_nascimento;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getEndereco() {
@@ -80,6 +92,14 @@ public class Usuario extends BaseEntity {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 }
