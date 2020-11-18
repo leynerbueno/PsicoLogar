@@ -27,14 +27,17 @@ export abstract class BaseService {
   }
 
   public getOne(id): Observable<any> {
-    return this.httpClient.get(this.baseUrl + "/" + id);
+    const url = this.baseUrl + '/' + id;
+    return this.httpClient.get(url);
   }
   
   public update(id, Entity): Observable<any> {
-    return this.httpClient.put(this.baseUrl + "/" + id, Entity, this.httpOptions);
+    const url = this.baseUrl + '/' + id;
+    return this.httpClient.put(url, Entity, this.httpOptions);
   }
 
   public delete(id): Observable<any> {
-    return this.httpClient.delete(this.baseUrl + "/" + id, this.httpOptions);
+    const url = this.baseUrl + '/' + id;
+    return this.httpClient.delete(url, this.httpOptions);
   }
 }

@@ -1,3 +1,6 @@
+import { AuthService } from './../../Core/service/auth.service';
+import { PsicologoService } from './../../Core/service/psicologo.service';
+import { PacienteService } from './../../Core/service/paciente.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaPacientesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService,
+    private pacienteService: PacienteService, 
+    private psicologoService: PsicologoService ) { }
 
   ngOnInit() {
     this.listarPacientes(this.mockListaPacientes, null);
@@ -157,12 +162,20 @@ listarDiasDaSemana(diaConsulta) {
     var diaConsulta = (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value;
     var feedbackCadastro = document.getElementById("feedback_cadastro");
 
-    var paciente = this.mockPacientesParaAdicionar.filter(p => p.matricula === parseInt(matriculaAdicionada));
+    //var paciente = this.mockPacientesParaAdicionar.filter(p => p.matricula === parseInt(matriculaAdicionada));
 
-    paciente.length > 0 ?
-    feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!" :
-    feedbackCadastro.innerHTML = "Paciente Não Encontrado...";
-
+    var paciente;
+    this.pacienteService.getOne(matriculaAdicionada).subscribe(
+      data => {
+        paciente = data;
+        console.log(paciente);
+        paciente.consulta = diaConsulta;
+        this.pacienteService.update(matriculaAdicionada, paciente);
+        feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!"
+      },
+      erro => feedbackCadastro.innerHTML = "Paciente Não Encontrado..."
+    );
+    
     this.listarPacientes(paciente, diaConsulta);
   }
 

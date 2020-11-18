@@ -8,7 +8,7 @@ CREATE TABLE usuario (
 	telefone VARCHAR(50) NOT NULL,
 	data_nascimento VARCHAR(15) NOT NULL,
 	endereco VARCHAR(200) NOT NULL,
-	tipoUsuario VARCHAR(255)  
+	tipo_usuario VARCHAR(255)
 );
 
 /*Inserts de Psicologos*/
