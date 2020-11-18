@@ -52,15 +52,7 @@
             <label>Endereço:</label>
             <input type="text" id="endereco" name="endereco" formControlName="endereco">
           </div>
-          <div class="inputRadio">
-            <label>Sou Psicologo:</label>
-            <input class="radioPsicologo btnRadio" type="radio" id="psicologo" name="tipoUsuario" value="Psicologo"
-              (click)="openCRP()" formControlName="tipoUsuario">
-            <label>Sou Paciente:</label>
-            <input class="btnRadio" type="radio" id="paciente" name="tipoUsuario" value="Paciente" (click)="closeCRP()"
-              formControlName="tipoUsuario">
-          </div>
-          <div id="campoCRP" class="hidden">
+          <div id="campoCRP" class="inputField">
             <label>CRP:</label>
             <input type="text" id="crp" name="crp" formControlName="crp">
           </div>

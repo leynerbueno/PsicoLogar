@@ -157,7 +157,6 @@ listarDiasDaSemana(diaConsulta) {
 }
 
  cadastrarNovoPaciente() {
-    
     var matriculaAdicionada = (<HTMLInputElement>document.getElementById("matricula_cadastro")).value;
     var diaConsulta = (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value;
     var feedbackCadastro = document.getElementById("feedback_cadastro");
@@ -168,10 +167,15 @@ listarDiasDaSemana(diaConsulta) {
     this.pacienteService.getOne(matriculaAdicionada).subscribe(
       data => {
         paciente = data;
-        console.log(paciente);
+        console.log(diaConsulta);
         paciente.consulta = diaConsulta;
-        this.pacienteService.update(matriculaAdicionada, paciente);
-        feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!"
+        console.log(paciente);
+        this.pacienteService.update(matriculaAdicionada, paciente).subscribe(
+          data=> {
+          feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!"
+          },
+          erro => feedbackCadastro.innerHTML = "Paciente Não Encontrado..."
+        );
       },
       erro => feedbackCadastro.innerHTML = "Paciente Não Encontrado..."
     );

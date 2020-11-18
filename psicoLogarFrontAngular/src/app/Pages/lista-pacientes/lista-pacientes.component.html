@@ -5,7 +5,30 @@
     <div class="titulo_modal_cadastro">Adicionar Novo Paciente</div>
     <div class="formulario_adicionar_paciente">
       <div class="campo_formulario_acidionar">
-        <input required id="matricula_cadastro" placeholder="Matrícula do Paciente">
+        <input required id="nome" placeholder="Nome">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <input type="email" id="email" name="email" formControlName="email">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <input type="password" id="senha" name="senha" formControlName="senha">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <select id="genero" name="genero" formControlName="genero">
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outros">Outros</option>
+          <option value="Restrito">Prefiro não Informar</option>
+        </select>
+      </div>
+      <div class="campo_formulario_acidionar">
+        <input type="text" id="telefone" name="telefone" formControlName="telefone">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <input type="date" id="dataNasc" name="dataNascimento" formControlName="dataNascimento">
+      </div>
+      <div class="campo_formulario_acidionar">
+        <input type="text" id="endereco" name="endereco" formControlName="endereco">
       </div>
       <div class="campo_formulario_acidionar">
         <select name="consulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta">
