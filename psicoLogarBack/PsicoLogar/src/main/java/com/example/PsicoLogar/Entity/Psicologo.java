@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Psicologo extends BaseEntity{
-	private String CRP;
+	private String crp;
 	
 	@Column(name = "usuario_id", nullable = false)
 	private Long usuarioId;
@@ -36,12 +36,12 @@ public class Psicologo extends BaseEntity{
 		this.usuario = usuario;
 	}
 
-	public String getCRP() {
-		return CRP;
+	public String getCrp() {
+		return crp;
 	}
 
-	public void setCRP(String CRP) {
-		this.CRP = CRP;
+	public void setCrp(String crp) {
+		this.crp = crp;
 	}
 
 	//public List<Paciente> getPacientes() {

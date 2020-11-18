@@ -69,44 +69,10 @@ export class CadastroComponent implements OnInit {
     usuario.foto = this.imageBase64;
 
     this.usuarioService.create(usuario).subscribe(
-      data => this.router.navigateByUrl('/psicologo'),
+      data => this.router.navigateByUrl(''),
       erro => {
         alert("Erro ao criar Usuario!")
       }
     );
   }
-
-  logaUsuario(usuario) {
-    setTimeout(() => {
-      console.log(usuario);
-      const credenciais = {
-        email: usuario.email,
-        senha: usuario.senha
-      }
-      console.log(credenciais);
-      this.authService.login(credenciais).subscribe(
-        data => {
-          if (usuario.tipoUsuario === 'Psicologo') {
-            this.psicologoService.create(usuario).subscribe(
-              data => this.router.navigateByUrl('/listaPacientes'),
-              erro => {
-                alert("Erro ao cadastrar o Psicologo!")
-              }
-            );
-          } else {
-            this.pacienteService.create(usuario).subscribe(
-              data => this.router.navigateByUrl('psicologo'),
-              erro => {
-                alert("Erro ao cadastrar o Paciente!")
-              }
-            );
-          }
-        },
-        erro => {
-          alert("Erro ao logar!")
-        }
-      );
-    }, 5000);
-  }
-
 }

@@ -21,7 +21,6 @@ public abstract class BaseEntity {
 		return BaseEntity.class.getSimpleName();
 	}
 
-
 	public Long getId() {
 		return id;
 	}

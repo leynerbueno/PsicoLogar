@@ -2,10 +2,12 @@ package com.example.PsicoLogar.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.PsicoLogar.Resource.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Usuario extends BaseEntity {
@@ -19,15 +21,41 @@ public class Usuario extends BaseEntity {
 	@Column(name="data_nascimento")
 	private String dataNascimento;
 	private String endereco;
+	@Column(name="tipo_usuario")
 	private String tipoUsuario;
 	
+	@OneToOne(mappedBy = "usuario")
+	@JsonIgnoreProperties("usuario")
+	private Paciente paciente;
 	
-	public String getFoto() {
-		return foto;
+	@OneToOne(mappedBy = "usuario")
+	@JsonIgnoreProperties("usuario")
+	private Psicologo psicologo;
+	
+	
+
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Psicologo getPsicologo() {
+		return psicologo;
+	}
+
+	public void setPsicologo(Psicologo psicologo) {
+		this.psicologo = psicologo;
+	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public String getFoto() {
@@ -92,14 +120,6 @@ public class Usuario extends BaseEntity {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
 	}
 
 }
