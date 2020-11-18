@@ -27,7 +27,9 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 	private UsuarioRepository usuarioRepository;
 	private Psicologo psicologo = new Psicologo();
 	private Paciente paciente = new Paciente();
+	@Autowired
 	private PacienteService pacienteService;
+	@Autowired
 	private PsicologoService psicologoService;
 
 	public Usuario getUser() {
@@ -41,26 +43,21 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 		if (entity.getFoto() != null && !entity.getFoto().startsWith("http")) {
 			String urlDaImagem = saveBase64(entity.getFoto());
 			entity.setFoto(urlDaImagem);
+			 return super.insert(entity);
 		}
 		super.insert(entity);
-		
-		if(entity != null) {
-			Long usuarioId = entity.getId();
-			String tipoUsuario = entity.getTipoUsuario();
-			System.out.println(usuarioId);
-			if (tipoUsuario == "Psicologo") {
-				System.out.println("ENtrei psicologo");
-				psicologo.setUsuarioId(usuarioId);
-				System.out.println(psicologo);
-				psicologoService.insert(psicologo);
-			} else {
-				System.out.println("ENtrei paciente");
-				paciente.setUsuarioId(usuarioId);
-				System.out.println(paciente.toString());
-				pacienteService.insert(paciente);
-			}
+		Long usuarioId = entity.getId();
+		String tipoUsuario = entity.getTipoUsuario();
+		if (tipoUsuario.equals("Psicologo")) {
+			this.psicologo.setUsuarioId(usuarioId);
+			this.psicologoService.insert(psicologo);
+		} else {
+			this.paciente.setUsuarioId(usuarioId);
+			this.pacienteService.insert(paciente);
 		}
-		
+		System.out.println(usuarioId);
+		System.out.println(psicologo);
+		System.out.println(paciente);
 		return entity;
 	}
 

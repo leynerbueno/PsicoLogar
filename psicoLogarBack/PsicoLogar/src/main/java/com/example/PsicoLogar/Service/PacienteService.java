@@ -9,4 +9,8 @@ import com.example.PsicoLogar.Resource.BaseService;
 @Service
 public class PacienteService extends BaseService<Paciente,PacienteRepository> {
 
+	@Override
+	public Paciente insert(Paciente paciente) {
+		return super.insert(paciente);
+	}
 }
