@@ -43,7 +43,6 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 		if (entity.getFoto() != null && !entity.getFoto().startsWith("http")) {
 			String urlDaImagem = saveBase64(entity.getFoto());
 			entity.setFoto(urlDaImagem);
-			 return super.insert(entity);
 		}
 		super.insert(entity);
 		Long usuarioId = entity.getId();

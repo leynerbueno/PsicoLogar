@@ -23,9 +23,9 @@ public class Psicologo extends BaseEntity{
 	@JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
 	private Usuario usuario;
 	
-	//@OneToMany(mappedBy = "psicologo")
-	//@JsonIgnoreProperties("psicologo")
-	//private List<Paciente> pacientes;
+	@OneToMany(mappedBy = "psicologo")
+	@JsonIgnoreProperties("psicologo")
+	private List<Paciente> pacientes;
 	
 	
 	public Usuario getUsuario() {
@@ -44,13 +44,13 @@ public class Psicologo extends BaseEntity{
 		this.crp = crp;
 	}
 
-	//public List<Paciente> getPacientes() {
-	//	return pacientes;
-	//}
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
 
-	//public void setPacientes(List<Paciente> pacientes) {
-	//	this.pacientes = pacientes;
-//	}
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+    }
 
 	public Long getUsuarioId() {
 		return usuarioId;

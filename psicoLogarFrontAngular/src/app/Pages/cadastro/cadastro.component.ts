@@ -30,8 +30,7 @@ export class CadastroComponent implements OnInit {
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
-      tipoUsuario: ['', Validators.required],
-      crp: ['', Validators.required]
+      tipoUsuario: ['', Validators.required]
     });
   }
 
