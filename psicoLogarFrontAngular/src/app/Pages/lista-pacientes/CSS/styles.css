@@ -14,12 +14,11 @@ body {
     background: url('../../../../assets/Fundo.png');
     background-attachment: fixed;
   }
+
 .componente_lista_container{
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+
 }
+
 .lista_header{
     width: 1100px;
     height: 140px;

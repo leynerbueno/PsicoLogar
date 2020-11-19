@@ -1,7 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;box-sizing: border-box;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
 #body{
   background-attachment: fixed;
   color: #fbfbfb;
-  font-family: 'Poppins', sans-serif;
 }
 
 input:focus, textarea:focus, select:focus, button:focus {
