@@ -3,6 +3,8 @@ import { PsicologoService } from './../../Core/service/psicologo.service';
 import { PacienteService } from './../../Core/service/paciente.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -10,12 +12,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CSS/modal.css', './CSS/styles.css', './CSS/itemLista.css']
 })
 export class ListaPacientesComponent implements OnInit {
+  form: FormGroup;
+  formCredencials: FormGroup;
 
   constructor(private authService: AuthService,
     private pacienteService: PacienteService, 
-    private psicologoService: PsicologoService ) { }
+    private psicologoService: PsicologoService,
+    private router: Router,
+    private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      id: ['', Validators.required],
+      nome: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      genero: ['', Validators.required],
+      telefone: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      endereco: ['', Validators.required],
+      tipoUsuario: ['', Validators.required]
+    });
     this.listarPacientes(this.mockListaPacientes, null);
   }
 
@@ -202,12 +219,9 @@ listarDiasDaSemana(diaConsulta) {
   }
 
   limparModalCadastro() {
-
-    var matriculaAdicionada = (<HTMLInputElement>document.getElementById("matricula_cadastro")).value = "";
-    var diaConsulta = (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value = "segunda-feira";
-    var feedbackCadastro = (<HTMLInputElement>document.getElementById("feedback_cadastro")).innerHTML = "";
-
+    (<HTMLInputElement>document.getElementById("matricula_cadastro")).value = "";
+    (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value = "segunda-feira";
+    (<HTMLInputElement>document.getElementById("feedback_cadastro")).innerHTML = "";
   }
-  
   
 }

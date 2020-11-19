@@ -25,6 +25,7 @@ export class HeaderLogadoComponent implements OnInit {
 
   handleMenu = () => {
     this.openMenu = !this.openMenu;
+    console.log(this.openMenu);
   }
   
   logout() {

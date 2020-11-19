@@ -20,12 +20,12 @@ input:focus, textarea:focus, select:focus, button:focus {
   background-color: #fbfbfb;
 
   width: 60%;
-  height: 60%;
+  height: 96%;
   min-width: 300px;
   
   z-index: 20;
   position: fixed;
-  top: 15%;
+  top: 2%;
   left: 20%;
 
   border-radius: 2rem;
@@ -50,16 +50,17 @@ input:focus, textarea:focus, select:focus, button:focus {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
 .campo_formulario_acidionar{
   position: relative;
-
+  width: 60%;
   margin-top: 10px;
 }
 
 input {
-  width: 240px;
+  width: 100%;
   height: 40px;
 
   font-size: 18px;
@@ -68,7 +69,7 @@ input {
 }
 
 select {
-  width: 240px;
+  width: 100%;
   height: 40px;
 
   font-size: 18px;
@@ -77,7 +78,7 @@ select {
 }
 
 option {
-  width: 240px;
+  width: 100%;
   height: 40px;
 
   font-size: 18px;
@@ -115,6 +116,8 @@ option {
 .botao_salvar:hover{
   color:#3E3C3C;
   background: #fbfbfb;
+
+  cursor: pointer;
 }
 
 .feedback_cadastro {
@@ -150,4 +153,6 @@ option {
   color: #189494;
   background: #fbfbfb;
   transition: background 0.5s;
+
+  cursor: pointer;
 }
