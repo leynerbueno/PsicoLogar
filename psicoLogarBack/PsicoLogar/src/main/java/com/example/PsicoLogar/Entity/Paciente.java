@@ -22,7 +22,7 @@ public class Paciente extends BaseEntity {
 	private Long usuarioId;
 	
 	@Column(name = "psicologo_id")
-	private int psicologoId;
+	private Long psicologoId;
 
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -79,11 +79,11 @@ public class Paciente extends BaseEntity {
 		this.usuarioId = usuarioId;
 	}
 
-	public int getPsicologoId() {
+	public Long getPsicologoId() {
 		return psicologoId;
 	}
 
-	public void setPsicologoId(int psicologoId) {
+	public void setPsicologoId(Long psicologoId) {
 		this.psicologoId = psicologoId;
 	}
 

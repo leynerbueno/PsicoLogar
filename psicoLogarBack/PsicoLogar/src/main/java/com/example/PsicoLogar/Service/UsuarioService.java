@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.PsicoLogar.Entity.Paciente;
 import com.example.PsicoLogar.Entity.Psicologo;
 import com.example.PsicoLogar.Entity.Usuario;
+import com.example.PsicoLogar.Repository.PsicologoRepository;
 import com.example.PsicoLogar.Repository.UsuarioRepository;
 import com.example.PsicoLogar.Resource.BaseService;
 
@@ -25,12 +25,10 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	private Psicologo psicologo = new Psicologo();
-	private Paciente paciente = new Paciente();
-	@Autowired
-	private PacienteService pacienteService;
 	@Autowired
 	private PsicologoService psicologoService;
+	@Autowired
+	private PsicologoRepository psicologoRepository;
 
 	public Usuario getUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,18 +43,33 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
 			entity.setFoto(urlDaImagem);
 		}
 		super.insert(entity);
+
+		Psicologo psicologo = new Psicologo();
 		Long usuarioId = entity.getId();
-		String tipoUsuario = entity.getTipoUsuario();
-		if (tipoUsuario.equals("Psicologo")) {
-			this.psicologo.setUsuarioId(usuarioId);
-			this.psicologoService.insert(psicologo);
-		} else {
-			this.paciente.setUsuarioId(usuarioId);
-			this.pacienteService.insert(paciente);
+		psicologo.setUsuarioId(usuarioId);
+		this.psicologoService.insert(psicologo);
+		return entity;
+	}
+
+	@Override
+	public Usuario update(Long id, Usuario entity) {
+		if (entity.getFoto() != null && !entity.getFoto().startsWith("http")) {
+			String urlDaImagem = saveBase64(entity.getFoto());
+			entity.setFoto(urlDaImagem);
 		}
-		System.out.println(usuarioId);
-		System.out.println(psicologo);
-		System.out.println(paciente);
+		entity.setId(id);
+		//super.insert(entity);
+		System.out.println("Entrou");
+		Psicologo psicologo = new Psicologo();
+		psicologo.setCrp(entity.getPsicologo().getCrp());
+		//System.out.println(psicologo.getId());
+		Psicologo psicologoAux = this.psicologoRepository.findByUsuarioId(id);
+		psicologo.setId(psicologoAux.getId());
+		Long usuarioId = entity.getId();
+		psicologo.setUsuarioId(usuarioId);
+		this.psicologoService.insert(psicologo);
+		entity.setPsicologo(null);
+		this.usuarioRepository.save(entity);
 		return entity;
 	}
 

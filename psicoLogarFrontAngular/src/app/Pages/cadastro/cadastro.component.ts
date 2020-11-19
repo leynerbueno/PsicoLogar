@@ -30,22 +30,8 @@ export class CadastroComponent implements OnInit {
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
-      tipoUsuario: ['', Validators.required]
+      crp:['',Validators.required]
     });
-  }
-
-  //Código para esconder/mostrar campo CRP
-  openCRP() {
-    const btnRadio = document.getElementById('psicologo')
-    if (btnRadio) {
-      document.getElementById('campoCRP').className = 'inputField';
-    }
-  }
-  closeCRP() {
-    const btnRadio = document.getElementById('paciente')
-    if (btnRadio) {
-      document.getElementById('campoCRP').className = 'hidden';
-    }
   }
 
   //codigo para mudar a img
@@ -65,6 +51,7 @@ export class CadastroComponent implements OnInit {
 
   submit() {
     const usuario = this.form.value;
+    usuario.tipoUsuario = "Psicologo";
     usuario.foto = this.imageBase64;
 
     this.usuarioService.create(usuario).subscribe(

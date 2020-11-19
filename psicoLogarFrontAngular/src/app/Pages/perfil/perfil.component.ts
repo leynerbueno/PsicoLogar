@@ -16,7 +16,7 @@ export class PerfilComponent implements OnInit {
   form: FormGroup;
   imageBase64;
   usuario = {};
-  constructor(private service: UsuarioService,private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private usuarioService: UsuarioService,private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated.subscribe(
@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
       crp: ['', Validators.required]
     });
 
-    this.service.getOne(this.currentUser.id).subscribe(
+    this.usuarioService.getOne(this.currentUser.id).subscribe(
       dadosUsuario => {
         this.imageBase64 = dadosUsuario.foto;
         this.form.patchValue(dadosUsuario);
@@ -64,7 +64,12 @@ export class PerfilComponent implements OnInit {
   submit() {
     const usuario = this.form.value;
     usuario.foto = this.imageBase64;
-    this.service.update(this.currentUser.id, usuario).subscribe(
+    const psicologo = {
+      crp: usuario.crp,
+      //id: this.currentUser.psicologo.id
+    };
+    usuario.psicologo = psicologo;
+    this.usuarioService.update(this.currentUser.id, usuario).subscribe(
       data => this.router.navigate(['perfil']),
       erro => console.log(erro)
     );
