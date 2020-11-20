@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../../Core/service/usuario.service';
 
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Core/service/auth.service';
+import { PsicologoService } from 'src/app/Core/service/psicologo.service';
+import { PacienteService } from 'src/app/Core/service/paciente.service';
 
 @Component({
   selector: 'app-Perfil',
@@ -16,7 +17,11 @@ export class PerfilComponent implements OnInit {
   form: FormGroup;
   imageBase64;
   usuario = {};
-  constructor(private service: UsuarioService,private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private psicologoService: PsicologoService,
+    private authService: AuthService, 
+    private formBuilder: FormBuilder,
+    private pacienteService: PacienteService,
+    private router:Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated.subscribe(
@@ -28,22 +33,32 @@ export class PerfilComponent implements OnInit {
     );
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
+      dataDeNascimento: ['', Validators.required],
+      telefone: ['', Validators.required],
+      genero: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
-      genero: ['', Validators.required],
-      telefone: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
       crp: ['', Validators.required]
     });
 
-    this.service.getOne(this.currentUser.id).subscribe(
-      dadosUsuario => {
-        this.imageBase64 = dadosUsuario.foto;
-        this.form.patchValue(dadosUsuario);
-      },
+    this.psicologoService.getOne(this.currentUser.id).subscribe(
+      dadosPsicologo =>{
+        if(dadosPsicologo.crp != null )
+        {
+          this.imageBase64 = dadosPsicologo.foto;
+          this.form.patchValue(dadosPsicologo);
+        }
+      else{
+            this.pacienteService.getOne(this.currentUser.id).subscribe(
+                dadosPaciente => {
+                  this.imageBase64 = dadosPaciente.foto;
+                  this.form.patchValue(dadosPaciente);
+                });
+            erro => console.log(erro)
+          }
       erro => console.log(erro)
-    );
+      });
   }
 
   //codigo para mudar a img
@@ -62,9 +77,9 @@ export class PerfilComponent implements OnInit {
   }
 
   submit() {
-    const usuario = this.form.value;
-    usuario.foto = this.imageBase64;
-    this.service.update(this.currentUser.id, usuario).subscribe(
+    const psicologo = this.form.value;
+    psicologo.foto = this.imageBase64;
+    this.psicologoService.update(this.currentUser.id, psicologo).subscribe(
       data => this.router.navigate(['perfil']),
       erro => console.log(erro)
     );

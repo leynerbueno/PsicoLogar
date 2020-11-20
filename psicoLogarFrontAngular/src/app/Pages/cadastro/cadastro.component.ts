@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Core/service/auth.service';
-import { PacienteService } from 'src/app/Core/service/paciente.service';
 import { PsicologoService } from './../../Core/service/psicologo.service';
-import { UsuarioService } from './../../Core/service/usuario.service';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -18,34 +16,20 @@ export class CadastroComponent implements OnInit {
 
 
 
-  constructor(private usuarioService: UsuarioService, private authService: AuthService, private pacienteService: PacienteService, private psicologoService: PsicologoService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private psicologoService: PsicologoService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       id: ['', Validators.required],
       nome: ['', Validators.required],
+      dataDeNascimento: ['', Validators.required],
+      telefone: ['', Validators.required],
+      genero: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
-      genero: ['', Validators.required],
-      telefone: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
-      tipoUsuario: ['', Validators.required]
+      crp: ['', Validators.required]
     });
-  }
-
-  //Código para esconder/mostrar campo CRP
-  openCRP() {
-    const btnRadio = document.getElementById('psicologo')
-    if (btnRadio) {
-      document.getElementById('campoCRP').className = 'inputField';
-    }
-  }
-  closeCRP() {
-    const btnRadio = document.getElementById('paciente')
-    if (btnRadio) {
-      document.getElementById('campoCRP').className = 'hidden';
-    }
   }
 
   //codigo para mudar a img
@@ -64,10 +48,10 @@ export class CadastroComponent implements OnInit {
   }
 
   submit() {
-    const usuario = this.form.value;
-    usuario.foto = this.imageBase64;
+    const psicologo = this.form.value;
+    psicologo.foto = this.imageBase64;
 
-    this.usuarioService.create(usuario).subscribe(
+    this.psicologoService.create(psicologo).subscribe(
       data => this.router.navigateByUrl(''),
       erro => {
         alert("Erro ao criar Usuario!")
