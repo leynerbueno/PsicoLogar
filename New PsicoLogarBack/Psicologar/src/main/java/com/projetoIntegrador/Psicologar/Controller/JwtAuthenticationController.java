@@ -18,6 +18,7 @@ import com.projetoIntegrador.Psicologar.Config.JwtTokenUtil;
 import com.projetoIntegrador.Psicologar.DTO.JwtResponseDTO;
 import com.projetoIntegrador.Psicologar.DTO.UserDTO;
 import com.projetoIntegrador.Psicologar.Service.JwtUserDetailsService;
+import com.projetoIntegrador.Psicologar.Service.PacienteService;
 import com.projetoIntegrador.Psicologar.Service.PsicologoService;
 
 @RestController
@@ -36,6 +37,9 @@ public class JwtAuthenticationController {
 	@Autowired
 	private PsicologoService psicologoService;
 	
+	@Autowired
+	private PacienteService pacienteService;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDTO authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getEmail(), authenticationRequest.getSenha());
@@ -46,8 +50,16 @@ public class JwtAuthenticationController {
 
 	@GetMapping("/login")
 	public ResponseEntity<?> getUsuarioCorrente() {
-		return ResponseEntity.ok(psicologoService.getUser());
+		if(psicologoService.getUser() != null) {
+			return ResponseEntity.ok(psicologoService.getUser());
+		}
+		else if(pacienteService.getUser() != null) {
+			return ResponseEntity.ok(pacienteService.getUser());
+		}
+		return null;
+		
 	}
+	
 	
 	private void authenticate(String email, String senha) throws Exception {
 		try {

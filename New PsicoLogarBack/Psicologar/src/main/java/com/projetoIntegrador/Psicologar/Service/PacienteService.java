@@ -4,19 +4,36 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetoIntegrador.Psicologar.Entity.Paciente;
+import com.projetoIntegrador.Psicologar.Entity.Usuario;
 import com.projetoIntegrador.Psicologar.Repository.PacienteRepository;
 import com.projetoIntegrador.Psicologar.Resource.BaseService;
 
 @Service
 public class PacienteService extends BaseService<Paciente, PacienteRepository> {
 
+	
+	@Autowired
+	private PacienteRepository pacineteRepository;
+	
+	public Usuario getUser() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Optional<Usuario> optional = pacineteRepository.findByEmail(user.getUsername());
+		return optional.get();
+	}
+	
+	
+	
 	//metodo para converter a imagem em base64.
 	private String saveBase64(String base64Str) {
 		String path = Paths.get("src/main/resources/images").toString();
