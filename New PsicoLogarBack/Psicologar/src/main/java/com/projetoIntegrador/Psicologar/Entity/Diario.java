@@ -31,7 +31,7 @@ public class Diario extends BaseEntity{
 	private String detalhes;
 	
 	@Column(name="data_do_diario")
-	private String dataDoDiario;
+	private LocalDate dataDoDiario;
 	
 	@Column(name="paciente_id",  nullable = false)
 	private Long pacienteId;
@@ -40,6 +40,8 @@ public class Diario extends BaseEntity{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id", insertable = false,updatable = false)
 	private Paciente paciente;
+	
+	
 	
 	
 	public Long getEmocao1() {
@@ -114,12 +116,12 @@ public class Diario extends BaseEntity{
 		this.detalhes = detalhes;
 	}
 
-	public String getDataDoDiario() {
+	public LocalDate getDataDoDiario() {
 		return dataDoDiario;
 	}
 
 	//este metodo vai setar a data de acordo com a data no calendario automaticamente.
-	public void setDataDoDiario(String dataDoDiario) {
+	public void setDataDoDiario(LocalDate dataDoDiario) {
 		this.dataDoDiario = dataDoDiario;
 	}
 
