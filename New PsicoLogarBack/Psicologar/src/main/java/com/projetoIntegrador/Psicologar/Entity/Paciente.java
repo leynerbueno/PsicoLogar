@@ -32,18 +32,18 @@ public class Paciente extends Usuario {
 	private List<Diario> diario;
 
 	//construtor da entity Paciente com os dados de usuario.
-	public Paciente(String foto, String nome, LocalDate dataDeNascimento, String genero, String email, String senha,
-			String endereco,String dataDaConsulta,Long psicologoId) {
-		super(foto, nome, dataDeNascimento, genero, email, senha, endereco);
-		this.dataDaConsulta = dataDaConsulta;
-		this.psicologoId = psicologoId;
-	}
-	
 	public Paciente() {
 		
 	}
 	
-	
+	public Paciente(String foto, String nome, LocalDate dataDeNascimento, String telefone, String genero, String email,
+			String senha, String endereco,String dataDaConsulta,Long psicologoId) {
+		super(foto, nome, dataDeNascimento, telefone, genero, email, senha, endereco);
+		this.dataDaConsulta = dataDaConsulta;
+		this.psicologoId = psicologoId;
+	}
+
+
 	public String getDataDaConsulta() {
 		return dataDaConsulta;
 	}

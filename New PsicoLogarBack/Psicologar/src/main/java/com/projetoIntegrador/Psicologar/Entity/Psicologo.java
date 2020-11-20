@@ -19,14 +19,14 @@ public class Psicologo extends Usuario {
 	private List<Paciente> paciente;
 
 		//construtor da entity Psicologo com os dados de usuario.
-		public Psicologo(String foto, String nome, LocalDate dataDeNascimento, String genero, String email,
-				String senha, String endereco,String crp) {
-			super(foto, nome, dataDeNascimento, genero, email, senha, endereco);
-			this.crp = crp;
-		}	
-		
 		public Psicologo() {
 			
+		}
+
+		public Psicologo(String foto, String nome, LocalDate dataDeNascimento, String telefone, String genero,
+				String email, String senha, String endereco,String crp) {
+			super(foto, nome, dataDeNascimento, telefone, genero, email, senha, endereco);
+			this.crp = crp;
 		}
 
 		public String getCrp() {
