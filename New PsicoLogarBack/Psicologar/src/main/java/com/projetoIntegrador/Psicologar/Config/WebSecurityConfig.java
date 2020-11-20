@@ -52,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		httpSecurity.csrf().disable()
 // Não cheque essas requisições
 				.authorizeRequests()
-					.antMatchers("/psicologos/**", "/pacientes/**","/diarios/**","/images/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/login").permitAll()
+					.antMatchers("/pacientes/**","/diarios/**","/images/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/login","/psicologos").permitAll()
 // Qualquer outra requisição deve ser checada
 				.anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
