@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.projetoIntegrador.Psicologar.Entity.Paciente;
+import com.projetoIntegrador.Psicologar.Entity.Psicologo;
 import com.projetoIntegrador.Psicologar.Entity.Usuario;
 import com.projetoIntegrador.Psicologar.Repository.PacienteRepository;
 import com.projetoIntegrador.Psicologar.Repository.PsicologoRepository;
@@ -26,8 +28,8 @@ public class JwtUserDetailsService  implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<Usuario> optional = psicologoRepository.findByEmail(email);
-		Optional<Usuario> optional1 = pacienteRepository.findByEmail(email);
+		Optional<Psicologo> optional = psicologoRepository.findByEmail(email);
+		Optional<Paciente> optional1 = pacienteRepository.findByEmail(email);
 		if (optional.isPresent()) {
 			Usuario usuario = optional.get();
 			return new User(usuario.getEmail(), usuario.getSenha(), new ArrayList<>());

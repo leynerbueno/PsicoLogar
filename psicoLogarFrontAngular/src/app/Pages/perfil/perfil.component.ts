@@ -44,6 +44,7 @@ export class PerfilComponent implements OnInit {
 
     this.psicologoService.getOne(this.currentUser.id).subscribe(
       dadosPsicologo =>{
+        console.log(dadosPsicologo);
         if(dadosPsicologo.crp != null )
         {
           this.imageBase64 = dadosPsicologo.foto;

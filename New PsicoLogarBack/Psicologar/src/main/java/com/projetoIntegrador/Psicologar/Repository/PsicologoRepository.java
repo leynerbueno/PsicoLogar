@@ -8,6 +8,6 @@ import com.projetoIntegrador.Psicologar.Resource.BaseRepository;
 
 public interface PsicologoRepository extends BaseRepository<Psicologo>{
 	
-	public Optional<Usuario> findByEmail(String email);
+	public Optional<Psicologo> findByEmail(String email);
 }
 

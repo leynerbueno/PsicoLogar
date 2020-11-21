@@ -28,8 +28,14 @@ public class PacienteService extends BaseService<Paciente, PacienteRepository> {
 	
 	public Usuario getUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Optional<Usuario> optional = pacineteRepository.findByEmail(user.getUsername());
-		return optional.get();
+		Optional<Paciente> optional = pacineteRepository.findByEmail(user.getUsername());
+		
+		if(optional.isPresent()) {
+			
+			return optional.get();
+		}
+	
+		return null;
 	}
 	
 	

@@ -28,8 +28,14 @@ public class PsicologoService extends BaseService<Psicologo,PsicologoRepository>
 	
 	public Usuario getUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Optional<Usuario> optional = psicologoRepository.findByEmail(user.getUsername());
-		return optional.get();
+		Optional<Psicologo> optional = psicologoRepository.findByEmail(user.getUsername());
+		
+		if(optional.isPresent()) {
+			
+			return optional.get();
+		}
+	
+		return null;
 	}
 	
 	
