@@ -90,3 +90,15 @@
 2020-10-26 20:36:06,509 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-10-26 20:36:06,512 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\55319\Documents\André\Digital House\Projeto Integrador\Aplicação\PsicoLogar\psicoLogarBack\PsicoLogar\src\test\resources
 2020-10-26 20:51:17,341 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-11-21 18:48:20,850 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-11-21 18:48:37,392 [Worker-3: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:PsicoPaciente:0.0.1-SNAPSHOT @ C:\Users\55319\Documents\André\Digital House\Projeto Integrador\Aplicação\PsicoLogar\psicoLogarBack\PsicoLogar\pom.xml.
+2020-11-21 18:48:42,088 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-11-21 18:48:42,098 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-11-21 18:48:42,128 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2020-11-21 18:48:42,192 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-11-21 18:48:42,192 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\55319\Documents\André\Digital House\Projeto Integrador\Aplicação\PsicoLogar\psicoLogarBack\PsicoLogar\src\test\resources
+2020-11-21 18:48:47,877 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-11-21 18:48:47,916 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-11-21 18:48:47,941 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 52 resources
+2020-11-21 18:48:48,632 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-11-21 18:48:48,632 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\55319\Documents\André\Digital House\Projeto Integrador\Aplicação\PsicoLogar\psicoLogarBack\PsicoLogar\src\test\resources
