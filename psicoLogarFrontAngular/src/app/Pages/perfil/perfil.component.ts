@@ -16,11 +16,12 @@ export class PerfilComponent implements OnInit {
   isAuthenticated: boolean;
   form: FormGroup;
   imageBase64;
-  usuario = {};
-  constructor(private psicologoService: PsicologoService,
+
+  constructor(
+    private psicologoService: PsicologoService,
+    private pacienteService: PacienteService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private pacienteService: PacienteService,
     private router: Router) { }
 
   ngOnInit() {
@@ -45,11 +46,10 @@ export class PerfilComponent implements OnInit {
   }
 
   getOne(currentUser) {
-    console.log(currentUser);
-    if(currentUser.id ==null){
+    if (currentUser.id == null) {
       return;
     }
-    if (currentUser.crp != null) {
+    if (currentUser.tipoUsuario) {
       this.psicologoService.getOne(currentUser.id).subscribe(
         dadosPsicologo => {
           document.getElementById('campoCRP').className = 'inputField';
@@ -84,11 +84,25 @@ export class PerfilComponent implements OnInit {
   }
 
   submit() {
-    const psicologo = this.form.value;
-    psicologo.foto = this.imageBase64;
-    this.psicologoService.update(this.currentUser.id, psicologo).subscribe(
-      data => this.router.navigate(['perfil']),
-      erro => console.log(erro)
-    );
+    const usuario = this.form.value;
+    usuario.foto = this.imageBase64;
+    if (usuario.crp != null) {
+      this.psicologoService.update(this.currentUser.id, usuario).subscribe(
+        data => {
+          alert("Deu certo!")
+          this.router.navigate(['perfil'])
+        },
+        erro => {
+          alert("Deu errado!")
+          console.log(erro)
+        }
+      );
+    } else {
+      this.pacienteService.update(this.currentUser.id, usuario).subscribe(
+        data => this.router.navigate(['perfil']),
+        erro => console.log(erro)
+      );
+    }
+
   }
 }

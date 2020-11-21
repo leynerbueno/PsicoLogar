@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Paciente extends Usuario {
 
-	@Column(name="data_da_consulta")
-	private String dataDaConsulta;
+	@Column(name="dia_da_consulta")
+	private String diaDaConsulta;
 	
 	@Column(name="psicologo_id", nullable = false)
 	private Long psicologoId;
@@ -37,19 +37,19 @@ public class Paciente extends Usuario {
 	}
 	
 	public Paciente(String foto, String nome, LocalDate dataDeNascimento, String telefone, String genero, String email,
-			String senha, String endereco,String dataDaConsulta,Long psicologoId) {
+			String senha, String endereco,String diaDaConsulta,Long psicologoId) {
 		super(foto, nome, dataDeNascimento, telefone, genero, email, senha, endereco);
-		this.dataDaConsulta = dataDaConsulta;
+		this.diaDaConsulta = diaDaConsulta;
 		this.psicologoId = psicologoId;
 	}
 
 
-	public String getDataDaConsulta() {
-		return dataDaConsulta;
+	public String getDiaDaConsulta() {
+		return diaDaConsulta;
 	}
 
 	public void setDataDaConsulta(String dataDaConsulta) {
-		this.dataDaConsulta = dataDaConsulta;
+		this.diaDaConsulta = dataDaConsulta;
 	}
 
 	public Long getPsicologoId() {

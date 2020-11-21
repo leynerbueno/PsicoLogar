@@ -50,7 +50,7 @@ export class CadastroComponent implements OnInit {
   submit() {
     const psicologo = this.form.value;
     psicologo.foto = this.imageBase64;
-
+    psicologo.tipoUsuario = true;
     this.psicologoService.create(psicologo).subscribe(
       data => this.router.navigateByUrl(''),
       erro => {

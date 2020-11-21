@@ -18,7 +18,8 @@ export class ListaPacientesComponent implements OnInit {
   form: FormGroup;
   formCredencials: FormGroup;
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private pacienteService: PacienteService,
     private router: Router,
     private formBuilder: FormBuilder) { }
@@ -29,6 +30,7 @@ export class ListaPacientesComponent implements OnInit {
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
+        this.listarPacientes(this.currentUser.paciente, null, userData);
       }
     );
     this.form = this.formBuilder.group({
@@ -42,76 +44,30 @@ export class ListaPacientesComponent implements OnInit {
       endereco: ['', Validators.required],
       dataDaConsulta: ['', Validators.required]
     });
-    this.listarPacientes(this.mockListaPacientes, null);
+    
   }
 
-  mockPacientesParaAdicionar = [
-    {
-      nome: "Olivia G. Bastos",
-      matricula: 666666,
-      ultimaEmocao: -1,
-      foto: "../../assets/olivia.png",
-      diaConsulta: "sexta-feira"
-    },
-    {
-      nome: "Jéssica T. Alves",
-      matricula: 777777,
-      ultimaEmocao: 0,
-      foto: "../../assets/jessica.png",
-      diaConsulta: "terça-feira"
-    }
-  ]
 
-  mockListaPacientes = [
-    {
-      nome: "Amanda C. Dias",
-      matricula: 111111,
-      ultimaEmocao: -1,
-      foto: "../../assets/amanda.jfif",
-      diaConsulta: "terça-feira"
-    },
-    {
-      nome: "Joana C. Silva",
-      matricula: 222222,
-      ultimaEmocao: -1,
-      foto: "../../assets/joana.png",
-      diaConsulta: "segunda-feira"
-    },
-    {
-      nome: "Cibele J. Gonçalves",
-      matricula: 333333,
-      ultimaEmocao: 0,
-      foto: "../../assets/cibele.png",
-      diaConsulta: "quinta-feira"
-    },
-    {
-      nome: "Mateus A. Santos",
-      matricula: 444444,
-      ultimaEmocao: 1,
-      foto: "../../assets/mateus.png",
-      diaConsulta: "quarta-feira"
-    },
-    {
-      nome: "Fábio H. Fonseca",
-      matricula: 555555,
-      ultimaEmocao: 1,
-      foto: "../../assets/fabio.png",
-      diaConsulta: "sábado"
+  listarPacientes(pacientes, diaMarcadoPeloPsicologo, currentUser) {
+    if (currentUser.id == null) {
+      return;
     }
-  ];
-
-  listarPacientes(ListaPacientes, diaMarcadoPeloPsicologo) {
+    console.log(this.currentUser);
     let listaPacientes = document.getElementById("lista_pacientes");
 
-    ListaPacientes.forEach(paciente => {
-
-      let ultimaEmocao = paciente.ultimaEmocao;
+    pacientes.forEach(paciente => {
       let nome = paciente.nome;
-      let matricula = paciente.matricula;
-      let foto = paciente.foto;
-      let diaConsulta = diaMarcadoPeloPsicologo || paciente.diaConsulta;
+      let id = paciente.id;
+      let foto;
+      if(paciente.foto ==null) {
+        foto =  null; 
+      } else {
+        foto = paciente.foto;
+      }
 
-      let itemListaString = this.itemListaConstructor(matricula, ultimaEmocao, nome, foto, diaConsulta);
+      let diaDaConsulta = diaMarcadoPeloPsicologo || paciente.diaDaConsulta;
+
+      let itemListaString = this.itemListaConstructor(id, nome, foto, diaDaConsulta);
 
       let itemLista = document.createElement('div');
       itemLista.className = 'item_lista_container';
@@ -123,14 +79,13 @@ export class ListaPacientesComponent implements OnInit {
   }
 
   exibeDadosPaciente(elemento) {
-    var matricula = elemento.srcElement.id;
-    alert("fazer requisição para o paciente " + matricula);
+    var id = elemento.srcElement.id;
+    alert("fazer requisição para o paciente " + id);
   }
 
-  itemListaConstructor(matricula, ultimaEmocao, nome, foto, diaConsulta) {
+  itemListaConstructor(id, nome, foto, diaConsulta) {
     var itemLista =
-      `<div class="item_lista_overlay" id="${matricula}"></div>
-        <div class="indicador_emocao ${this.definirEmocao(ultimaEmocao)}"></div> \
+      `<div class="item_lista_overlay" id="${id}"></div>
         <img src="${foto}" class="foto_paciente_lista"> \
         <p class="nome_paciente_lista">${nome}</p> \
         <div class="agenda_semanal_paciente">
@@ -153,7 +108,7 @@ export class ListaPacientesComponent implements OnInit {
     };
   };
 
-  listarDiasDaSemana(diaConsulta) {
+  listarDiasDaSemana(diaDaConsulta) {
 
     const diasDaSemana = [
       ["segunda-feira", "Seg"],
@@ -171,7 +126,7 @@ export class ListaPacientesComponent implements OnInit {
         `<div class="dia_semana_consulta">
           <div 
           class="dia_semana 
-            ${diasDaSemana[d][0] === diaConsulta ? "indicador_dia_consulta" : "indicador_dia_comum"}"
+            ${diasDaSemana[d][0] === diaDaConsulta ? "indicador_dia_consulta" : "indicador_dia_comum"}"
           ></div>
           ${diasDaSemana[d][1]}
         </div>`
@@ -184,9 +139,10 @@ export class ListaPacientesComponent implements OnInit {
 
   cadastrarNovoPaciente() {
     var feedbackCadastro = document.getElementById("feedback_cadastro");
-    
+
     const paciente = this.form.value;
     paciente.psicologoId = this.currentUser.id;
+    paciente.tipoUsuario = false;
     this.pacienteService.create(paciente).subscribe(
       data => {
         feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!";

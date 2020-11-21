@@ -15,7 +15,7 @@ public class Psicologo extends Usuario {
 
 	//relacionamento com a tabela paciente.
 	@OneToMany(mappedBy = "psicologo")
-	@JsonIgnoreProperties("psicologo")
+	@JsonIgnoreProperties("psicologo, diario")
 	private List<Paciente> paciente;
 
 		//construtor da entity Psicologo com os dados de usuario.
