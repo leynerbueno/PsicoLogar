@@ -1,4 +1,4 @@
-<!--<app-header-Logado></app-header-Logado> -->
+<app-header-Logado></app-header-Logado>
 <div class="body-container">
   <div id="body-formulario">
     <form [formGroup]="form">
@@ -42,16 +42,11 @@
         </div>
 
         <div class="inputField">
-          <label>Senha:</label>
-          <input type="password" id="senha" name="senha" formControlName="senha">
-        </div>
-
-        <div class="inputField">
           <label>Endereço:</label>
           <input type="text" id="endereco" name="endereco" formControlName="endereco">
         </div>
 
-        <div id="campoCRP" class="inputField">
+        <div id="campoCRP">
           <label>CRP:</label>
           <input type="text" id="crp" name="crp" formControlName="crp">
         </div>
@@ -59,7 +54,7 @@
       </div>
     </form>
     <div class="btn-cadastrar">
-      <a (click)="submit()"  class="btn-salvar" type="submit"> SALVAR </a>
+      <a (click)="submit()" class="btn-salvar" type="submit"> SALVAR </a>
     </div>
   </div>
 </div>

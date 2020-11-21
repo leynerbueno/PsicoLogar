@@ -18,10 +18,10 @@ export class PerfilComponent implements OnInit {
   imageBase64;
   usuario = {};
   constructor(private psicologoService: PsicologoService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private pacienteService: PacienteService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated.subscribe(
@@ -29,6 +29,7 @@ export class PerfilComponent implements OnInit {
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
+        this.getOne(userData);
       }
     );
     this.form = this.formBuilder.group({
@@ -41,26 +42,31 @@ export class PerfilComponent implements OnInit {
       endereco: ['', Validators.required],
       crp: ['', Validators.required]
     });
+  }
 
-    this.psicologoService.getOne(this.currentUser.id).subscribe(
-      dadosPsicologo =>{
-        console.log(dadosPsicologo);
-        if(dadosPsicologo.crp != null )
-        {
+  getOne(currentUser) {
+    console.log(currentUser);
+    if(currentUser.id ==null){
+      return;
+    }
+    if (currentUser.crp != null) {
+      this.psicologoService.getOne(currentUser.id).subscribe(
+        dadosPsicologo => {
+          document.getElementById('campoCRP').className = 'inputField';
           this.imageBase64 = dadosPsicologo.foto;
           this.form.patchValue(dadosPsicologo);
-        }
-      else{
-            this.pacienteService.getOne(this.currentUser.id).subscribe(
-                dadosPaciente => {
-                  this.imageBase64 = dadosPaciente.foto;
-                  this.form.patchValue(dadosPaciente);
-                });
-            erro => console.log(erro)
-          }
-      erro => console.log(erro)
-      });
+        }, erro => console.log(erro)
+      );
+    } else {
+      this.pacienteService.getOne(currentUser.id).subscribe(
+        dadosPaciente => {
+          document.getElementById('campoCRP').className = 'hidden';
+          this.imageBase64 = dadosPaciente.foto;
+          this.form.patchValue(dadosPaciente);
+        });
+    }
   }
+
 
   //codigo para mudar a img
   getImage(files: FileList) {
