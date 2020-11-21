@@ -80,7 +80,7 @@ export class ListaPacientesComponent implements OnInit {
 
   exibeDadosPaciente(elemento) {
     var id = elemento.srcElement.id;
-    alert("fazer requisição para o paciente " + id);
+    this.router.navigateByUrl('/diario')
   }
 
   itemListaConstructor(id, nome, foto, diaConsulta) {
