@@ -16,7 +16,7 @@ body {
   }
 
 .componente_lista_container{
-
+    min-height: calc(100vh - 182px);
 }
 
 .lista_header{

@@ -44,7 +44,6 @@ export class ListaPacientesComponent implements OnInit {
       endereco: ['', Validators.required],
       dataDaConsulta: ['', Validators.required]
     });
-    
   }
 
 
@@ -52,7 +51,8 @@ export class ListaPacientesComponent implements OnInit {
     if (currentUser.id == null) {
       return;
     }
-    console.log(this.currentUser);
+    console.log(currentUser);
+    console.log(pacientes);
     let listaPacientes = document.getElementById("lista_pacientes");
 
     pacientes.forEach(paciente => {
@@ -86,7 +86,7 @@ export class ListaPacientesComponent implements OnInit {
   itemListaConstructor(id, nome, foto, diaConsulta) {
     var itemLista =
       `<div class="item_lista_overlay" id="${id}"></div>
-        <img src="${foto}" class="foto_paciente_lista"> \
+        <img src="${foto || '../../../../../assets/UserGenerico.png'}" class="foto_paciente_lista"> \
         <p class="nome_paciente_lista">${nome}</p> \
         <div class="agenda_semanal_paciente">
             ${this.listarDiasDaSemana(diaConsulta)}

@@ -3,7 +3,7 @@
   <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}" (click)="handleMenu()"></div>
   <div class="navigation">
     <button (click)="handleMenu()">
-      <img id="profile_image" src="{{currentUser.foto}}">
+      <img id="profile_image" src="{{ currentUser.foto == null ? '../../../../../assets/UserGenerico.png' : currentUser.foto }}">
     </button>
   </div>
 </div>
@@ -16,7 +16,7 @@
     <span class="menu_title" style="padding-top: 40px;">
       {{ currentUser.nome }}
     </span>
-    <img id="profile_image" src="{{currentUser.foto}}">
+    <img id="profile_image" src="{{ currentUser.foto == null ? '../../../../../assets/UserGenerico.png' : currentUser.foto }}">
   </div>
   <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
     <li> <a [routerLink]="['/perfil']"> Meu Perfil </a> </li>
