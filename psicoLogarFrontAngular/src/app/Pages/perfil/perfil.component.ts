@@ -16,7 +16,6 @@ export class PerfilComponent implements OnInit {
   isAuthenticated: boolean;
   form: FormGroup;
   imageBase64;
-
   constructor(
     private psicologoService: PsicologoService,
     private pacienteService: PacienteService,
@@ -41,18 +40,19 @@ export class PerfilComponent implements OnInit {
       email: ['', Validators.required],
       senha: ['', Validators.required],
       endereco: ['', Validators.required],
-      crp: ['', Validators.required]
+      crp: ['', Validators.required],
+      dataDaConsulta: ['', Validators.required]
     });
   }
-
+//metodo para saber se pscologo ou paciente esta logando 
   getOne(currentUser) {
     if (currentUser.id == null) {
       return;
     }
-    if (currentUser.tipoUsuario) {
+    if (currentUser.crp != null) {
       this.psicologoService.getOne(currentUser.id).subscribe(
         dadosPsicologo => {
-          document.getElementById('campoCRP').className = 'inputField';
+         document.getElementById('campoCRP').className = 'inputField';
           this.imageBase64 = dadosPsicologo.foto;
           this.form.patchValue(dadosPsicologo);
         }, erro => console.log(erro)
@@ -60,7 +60,7 @@ export class PerfilComponent implements OnInit {
     } else {
       this.pacienteService.getOne(currentUser.id).subscribe(
         dadosPaciente => {
-          document.getElementById('campoCRP').className = 'hidden';
+         document.getElementById('campoCRP').className = 'hidden';
           this.imageBase64 = dadosPaciente.foto;
           this.form.patchValue(dadosPaciente);
         });
@@ -84,25 +84,29 @@ export class PerfilComponent implements OnInit {
   }
 
   submit() {
-    const usuario = this.form.value;
-    usuario.foto = this.imageBase64;
-    if (usuario.crp != null) {
-      this.psicologoService.update(this.currentUser.id, usuario).subscribe(
+    const dados = this.form.value;
+    dados.foto = this.imageBase64;
+    console.log(dados);
+
+    if (dados.crp != "") {
+      this.psicologoService.update(this.currentUser.id, dados).subscribe(
         data => {
           alert("Deu certo!")
-          this.router.navigate(['perfil'])
+          this.router.navigate(['listaPacientes'])
         },
         erro => {
           alert("Deu errado!")
           console.log(erro)
         }
       );
-    } else {
-      this.pacienteService.update(this.currentUser.id, usuario).subscribe(
-        data => this.router.navigate(['perfil']),
+    } 
+    else {
+      this.pacienteService.update(this.currentUser.id, dados).subscribe(
+        data => {
+          this.router.navigate(['diario'])
+      },
         erro => console.log(erro)
       );
     }
-
   }
 }
