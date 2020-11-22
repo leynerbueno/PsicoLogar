@@ -22,12 +22,12 @@ export class HeaderLogadoComponent implements OnInit {
       }
     );
   }
-
+  
   handleMenu = () => {
     this.openMenu = !this.openMenu;
   }
   
-  logout() {
+  logout = () => {
     this.authService.purgeAuth();
     this.router.navigate(['/']);
   }

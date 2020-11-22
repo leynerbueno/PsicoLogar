@@ -44,16 +44,21 @@ export class ListaPacientesComponent implements OnInit {
       endereco: ['', Validators.required],
       dataDaConsulta: ['', Validators.required]
     });
-    
   }
 
 
   listarPacientes(pacientes, diaMarcadoPeloPsicologo, currentUser) {
+    console.log(currentUser);
+    console.log(pacientes);
     if (currentUser.id == null) {
       return;
     }
-    console.log(this.currentUser);
+
+    console.log(currentUser);
+    console.log(pacientes);
+
     let listaPacientes = document.getElementById("lista_pacientes");
+    listaPacientes.innerHTML = '';
 
     pacientes.forEach(paciente => {
       let nome = paciente.nome;
@@ -86,7 +91,7 @@ export class ListaPacientesComponent implements OnInit {
   itemListaConstructor(id, nome, foto, diaConsulta) {
     var itemLista =
       `<div class="item_lista_overlay" id="${id}"></div>
-        <img src="${foto}" class="foto_paciente_lista"> \
+        <img src="${foto || '../../../../../assets/UserGenerico.png'}" class="foto_paciente_lista"> \
         <p class="nome_paciente_lista">${nome}</p> \
         <div class="agenda_semanal_paciente">
             ${this.listarDiasDaSemana(diaConsulta)}
@@ -143,10 +148,12 @@ export class ListaPacientesComponent implements OnInit {
     const paciente = this.form.value;
     paciente.psicologoId = this.currentUser.id;
     paciente.tipoUsuario = false;
+
     this.pacienteService.create(paciente).subscribe(
       data => {
         feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!";
-        this.fecharModalCadastro();
+        this.currentUser.paciente.push(paciente);
+        this.listarPacientes(this.currentUser.paciente, null, this.currentUser);
       },
       erro => {
         feedbackCadastro.innerHTML = "Erro ao Cadastrar o Paciente...";
@@ -173,8 +180,14 @@ export class ListaPacientesComponent implements OnInit {
   }
 
   limparModalCadastro() {
-    (<HTMLInputElement>document.getElementById("matricula_cadastro")).value = "";
-    (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value = "segunda-feira";
+    (<HTMLInputElement>document.getElementById("nome")).value = "";
+    (<HTMLInputElement>document.getElementById("email")).value = "";
+    (<HTMLInputElement>document.getElementById("senha")).value = "";
+    (<HTMLInputElement>document.getElementById("genero")).value = "";
+    (<HTMLInputElement>document.getElementById("telefone")).value = "";
+    (<HTMLInputElement>document.getElementById("dataNasc")).value = "";
+    (<HTMLInputElement>document.getElementById("endereco")).value = "";
+    (<HTMLInputElement>document.getElementById("dia_consulta_cadastro")).value = "";
     (<HTMLInputElement>document.getElementById("feedback_cadastro")).innerHTML = "";
   }
 
