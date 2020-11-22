@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class ListaPacientesComponent implements OnInit {
   currentUser;
   isAuthenticated: boolean;
-
   form: FormGroup;
   formCredencials: FormGroup;
 
@@ -78,14 +77,17 @@ export class ListaPacientesComponent implements OnInit {
       itemLista.className = 'item_lista_container';
       itemLista.innerHTML = itemListaString;
       itemLista.addEventListener('click', this.exibeDadosPaciente.bind(this));
-
+      /*this.exibeDadosPaciente.bind(this)*/
       listaPacientes.appendChild(itemLista);
     })
   }
+  
+
 
   exibeDadosPaciente(elemento) {
     var id = elemento.srcElement.id;
-    this.router.navigateByUrl('/diario')
+    console.log(id);
+    this.router.navigate(['/diario',id])
   }
 
   itemListaConstructor(id, nome, foto, diaConsulta) {

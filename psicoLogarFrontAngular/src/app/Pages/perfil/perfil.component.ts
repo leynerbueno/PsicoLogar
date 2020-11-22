@@ -103,13 +103,10 @@ export class PerfilComponent implements OnInit {
     else {
       this.pacienteService.update(this.currentUser.id, dados).subscribe(
         data => {
-          alert("Deu certo!")
-          this.router.navigate(['diario'])
+          this.router.navigate(['listaPacientes'])
       },
-        erro => {
-          alert("Deu errado!")
-          console.log(erro)
-         } );
+        erro => console.log(erro)
+      );
     }
   }
 }

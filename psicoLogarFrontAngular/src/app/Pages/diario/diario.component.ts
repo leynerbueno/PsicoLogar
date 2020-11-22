@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DiarioService } from 'src/app/Core/service/diarioService.service';
+import { PacienteService } from 'src/app/Core/service/paciente.service';
 
 @Component({
   selector: 'app-diario',
@@ -6,11 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CSS/diario.historico.css', './CSS/diario.emocoes.css', './CSS/diario.component.css']
 })
 export class DiarioComponent implements OnInit {
-
-  constructor() { }
+id;
+  constructor(private route:ActivatedRoute,
+    private diarioService: DiarioService,
+    private pacienteService : PacienteService) { }
 
   ngOnInit(): void {
     this.renderHistoricoDiarios();
+    //paga o id passado na url
+    this.id = this.route.snapshot.params['id'];
+   //pesquisa o paciente selecionado
+    this.pacienteService.getOne(this.id).subscribe(data =>{
+      //esta variavel recebe a lista de diários do paciente.
+      const diarioId = data.diario;
+      //o console vai exibir o objeto de diarios do paciente.
+      console.log(diarioId)
+    });
   }
 
   mockRetornoBanco = {
