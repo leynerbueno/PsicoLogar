@@ -86,7 +86,6 @@ export class PerfilComponent implements OnInit {
   submit() {
     const dados = this.form.value;
     dados.foto = this.imageBase64;
-    console.log(dados);
 
     if (dados.crp != "") {
       this.psicologoService.update(this.currentUser.id, dados).subscribe(

@@ -47,14 +47,9 @@ export class ListaPacientesComponent implements OnInit {
 
 
   listarPacientes(pacientes, diaMarcadoPeloPsicologo, currentUser) {
-    console.log(currentUser);
-    console.log(pacientes);
     if (currentUser.id == null) {
       return;
     }
-
-    console.log(currentUser);
-    console.log(pacientes);
 
     let listaPacientes = document.getElementById("lista_pacientes");
     listaPacientes.innerHTML = '';
@@ -86,7 +81,6 @@ export class ListaPacientesComponent implements OnInit {
 
   exibeDadosPaciente(elemento) {
     var id = elemento.srcElement.id;
-    console.log(id);
     this.router.navigate(['/diarios',id])
   }
 
