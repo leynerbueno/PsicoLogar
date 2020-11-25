@@ -36,10 +36,10 @@
 
     <form class="formulario_login" [formGroup]="form" (ngSubmit)="submit()">
       <div class="email_senha">
-        <input type="text" placeholder="Login" formControlName="email">
+        <input type="text" placeholder="Login" required formControlName="email">
       </div>
       <div class="email_senha">
-        <input type="password"  placeholder="Senha" formControlName="senha">
+        <input type="password"  placeholder="Senha" required formControlName="senha">
       </div>
       <button class="botao_salvar" type="submit">Entrar</button>
     </form>

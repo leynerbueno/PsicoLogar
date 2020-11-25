@@ -15,7 +15,6 @@ export class ListaPacientesComponent implements OnInit {
   currentUser;
   isAuthenticated: boolean;
   form: FormGroup;
-  formCredencials: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -32,6 +31,7 @@ export class ListaPacientesComponent implements OnInit {
         this.listarPacientes(this.currentUser.paciente, null, userData);
       }
     );
+    
     this.form = this.formBuilder.group({
       id: ['', Validators.required],
       nome: ['', Validators.required],
@@ -143,7 +143,6 @@ export class ListaPacientesComponent implements OnInit {
 
     const paciente = this.form.value;
     paciente.psicologoId = this.currentUser.id;
-    paciente.tipoUsuario = false;
 
     this.pacienteService.create(paciente).subscribe(
       data => {

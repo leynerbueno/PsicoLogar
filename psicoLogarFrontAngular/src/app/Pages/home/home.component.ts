@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   form: FormGroup;
   currentUser;
+  usuario;
   isAuthenticated: boolean;
 
   constructor(
@@ -45,19 +46,19 @@ export class HomeComponent implements OnInit {
   }
 
 
-  loga() {
+  logar() {
     this.authService.isAuthenticated.subscribe(
       (isAuthenticated) => this.isAuthenticated = isAuthenticated);
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
-
+        this.usuario = this.currentUser.crp ? 'Psicologo' : 'Paciente';
         if (this.currentUser.id == null) {
           return
-        }else{
-          this.currentUser.crp ? 
-          this.router.navigateByUrl('/listaPacientes'):
-          this.router.navigateByUrl('/diarios/' + this.currentUser.id);
+        } else {
+          this.usuario === 'Psicologo' ?
+            this.router.navigateByUrl('/listaPacientes') :
+            this.router.navigateByUrl('/diarios/' + this.currentUser.id);
         }
       }
     );
@@ -67,10 +68,10 @@ export class HomeComponent implements OnInit {
     const credenciais = this.form.value;
     this.authService.login(credenciais).subscribe(
       data => {
-        this.loga();
+        this.logar();
       },
       erro => { alert("Erro ao logar!") }
     );
   }
 }
-// 
+//
