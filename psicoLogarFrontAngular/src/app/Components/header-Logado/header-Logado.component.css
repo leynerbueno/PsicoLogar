@@ -58,7 +58,7 @@
     top: 0;
     transition: right 0.25s linear;
     border-left: 1px solid #FFFFFF;
-    padding: 16px;
+    padding: 24px 16px 16px 24px;
     color: #313131;
   }
   
@@ -77,9 +77,16 @@
     color: #313131;
   }
   
-  
   .menu_title {
+    color: #444444;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .menu_item {
     color: #313131;
+    font-size: 16px;
+    cursor: pointer;
   }
   
   #profile_menu {
@@ -89,9 +96,27 @@
   }
   
   .menu_header {
+    height: 60px;
+    
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #313131;
+    font-size: 24px;
+    font-weight: bold;
+    
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #444444;
+  }
+
+  .menu_sub_header {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     color: #313131;
+    margin-top: 30px;
   }
   
   #menu_options li {
