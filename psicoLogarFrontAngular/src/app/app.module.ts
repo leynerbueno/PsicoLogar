@@ -1,4 +1,4 @@
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { PerfilComponent } from './Pages/perfil/perfil.component';
 import { BrowserModule } from '@angular/platform-browser';

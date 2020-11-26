@@ -49,7 +49,6 @@ export class AuthService {
   }
 
   public login(credentials): Observable<any> {
-    console.log(credentials);
     return this.httpClient.post(this.baseUrl + '/login', credentials)
       .pipe(map(
         // O pipe intercepta o resultado e permite a visualização

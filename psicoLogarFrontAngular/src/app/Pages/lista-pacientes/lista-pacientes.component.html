@@ -1,14 +1,48 @@
+<app-header-Logado></app-header-Logado>
 <body>
   <div class="modal_cadastro_overlay" id="modal_cadastro_overlay" (click)="fecharModalCadastro()"></div>
   <div class="modal_cadastro" id="modal_cadastro">
     <button class="closer" (click)="fecharModalCadastro()">X</button>
     <div class="titulo_modal_cadastro">Adicionar Novo Paciente</div>
-    <div class="formulario_adicionar_paciente">
+    <div [formGroup]="form" class="formulario_adicionar_paciente">
+
       <div class="campo_formulario_acidionar">
-        <input required id="matricula_cadastro" placeholder="Matrícula do Paciente">
+        <input required id="nome" placeholder="Nome" name="nome" formControlName="nome">
       </div>
+
       <div class="campo_formulario_acidionar">
-        <select name="consulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta">
+        <input type="email" id="email" placeholder="Email" name="email" formControlName="email">
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <input type="password" id="senha" placeholder="Senha" name="senha" formControlName="senha">
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <select id="genero" placeholder="Gênero" name="genero" formControlName="genero">
+          <option value="" disabled selected hidden>Gênero</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outros">Outros</option>
+          <option value="Restrito">Prefiro não Informar</option>
+        </select>
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <input type="text" id="telefone" placeholder="Telefone" name="telefone" formControlName="telefone">
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <input type="date" id="dataNasc" placeholder="Data de Nascimento" name="dataDeNascimento" formControlName="dataDeNascimento">
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <input type="text" id="endereco" placeholder="Endereço" name="endereco" formControlName="endereco">
+      </div>
+
+      <div class="campo_formulario_acidionar">
+        <select name="dataDaConsulta" id="dia_consulta_cadastro" placeholder="Dia da Consulta" formControlName="dataDaConsulta">
+          <option value="" disabled selected hidden>Dia da Consulta</option>
           <option value="segunda-feira">Seg</option>
           <option value="terça-feira">Ter</option>
           <option value="quarta-feira">Qua</option>
@@ -17,13 +51,12 @@
           <option value="sábado">Sáb</option>
         </select>
       </div>
+
       <div class="feedback_cadastro" id="feedback_cadastro"></div>
       <button class="botao_salvar" (click)="cadastrarNovoPaciente()">Salvar</button>
     </div>
   </div>
   <div class="componente_lista_container">
-    <app-header-Logado></app-header-Logado>
-
     <div class="lista_header">
       <div class="lista_titulo_adicionar">
         <h1>Lista de Pacientes</h1>

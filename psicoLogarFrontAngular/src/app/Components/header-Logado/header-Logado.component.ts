@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/Core/service/auth.service';
 })
 export class HeaderLogadoComponent implements OnInit {
   currentUser;
+  usuario;
   isAuthenticated: boolean;
   openMenu = false;
   constructor(private authService: AuthService, private router: Router) { }
@@ -19,15 +20,20 @@ export class HeaderLogadoComponent implements OnInit {
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
+        this.usuario = this.currentUser.crp ? 'Psicologo' : 'Paciente';
       }
     );
   }
-
+  
   handleMenu = () => {
     this.openMenu = !this.openMenu;
   }
   
-  logout() {
+  irParaDiarios(){
+   this.router.navigate(['/diarios/' + this.currentUser.id ]);
+  }
+  
+  logout = () => {
     this.authService.purgeAuth();
     this.router.navigate(['/']);
   }

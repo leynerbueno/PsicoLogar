@@ -12,12 +12,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-openMenu = false;
-openNotificacao = false;
+  openMenu = false;
+  openNotificacao = false;
 
 
-handleMenu = () => {
-  this.openMenu = !this.openMenu;
+  handleMenu = () => {
+    this.openMenu = !this.openMenu;
   }
 
   handleNotification(){

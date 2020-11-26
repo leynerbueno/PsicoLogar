@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../../Core/service/usuario.service';
 
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Core/service/auth.service';
+import { PsicologoService } from 'src/app/Core/service/psicologo.service';
+import { PacienteService } from 'src/app/Core/service/paciente.service';
 
 @Component({
   selector: 'app-Perfil',
@@ -15,8 +16,12 @@ export class PerfilComponent implements OnInit {
   isAuthenticated: boolean;
   form: FormGroup;
   imageBase64;
-  usuario = {};
-  constructor(private service: UsuarioService,private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private psicologoService: PsicologoService,
+    private pacienteService: PacienteService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated.subscribe(
@@ -24,27 +29,44 @@ export class PerfilComponent implements OnInit {
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
+        this.getOne(userData);
       }
     );
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
+      dataDeNascimento: ['', Validators.required],
+      telefone: ['', Validators.required],
+      genero: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
-      genero: ['', Validators.required],
-      telefone: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
       endereco: ['', Validators.required],
-      crp: ['', Validators.required]
+      crp: ['', Validators.required],
+      dataDaConsulta: ['', Validators.required]
     });
-
-    this.service.getOne(this.currentUser.id).subscribe(
-      dadosUsuario => {
-        this.imageBase64 = dadosUsuario.foto;
-        this.form.patchValue(dadosUsuario);
-      },
-      erro => console.log(erro)
-    );
   }
+//metodo para saber se pscologo ou paciente esta logando 
+  getOne(currentUser) {
+    if (currentUser.id == null) {
+      return;
+    }
+    if (currentUser.crp != null) {
+      this.psicologoService.getOne(currentUser.id).subscribe(
+        dadosPsicologo => {
+         document.getElementById('campoCRP').className = 'inputField';
+          this.imageBase64 = dadosPsicologo.foto;
+          this.form.patchValue(dadosPsicologo);
+        }, erro => console.log(erro)
+      );
+    } else {
+      this.pacienteService.getOne(currentUser.id).subscribe(
+        dadosPaciente => {
+         document.getElementById('campoCRP').className = 'hidden';
+          this.imageBase64 = dadosPaciente.foto;
+          this.form.patchValue(dadosPaciente);
+        });
+    }
+  }
+
 
   //codigo para mudar a img
   getImage(files: FileList) {
@@ -62,11 +84,29 @@ export class PerfilComponent implements OnInit {
   }
 
   submit() {
-    const usuario = this.form.value;
-    usuario.foto = this.imageBase64;
-    this.service.update(this.currentUser.id, usuario).subscribe(
-      data => this.router.navigate(['perfil']),
-      erro => console.log(erro)
-    );
+    const dados = this.form.value;
+    dados.foto = this.imageBase64;
+
+    if (dados.crp != "") {
+      this.psicologoService.update(this.currentUser.id, dados).subscribe(
+        data => {
+          alert("Deu certo!")
+          window.location.reload();
+        },
+        erro => {
+          alert("Deu errado!")
+          console.log(erro)
+        }
+      );
+    } 
+    else {
+      this.pacienteService.update(this.currentUser.id, dados).subscribe(
+        data => {
+          alert("Deu certo!")
+          window.location.reload();
+      },
+        erro => alert("Deu errado!")
+      );
+    }
   }
 }

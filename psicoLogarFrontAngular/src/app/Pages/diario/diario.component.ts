@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/Core/service/auth.service';
+import { DiarioService } from 'src/app/Core/service/diarioService.service';
+import { PacienteService } from 'src/app/Core/service/paciente.service';
 
 @Component({
   selector: 'app-diario',
@@ -6,253 +11,64 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CSS/diario.historico.css', './CSS/diario.emocoes.css', './CSS/diario.component.css']
 })
 export class DiarioComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.renderHistoricoDiarios();
-  }
-
-  mockRetornoBanco = {
-    // Usuario: 'Paciente',
-    Usuario: 'Psicologo',
-    mockDiarios: [
-      {
-        day: 12,
-        month: 'Jan',
-        emocao1: 12,
-        emocao2: 12,
-        emocao3: 12,
-        emocao4: 12,
-        emocao5: 12,
-        sobrePaciente: '12Jan',
-        comentarioPsicologo: '12Jan',
-        sentimentosPaciente: '12Jan',
-      },
-      {
-        day: 13,
-        month: 'Jan',
-        emocao1: 13,
-        emocao2: 13,
-        emocao3: 13,
-        emocao4: 13,
-        emocao5: 13,
-        sobrePaciente: '13Jan',
-        comentarioPsicologo: '13Jan',
-        sentimentosPaciente: '13Jan',
-      },
-      {
-        day: 15,
-        month: 'Jan',
-        emocao1: 15,
-        emocao2: 15,
-        emocao3: 15,
-        emocao4: 15,
-        emocao5: 15,
-        sobrePaciente: '15Jan',
-        comentarioPsicologo: '15Jan',
-        sentimentosPaciente: '15Jan',
-      },
-      {
-        day: 18,
-        month: 'Jan',
-        emocao1: 15,
-        emocao2: 15,
-        emocao3: 15,
-        emocao4: 15,
-        emocao5: 15,
-        sobrePaciente: '15Jan',
-        comentarioPsicologo: '15Jan',
-        sentimentosPaciente: '15Jan',
-      },
-      {
-        day: 21,
-        month: 'Jan',
-        emocao1: 15,
-        emocao2: 15,
-        emocao3: 15,
-        emocao4: 15,
-        emocao5: 15,
-        sobrePaciente: '15Jan',
-        comentarioPsicologo: '15Jan',
-        sentimentosPaciente: '15Jan',
-      },
-      {
-        day: 27,
-        month: 'Jan',
-        emocao1: 15,
-        emocao2: 15,
-        emocao3: 15,
-        emocao4: 15,
-        emocao5: 15,
-        sobrePaciente: '27Jan',
-        comentarioPsicologo: '27Jan',
-        sentimentosPaciente: '27Jan',
-      },
-      {
-        day: 10,
-        month: 'Fev',
-        emocao1: 10,
-        emocao2: 10,
-        emocao3: 10,
-        emocao4: 10,
-        emocao5: 10,
-        sobrePaciente: '10Fev',
-        comentarioPsicologo: '10Fev',
-        sentimentosPaciente: '10Fev',
-      },
-      {
-        day: 16,
-        month: 'Fev',
-        emocao1: 16,
-        emocao2: 16,
-        emocao3: 16,
-        emocao4: 16,
-        emocao5: 16,
-        sobrePaciente: '16Fev',
-        comentarioPsicologo: '16Fev',
-        sentimentosPaciente: '16Fev',
-      },
-      {
-        day: 18,
-        month: 'Fev',
-        emocao1: 18,
-        emocao2: 18,
-        emocao3: 18,
-        emocao4: 18,
-        emocao5: 18,
-        sobrePaciente: '18Fev',
-        comentarioPsicologo: '18Fev',
-        sentimentosPaciente: '18Fev',
-      },
-      {
-        day: 22,
-        month: 'Fev',
-        emocao1: 22,
-        emocao2: 22,
-        emocao3: 22,
-        emocao4: 22,
-        emocao5: 22,
-        sobrePaciente: '22Fev',
-        comentarioPsicologo: '22Fev',
-        sentimentosPaciente: '22Fev',
-      },
-      {
-        day: 26,
-        month: 'Fev',
-        emocao1: 26,
-        emocao2: 26,
-        emocao3: 26,
-        emocao4: 26,
-        emocao5: 26,
-        sobrePaciente: '26Fev',
-        comentarioPsicologo: '26Fev',
-        sentimentosPaciente: '26Fev',
-      },
-      {
-        day: 29,
-        month: 'Fev',
-        emocao1: 29,
-        emocao2: 29,
-        emocao3: 29,
-        emocao4: 29,
-        emocao5: 29,
-        sobrePaciente: '29Fev',
-        comentarioPsicologo: '29Fev',
-        sentimentosPaciente: '29Fev',
-      },
-      {
-        day: 2,
-        month: 'Mar',
-        emocao1: 2,
-        emocao2: 2,
-        emocao3: 2,
-        emocao4: 2,
-        emocao5: 2,
-        sobrePaciente: '2Mar',
-        comentarioPsicologo: '2Mar',
-        sentimentosPaciente: '2Mar',
-      },
-      {
-        day: 6,
-        month: 'Mar',
-        emocao1: 6,
-        emocao2: 6,
-        emocao3: 6,
-        emocao4: 6,
-        emocao5: 6,
-        sobrePaciente: '6Mar',
-        comentarioPsicologo: '6Mar',
-        sentimentosPaciente: '6Mar',
-      },
-      {
-        day: 8,
-        month: 'Mar',
-        emocao1: 8,
-        emocao2: 8,
-        emocao3: 8,
-        emocao4: 8,
-        emocao5: 8,
-        sobrePaciente: '8Mar',
-        comentarioPsicologo: '8Mar',
-        sentimentosPaciente: '8Mar',
-      },
-      {
-        day: 9,
-        month: 'Mar',
-        emocao1: 9,
-        emocao2: 9,
-        emocao3: 9,
-        emocao4: 9,
-        emocao5: 9,
-        sobrePaciente: '9Mar',
-        comentarioPsicologo: '9Mar',
-        sentimentosPaciente: '9Mar',
-      },
-      {
-        day: 11,
-        month: 'Mar',
-        emocao1: 11,
-        emocao2: 11,
-        emocao3: 11,
-        emocao4: 11,
-        emocao5: 11,
-        sobrePaciente: '11Mar',
-        comentarioPsicologo: '11Mar',
-        sentimentosPaciente: '11Mar',
-      },
-      {
-        day: 8,
-        month: 'Nov',
-        emocao1: 8,
-        emocao2: 8,
-        emocao3: 8,
-        emocao4: 8,
-        emocao5: 8,
-        sobrePaciente: '8Nov',
-        comentarioPsicologo: '8Nov',
-        sentimentosPaciente: '8Nov',
-      },
-    ]
-  }
-
   //INICIO - estados da pagina
+  id;
+  currentUser;
+  isAuthenticated: boolean;
+  diarios;
+  usuario = '';
+  emocaoMedia;
+  idDiario;
   emocao1 = 0;
   emocao2 = 0;
   emocao3 = 0;
   emocao4 = 0;
   emocao5 = 0;
   camposTexto = {
-    sobrePaciente: '',
+    detalhes: '',
     comentarioPsicologo: '',
-    sentimentosPaciente: '',
+    diarioPaciente: '',
   }
-
-  usuario = this.mockRetornoBanco.Usuario;
-  hoje = '8Nov'
+  dateNow = new Date();
+  diaHoje = this.dateNow.getDate();
+  mesHoje = this.dateNow.getMonth() + 1;
+  anoHoje = this.dateNow.getFullYear();
+  hoje = `${this.anoHoje}-${this.mesHoje}-${this.diaHoje}`
   exibindoHoje = true;
-  idDiaExibido = '8Nov';
+  idDiaExibido = this.hoje;
+  idDiarioExibido;
   //FIM - estados da pagina
+  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private diarioService: DiarioService,
+    private pacienteService: PacienteService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder) { }
+
+  loadDiario() {
+    this.id = this.route.snapshot.params['id'];
+
+    this.pacienteService.getOne(this.id).subscribe(data => {
+      this.diarios = data.diario;
+      this.renderHistoricoDiarios();
+    });
+  } 
+
+
+  ngOnInit(): void {
+    this.authService.isAuthenticated.subscribe(
+      (isAuthenticated) => this.isAuthenticated = isAuthenticated);
+    this.authService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+        this.usuario = this.currentUser.crp ? 'Psicologo' : 'Paciente';
+      }
+    );
+
+    this.loadDiario()
+  } 
 
   //INICIO - controle emocoes
   obtemInputRange(emocao) {
@@ -290,22 +106,22 @@ export class DiarioComponent implements OnInit {
     }
   }
 
-  alteraEstadoComentario(campo, comentario){
+  alteraEstadoComentario(campo, comentario) {
     switch (campo) {
-      case 'sentimentosPaciente':
+      case 'diarioPaciente':
         this.camposTexto[campo] = comentario;
         break;
       case 'comentarioPsicologo':
         this.camposTexto[campo] = comentario;
         break;
-      case 'sobrePaciente':
+      case 'detalhes':
         this.camposTexto[campo] = comentario;
         break;
     }
   }
 
-  alterarEmocao(e){
-    if(this.exibindoHoje && this.usuario === 'Paciente'){
+  alterarEmocao(e) {
+    if (this.exibindoHoje && this.usuario === 'Paciente') {
       let emotionInput = e.path[0].id;
       let emotionInputRange = this.obtemInputRange(emotionInput);
 
@@ -318,7 +134,7 @@ export class DiarioComponent implements OnInit {
 
       this.alteraEstadoEmocao(emotionInput, emotionInputvalue);
     }
-    if(!this.exibindoHoje && this.usuario === 'Paciente'){
+    if (!this.exibindoHoje && this.usuario === 'Paciente') {
       alert('Lamento, só é possível alterar o diário de hoje :(');
     }
   }
@@ -326,20 +142,20 @@ export class DiarioComponent implements OnInit {
 
   //INICIO - controle campos texto
 
-    alterarTexto(e){
-        let textInputId = e.path[0].id;
-        let textInputElement = document.getElementById(textInputId);
+  alterarTexto(e) {
+    let textInputId = e.path[0].id;
+    let textInputElement = document.getElementById(textInputId);
 
-        let textInputvalue = String((<HTMLInputElement>(textInputElement)).value);
+    let textInputvalue = String((<HTMLInputElement>(textInputElement)).value);
 
-        this.alteraEstadoComentario('sentimentosPaciente', textInputvalue)
+    this.alteraEstadoComentario('diarioPaciente', textInputvalue)
+  }
+
+  alertaTextoNaoEditavel() {
+    if (!this.exibindoHoje && this.usuario === 'Paciente') {
+      alert('Lamento, só é possível alterar o diário de hoje :(');
     }
-
-    alertaTextoNaoEditavel(){
-      if(!this.exibindoHoje && this.usuario === 'Paciente'){
-        alert('Lamento, só é possível alterar o diário de hoje :(');
-      }
-    }
+  }
 
   //INICIO - controle campos texto
 
@@ -374,81 +190,84 @@ export class DiarioComponent implements OnInit {
     }
   }
 
-  definirValorEmocao(i, diarioSelecionado){
-    let emocaoDiario = this.obterValorEmocaoDiarioSelecionado(i, diarioSelecionado);
+  obterMesAbreviado(numeroMes) {
+    const meses = ['', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    return meses[parseInt(numeroMes, 10)];
+  }
+
+  definirValorEmocao(i, diarioSelecionado) {
+    let emocaoDiario = diarioSelecionado ? this.obterValorEmocaoDiarioSelecionado(i, diarioSelecionado) : 0;
     let emocaoHojeEstadoAtual = this.obterValorEstadoEmocaoHoje(i);
 
     let emocaoDefinida = this.exibindoHoje && emocaoHojeEstadoAtual != 0 ? emocaoHojeEstadoAtual : emocaoDiario;
-    
+
     return emocaoDefinida;
   }
 
-  preencheEmocoes(diarioSelecionado){
+  preencheEmocoes(diarioSelecionado) {
     let baseEmotionInputId = 'emocao-input';
     let baseEmotionInputRangeId = 'emocao-input-range';
 
-    for (var i = 1; i <= 5; i ++){
-      let emotionInputElement = document.getElementById(baseEmotionInputId+i)
-      let emotionInputRangeElement = document.getElementById(baseEmotionInputRangeId+i);
+    for (var i = 1; i <= 5; i++) {
+      let emotionInputElement = document.getElementById(baseEmotionInputId + i)
+      let emotionInputRangeElement = document.getElementById(baseEmotionInputRangeId + i);
 
       let emocao = this.definirValorEmocao(i, diarioSelecionado);
 
       (<HTMLInputElement>(emotionInputElement)).value = emocao;
       emotionInputRangeElement.style.width = emocao + '%';
 
-      if(this.exibindoHoje){
-        this.alteraEstadoEmocao(baseEmotionInputId+i, emocao);
+      if (this.exibindoHoje) {
+        this.alteraEstadoEmocao(baseEmotionInputId + i, emocao);
       }
     }
   }
 
-  definirTexto(diarioSelecionado, campo){
-    let comentarioDiario = diarioSelecionado[campo];
+  definirTexto(diarioSelecionado, campo) {
+    let comentarioDiario = diarioSelecionado ? diarioSelecionado[campo] : '';
     let comentarioEstadoAtual = this.camposTexto[campo];
 
     let comentarioDefinida = this.exibindoHoje && comentarioEstadoAtual != '' ? comentarioEstadoAtual : comentarioDiario;
-    
+
     return comentarioDefinida;
   }
 
-  preencheCamposTexto(diarioSelecionado){
+  preencheCamposTexto(diarioSelecionado) {
     const comentarioPsicologoElement = document.getElementById('notas-texto');
-    let comentarioPaciente = this.definirTexto(diarioSelecionado, 'sentimentosPaciente');
+    let comentarioPaciente = this.definirTexto(diarioSelecionado, 'diarioPaciente');
     (<HTMLInputElement>(comentarioPsicologoElement)).value = comentarioPaciente;
 
-    if(this.exibindoHoje && this.usuario === 'Paciente'){
-      this.alteraEstadoComentario('sentimentosPaciente', comentarioPaciente);
+    if (this.exibindoHoje && this.usuario === 'Paciente') {
+      this.alteraEstadoComentario('diarioPaciente', comentarioPaciente);
       comentarioPsicologoElement.removeAttribute('readonly');
     }
 
-    if(!this.exibindoHoje){
+    if (!this.exibindoHoje) {
       comentarioPsicologoElement.setAttribute('readonly', 'readonly');
     }
 
-    if(this.usuario === 'Psicologo'){
+    if (this.usuario === 'Psicologo') {
       const sobrePacienteElement = document.getElementById('sobre-paciente-texto');
-      let sobrePaciente = this.definirTexto(diarioSelecionado, 'sobrePaciente');
+      let sobrePaciente = this.definirTexto(diarioSelecionado, 'detalhes');
       (<HTMLInputElement>(sobrePacienteElement)).value = sobrePaciente;
-      
+
       const sentimentosPacienteElement = document.getElementById('psicologo-comentarios-texto');
       let comentarioPsicologo = this.definirTexto(diarioSelecionado, 'comentarioPsicologo');
       (<HTMLInputElement>(sentimentosPacienteElement)).value = comentarioPsicologo;
 
-      if(this.exibindoHoje){
-        this.alteraEstadoComentario('sobrePaciente', sobrePaciente);
+      if (this.exibindoHoje) {
+        this.alteraEstadoComentario('detalhes', sobrePaciente);
         this.alteraEstadoComentario('comentarioPsicologo', comentarioPsicologo);
       }
     }
   }
 
-  preencheDiario(dataId){
-    const dia = dataId.slice(0, -3);
-    const mes = dataId.substr(-3)
-
-    const diarioSelecionado = this.mockRetornoBanco.mockDiarios.filter((diario) => {
-      return diario.day == dia && diario.month == mes;
+  preencheDiario(dataId) {
+    const diarioSelecionado = this.diarios.filter((diario) => {
+      return diario.dataDoDiario === dataId;
     })[0]
 
+    this.idDiarioExibido = diarioSelecionado.id;
     this.preencheEmocoes(diarioSelecionado);
     this.preencheCamposTexto(diarioSelecionado);
   }
@@ -456,7 +275,7 @@ export class DiarioComponent implements OnInit {
 
   //INICIO - altera dia historico
 
-  alteraDiaHistorico(elemento){
+  alteraDiaHistorico(elemento) {
     let diarioId = elemento.path[1].id;
 
     let diarioSelecionado = document.getElementById(diarioId);
@@ -476,29 +295,29 @@ export class DiarioComponent implements OnInit {
     const dayItemContainer = document.createElement('div');
     dayItemContainer.className = 'day-item-container';
     dayItemContainer.innerHTML = dayitem;
-    
+
     return dayItemContainer;
   }
 
-  calculaEmocaoPredominante(diario){
-    if(this.usuario == 'Psicologo' && diario != null){
+  calculaEmocaoPredominante(diario) {
+    if (this.usuario === 'Psicologo' && diario != null) {
       // let emocaoMedia = (diario.emocao1 + diario.emocao2 + diario.emocao3 + diario.emocao4 + diario.emocao5) / 5;
-      let emocaoMedia = (diario.emocao1 + diario.emocao2 + diario.emocao3 + diario.emocao4 + diario.emocao5) * 3;
-      
-      if(emocaoMedia <= 165){return "emocao-ruim"};
-      if(emocaoMedia >= 330){return "emocao-boa"};
-      
+      this.emocaoMedia = (diario.emocao1 + diario.emocao2 + diario.emocao3 + diario.emocao4 + diario.emocao5);
+
+      if (this.emocaoMedia <= 165) { return "emocao-ruim" };
+      if (this.emocaoMedia >= 330) { return "emocao-boa" };
+
       return "emocao-neutra";
     }
   }
 
   geraDayItem(diario, divClickId) {
     return `<hr class="separator-hr">
-      <button id="${diario.day + diario.month}" class="day-item">
+      <button id="${diario.dataDoDiario}" class="day-item">
         <div id="${divClickId}" class="div-click"></div>
-        <div class="${this.usuario == 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
-        <h3>${diario.day}</h3>
-        <p>${diario.month}</p>
+        <div class="${this.usuario === 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
+        <h3>${diario.dataDoDiario.slice(-2)}</h3>
+        <p>${this.obterMesAbreviado(diario.dataDoDiario.substr(5, 2))}</p>
       </button>`
   }
 
@@ -506,7 +325,7 @@ export class DiarioComponent implements OnInit {
     return `<hr class="separator-hr">
       <button id="${id}" style="margin-right: 20px;" class="dia-selecionado-item">
         <div id="${divClickId}" class="div-click"></div>
-        <div class="${this.usuario == 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
+        <div class="${this.usuario === 'Psicologo' ? 'emocao-predominante' : ''} ${this.calculaEmocaoPredominante(diario)}"></div>
         <h4>Hoje</h4>
       </button>`
   }
@@ -519,15 +338,15 @@ export class DiarioComponent implements OnInit {
     let dayItemContainer;
     let divClickId = 0
 
-    this.mockRetornoBanco.mockDiarios.map((diario) => {
+    this.diarios.map((diario) => {
       divClickId++;
-      if((diario.day.toString()+diario.month) == this.hoje){
+      if ((diario.dataDoDiario) == this.hoje) {
         let todayitem = this.geraTodayItem(this.hoje, divClickId, diario);
         dayItemContainer = this.geraDayItemContainer(todayitem);
 
         hojeRenderizado = true;
         this.preencheDiario(this.hoje);
-      }else{
+      } else {
         let dayitem = this.geraDayItem(diario, divClickId);
         dayItemContainer = this.geraDayItemContainer(dayitem);
       }
@@ -538,40 +357,92 @@ export class DiarioComponent implements OnInit {
       divClick.addEventListener('click', this.alteraDiaHistorico.bind(this));
     })
 
-    if(!hojeRenderizado){
+    if (!hojeRenderizado) {
+      divClickId++;
       let todayitem = this.geraTodayItem(this.hoje, divClickId, null);
       dayItemContainer = this.geraDayItemContainer(todayitem);
-  
+
       historico.appendChild(dayItemContainer);
+
+      let divClick = document.getElementById(divClickId.toString());
+      divClick.addEventListener('click', this.alteraDiaHistorico.bind(this));
     }
   }
   //FIM - Gera historico de emocoes
+
+
+  encontrarIdDoDiarioHoje() {
+    this.diarios.map((diario) => {
+      if ((diario.dataDoDiario) == this.hoje) {
+        this.idDiario = diario.id;
+      }
+    });
+  }
 
   salvarDiario() {
 
     const sobrePacienteElement = document.getElementById('sobre-paciente-texto');
     const sobrePaciente = (<HTMLInputElement>(sobrePacienteElement)).value;
-    const comentarioPsicologoElement = document.getElementById('notas-texto');
-    const comentarioPsicologo = (<HTMLInputElement>(comentarioPsicologoElement)).value;
-    const sentimentosPacienteElement = document.getElementById('psicologo-comentarios-texto');
+    
+    const sentimentosPacienteElement = document.getElementById('notas-texto');
     const sentimentosPaciente = (<HTMLInputElement>(sentimentosPacienteElement)).value;
 
-    alert(`Emoção 1 = ${this.emocao1}
-    \Emoção 2 = ${this.emocao2}
-    \Emoção 3 = ${this.emocao3}
-    \Emoção 4 = ${this.emocao4}
-    \Emoção 5 = ${this.emocao5}
-    \Sobre o Paciente: ${sobrePaciente}
-    \Comentários do Psicólogo: ${comentarioPsicologo}
-    \Sentimentos do Paciente: ${sentimentosPaciente}`);
-  }
+    const comentarioPsicologoElement = document.getElementById('psicologo-comentarios-texto');
+    const comentarioPsicologo = (<HTMLInputElement>(comentarioPsicologoElement)).value;
 
-  TrocaUsuario(){
-    this.usuario = this.usuario == 'Paciente' ? 'Psicologo' : 'Paciente';
-    this.hoje = '8Nov';
-    this.exibindoHoje = true;
-    this.idDiaExibido = '8Nov';
-    this.renderHistoricoDiarios();
-  }
+    const emotionInputElement1 = document.getElementById('emocao-input1');
+    const emocao1 = (<HTMLInputElement>(emotionInputElement1)).value
+    const emotionInputElement2 = document.getElementById('emocao-input2');
+    const emocao2 = (<HTMLInputElement>(emotionInputElement2)).value
+    const emotionInputElement3 = document.getElementById('emocao-input3');
+    const emocao3 = (<HTMLInputElement>(emotionInputElement3)).value
+    const emotionInputElement4 = document.getElementById('emocao-input4');
+    const emocao4 = (<HTMLInputElement>(emotionInputElement4)).value
+    const emotionInputElement5 = document.getElementById('emocao-input5');
+    const emocao5 = (<HTMLInputElement>(emotionInputElement5)).value
+    
+    this.encontrarIdDoDiarioHoje();
+    const emocaoGeral = (
+      Number(this.emocao1) + 
+      Number(this.emocao2) + 
+      Number(this.emocao3) + 
+      Number(this.emocao4) + 
+      Number(this.emocao5));
 
+    const diarioCadastrado = {
+      emocao1: Number(emocao1), 
+      emocao2: Number(emocao2),
+      emocao3: Number(emocao3),
+      emocao4: Number(emocao4),
+      emocao5: Number(emocao5),
+      emocaoGeral: emocaoGeral,
+      diarioPaciente: sentimentosPaciente,
+      comentarioPsicologo: comentarioPsicologo,
+      detalhes: sobrePaciente,
+      dataDoDiario: this.idDiaExibido,
+      pacienteId: this.id
+    };
+    
+    // return;
+
+    const idDiarioUpdate = this.usuario === 'Psicologo' ? this.idDiarioExibido : this.idDiario;
+
+    if (this.idDiario != null || this.usuario === 'Psicologo') {
+      this.diarioService.update(idDiarioUpdate, diarioCadastrado).subscribe(
+        data => {
+          alert("Atualização Deu Certo!");
+          window.location.reload();
+        },
+        erro => alert("Atualização Deu Errado!")
+      );
+    } else {
+      this.diarioService.create(diarioCadastrado).subscribe(
+        data => {
+          alert("Cadastro Deu Certo!");
+          window.location.reload();
+        },
+        erro => alert("Cadastro Deu Errado!")
+      );
+    }
+  }
 }
