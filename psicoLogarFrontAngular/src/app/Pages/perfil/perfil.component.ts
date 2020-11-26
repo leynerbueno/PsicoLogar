@@ -91,7 +91,7 @@ export class PerfilComponent implements OnInit {
       this.psicologoService.update(this.currentUser.id, dados).subscribe(
         data => {
           alert("Deu certo!")
-          this.router.navigate(['listaPacientes'])
+          window.location.reload();
         },
         erro => {
           alert("Deu errado!")
@@ -102,9 +102,10 @@ export class PerfilComponent implements OnInit {
     else {
       this.pacienteService.update(this.currentUser.id, dados).subscribe(
         data => {
-          this.router.navigate(['listaPacientes'])
+          alert("Deu certo!")
+          window.location.reload();
       },
-        erro => console.log(erro)
+        erro => alert("Deu errado!")
       );
     }
   }

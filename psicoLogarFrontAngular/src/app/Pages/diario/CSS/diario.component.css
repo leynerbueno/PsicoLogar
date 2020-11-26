@@ -92,7 +92,7 @@ button {
 }
 
 hr.dashed-line {
-  border-top: 2px dashed rgba(255, 255, 255, 0.16);
+  border-top: 3px dashed rgba(255, 255, 255, 0.16);
   margin-bottom: 40px;
 }
 

@@ -3,6 +3,7 @@
   flex-direction: row;
   width: 100%;
   padding: 0 30px;
+  margin-bottom: 40px;
 }
 
 #emocoes-container {
