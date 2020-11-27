@@ -1,4 +1,4 @@
-<app-header-Logado></app-header-Logado>
+<app-header></app-header>
 <div class="body-container">
   <div id="body-formulario">
     <form [formGroup]="form">
@@ -44,6 +44,18 @@
         <div class="inputField">
           <label>Endereço:</label>
           <input type="text" id="endereco" name="endereco" formControlName="endereco">
+        </div>
+
+        <div  id="consulta" class="inputField">
+          <label>Consulta:</label>
+          <select  name="diaDaConsulta" formControlName="diaDaConsulta">
+            <option class="opcao" value="segunda-feira">Seg</option>
+            <option class="opcao" value="terça-feira">Ter</option>
+            <option class="opcao" value="quarta-feira">Qua</option>
+            <option class="opcao" value="quinta-feira">Qui</option>
+            <option class="opcao" value="sexta-feira">Sex</option>
+            <option class="opcao" value="sábado">Sáb</option>
+          </select>
         </div>
 
         <div id="campoCRP">

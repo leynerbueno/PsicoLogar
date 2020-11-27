@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Core/service/auth.service';
 import { PsicologoService } from 'src/app/Core/service/psicologo.service';
 import { PacienteService } from 'src/app/Core/service/paciente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-Perfil',
@@ -16,6 +17,7 @@ export class PerfilComponent implements OnInit {
   isAuthenticated: boolean;
   form: FormGroup;
   imageBase64;
+  usuario;
   constructor(
     private psicologoService: PsicologoService,
     private pacienteService: PacienteService,
@@ -29,6 +31,7 @@ export class PerfilComponent implements OnInit {
     this.authService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
+        this.usuario = this.currentUser.crp ? 'Psicologo' : 'Paciente';
         this.getOne(userData);
       }
     );
@@ -41,18 +44,19 @@ export class PerfilComponent implements OnInit {
       senha: ['', Validators.required],
       endereco: ['', Validators.required],
       crp: ['', Validators.required],
-      dataDaConsulta: ['', Validators.required]
+      diaDaConsulta: ['', Validators.required]
     });
   }
-//metodo para saber se pscologo ou paciente esta logando 
+  //metodo para saber se pscologo ou paciente esta logando 
   getOne(currentUser) {
     if (currentUser.id == null) {
       return;
     }
-    if (currentUser.crp != null) {
+    if (this.usuario === 'Psicologo') {
       this.psicologoService.getOne(currentUser.id).subscribe(
         dadosPsicologo => {
-         document.getElementById('campoCRP').className = 'inputField';
+          document.getElementById('campoCRP').className = 'inputField';
+          document.getElementById('consulta').className = 'hidden';
           this.imageBase64 = dadosPsicologo.foto;
           this.form.patchValue(dadosPsicologo);
         }, erro => console.log(erro)
@@ -60,7 +64,8 @@ export class PerfilComponent implements OnInit {
     } else {
       this.pacienteService.getOne(currentUser.id).subscribe(
         dadosPaciente => {
-         document.getElementById('campoCRP').className = 'hidden';
+          document.getElementById('campoCRP').className = 'hidden';
+          document.getElementById('consulta').className = 'inputField';
           this.imageBase64 = dadosPaciente.foto;
           this.form.patchValue(dadosPaciente);
         });
@@ -87,25 +92,38 @@ export class PerfilComponent implements OnInit {
     const dados = this.form.value;
     dados.foto = this.imageBase64;
 
-    if (dados.crp != "") {
+    if (this.usuario === 'Psicologo') {
       this.psicologoService.update(this.currentUser.id, dados).subscribe(
         data => {
-          alert("Deu certo!")
           window.location.reload();
+          Swal.fire({
+            icon: 'success'
+          });
         },
         erro => {
-          alert("Deu errado!")
-          console.log(erro)
+          console.log(erro);
+          Swal.fire({
+            icon: 'error',
+            title: erro.error.mensagem,
+          });
         }
       );
-    } 
+    }
     else {
       this.pacienteService.update(this.currentUser.id, dados).subscribe(
         data => {
-          alert("Deu certo!")
+          Swal.fire({
+            icon: 'success'
+          });
           window.location.reload();
-      },
-        erro => alert("Deu errado!")
+        },
+        erro => {
+          console.log(erro);
+          Swal.fire({
+            icon: 'error',
+            title: erro.error.mensagem,
+          });
+        }
       );
     }
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PsicologoService } from './../../Core/service/psicologo.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadastro',
@@ -52,9 +52,19 @@ export class CadastroComponent implements OnInit {
     psicologo.foto = this.imageBase64;
     psicologo.tipoUsuario = true;
     this.psicologoService.create(psicologo).subscribe(
-      data => this.router.navigateByUrl(''),
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'O cadastro foi um sucesso!'
+        });
+        this.router.navigateByUrl('/');
+      },
       erro => {
-        alert("Erro ao criar Usuario!")
+        console.log(erro);
+        Swal.fire({
+          icon: 'error',
+          title: erro.error.mensagem,
+        });
       }
     );
   }
