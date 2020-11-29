@@ -25,6 +25,9 @@ public class Usuario extends BaseEntity {
 	private String senha;
 	private String endereco;
 	
+	@Column(name="token_confirmation")
+	private String tokenConfirmation;
+	
 
 	public Usuario() {
 		
@@ -43,12 +46,22 @@ public class Usuario extends BaseEntity {
 		this.endereco = endereco;
 	}
 
+	 
+	public String getTokenConfirmation() {
+		return tokenConfirmation;
+	}
+
+	public void setTokenConfirmation(String tokenConfirmation) {
+		this.tokenConfirmation = tokenConfirmation;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
 	public void setSenha(String senha) {
 		this.senha =  new BCryptPasswordEncoder().encode(senha);
 	}
+	
 	public String getFoto() {
 		return foto;
 	}

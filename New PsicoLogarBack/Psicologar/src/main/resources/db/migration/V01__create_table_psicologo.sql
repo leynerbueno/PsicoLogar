@@ -8,6 +8,7 @@ genero varchar(100) not null,
 email varchar(100) not null,
 senha varchar(100) not null,
 endereco varchar(100) not null,
+token_confirmation VARCHAR(191) NULL,
 crp varchar(50) not null
 );
 

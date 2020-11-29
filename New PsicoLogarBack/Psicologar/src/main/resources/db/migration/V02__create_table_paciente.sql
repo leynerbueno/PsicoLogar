@@ -9,6 +9,7 @@ email varchar(100) not null,
 senha varchar(100) not null,
 endereco varchar(100) not null,
 dia_da_consulta varchar(50) not null,
+token_confirmation VARCHAR(191) NULL,
 psicologo_id int,
 constraint FK_paciente Foreign key(psicologo_id) references psicologo(id)
 );

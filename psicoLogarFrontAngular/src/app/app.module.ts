@@ -25,7 +25,7 @@ import { HttpTokenInterceptor } from './Core/interceptors/http-token.interceptor
     HeaderComponent,
     ListaPacientesComponent,
     PerfilComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,12 +6,14 @@ import { DiarioComponent } from './Pages/diario/diario.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
 import { PerfilComponent } from './Pages/perfil/perfil.component';
 
+
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'cadastro', component: CadastroComponent},
   {path: 'diarios/:id', component: DiarioComponent},
   {path: 'listaPacientes', component: ListaPacientesComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+
 ];
 
 @NgModule({

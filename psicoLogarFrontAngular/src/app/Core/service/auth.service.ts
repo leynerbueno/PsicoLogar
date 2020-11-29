@@ -15,7 +15,6 @@ export class AuthService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
   protected baseUrl = 'http://localhost:8080';
-
   constructor(private httpClient: HttpClient, private jwtService: JwtService) { }
 
   public populate() {
@@ -33,6 +32,7 @@ export class AuthService {
   }
 
   private setAuth(usuario) {
+
     // Defina os dados atuais do usuário em observáveis
     this.currentUserSubject.next(usuario);
     // Defina isAuthenticated como true
@@ -65,4 +65,9 @@ export class AuthService {
   public getCurrentUser(): any {
     return this.currentUserSubject.value;
   }
+
+  public register(baseUrlUsuario, usuario): Observable<any> {
+    return this.httpClient.post(this.baseUrl + baseUrlUsuario + '/registro', usuario);
+  }
+
 }

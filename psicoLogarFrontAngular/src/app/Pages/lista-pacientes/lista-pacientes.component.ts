@@ -5,6 +5,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -31,7 +32,7 @@ export class ListaPacientesComponent implements OnInit {
         this.listarPacientes(this.currentUser.paciente, null, userData);
       }
     );
-    
+
     this.form = this.formBuilder.group({
       id: ['', Validators.required],
       nome: ['', Validators.required],
@@ -58,8 +59,8 @@ export class ListaPacientesComponent implements OnInit {
       let nome = paciente.nome;
       let id = paciente.id;
       let foto;
-      if(paciente.foto ==null) {
-        foto =  null; 
+      if (paciente.foto == null) {
+        foto = null;
       } else {
         foto = paciente.foto;
       }
@@ -76,12 +77,12 @@ export class ListaPacientesComponent implements OnInit {
       listaPacientes.appendChild(itemLista);
     })
   }
-  
+
 
 
   exibeDadosPaciente(elemento) {
     var id = elemento.srcElement.id;
-    this.router.navigate(['/diarios',id])
+    this.router.navigate(['/diarios', id])
   }
 
   itemListaConstructor(id, nome, foto, diaConsulta) {
@@ -144,16 +145,36 @@ export class ListaPacientesComponent implements OnInit {
     const paciente = this.form.value;
     paciente.psicologoId = this.currentUser.id;
 
-    this.pacienteService.create(paciente).subscribe(
+    this.authService.register('/pacientes', paciente).subscribe(
       data => {
-        feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!";
-        this.currentUser.paciente.push(paciente);
-        this.listarPacientes(this.currentUser.paciente, null, this.currentUser);
+        Swal.fire({
+          icon: 'success',
+          title: 'O cadastro foi um sucesso!',
+          text: 'O paciente deve verificar seu email!',
+          confirmButtonText: `OK`,
+        }).then((result) => {
+          this.currentUser.paciente.push(paciente);
+          this.listarPacientes(this.currentUser.paciente, null, this.currentUser);
+        });
       },
       erro => {
-        feedbackCadastro.innerHTML = "Erro ao Cadastrar o Paciente...";
+        console.log(erro);
+        Swal.fire({
+          icon: 'error',
+          title: erro.error.mensagem,
+        });
       }
     );
+    // this.pacienteService.create(paciente).subscribe(
+    //   data => {
+    //     feedbackCadastro.innerHTML = "Paciente Cadastrado com Sucesso!";
+    //     this.currentUser.paciente.push(paciente);
+    //     this.listarPacientes(this.currentUser.paciente, null, this.currentUser);
+    //   },
+    //   erro => {
+    //     feedbackCadastro.innerHTML = "Erro ao Cadastrar o Paciente...";
+    //   }
+    // );
   }
 
   abrirModalCadastro() {

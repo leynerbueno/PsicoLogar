@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 // Não cheque essas requisições
 				.authorizeRequests()
 					.antMatchers("/pacientes/**","/diarios/**","/images/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/login","/psicologos").permitAll()
+					.antMatchers(HttpMethod.POST, "/login","/psicologos/registro").permitAll()
 // Qualquer outra requisição deve ser checada
 				.anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
