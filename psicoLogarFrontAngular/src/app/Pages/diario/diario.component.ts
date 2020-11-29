@@ -225,6 +225,7 @@ export class DiarioComponent implements OnInit {
       emotionInputRangeElement.style.width = emocao + '%';
 
       if (this.exibindoHoje) {
+        console.log('alterando estado emocao')
         this.alteraEstadoEmocao(baseEmotionInputId + i, emocao);
       }
     }
@@ -273,8 +274,9 @@ export class DiarioComponent implements OnInit {
     const diarioSelecionado = this.diarios.filter((diario) => {
       return diario.dataDoDiario === dataId;
     })[0]
+    console.log(diarioSelecionado);
 
-    this.idDiarioExibido = diarioSelecionado.id;
+    this.idDiarioExibido = diarioSelecionado && diarioSelecionado.id;
     this.preencheEmocoes(diarioSelecionado);
     this.preencheCamposTexto(diarioSelecionado);
   }
@@ -284,6 +286,7 @@ export class DiarioComponent implements OnInit {
 
   alteraDiaHistorico(elemento) {
     let diarioId = elemento.path[1].id;
+    console.log(diarioId)
 
     let diarioSelecionado = document.getElementById(diarioId);
     diarioSelecionado.className = 'dia-selecionado-item';

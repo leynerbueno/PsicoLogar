@@ -172,6 +172,7 @@ export class ListaPacientesComponent implements OnInit {
     overlayModal.style.display = "none";
 
     this.limparModalCadastro();
+    window.location.reload();
   }
 
   limparModalCadastro() {
