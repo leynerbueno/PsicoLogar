@@ -2,6 +2,7 @@ import { AuthService } from './../../Core/service/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -70,7 +71,12 @@ export class HomeComponent implements OnInit {
       data => {
         this.logar();
       },
-      erro => { alert("Erro ao logar!") }
+      erro => {
+        Swal.fire({
+          icon: 'error',
+          title: erro.error.mensagem,
+        });
+      }
     );
   }
 }

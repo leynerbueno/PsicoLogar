@@ -1,39 +1,30 @@
 <div id="header">
-  <div id="logo">
-    <img src="../../../assets/logo.svg" alt="Logo PsicoLogar">
-  </div>
-  <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}"  (click)="handleMenu()"></div>
+  <span id="logo"> PsicoLogar </span>
+  <div id="menu_container" [ngStyle]="{'display': openMenu ? 'block' : 'none'}" (click)="handleMenu()"></div>
   <div class="navigation">
-    <div class="dropdown_container">
-      <div class="notifications" [ngStyle]="{'display': openNotificacao ? 'block' : 'none'}">
-        <ul class="notification_list">
-          <li> Hoje tem consulta </li>
-          <li> Pratique a técnica de respiração </li>
-          <li> Hoje tem consulta </li>
-        </ul>
-      </div>
-      <button class="material-icons" (click)="handleNotification()" (blur)="handleNotification()">
-        notifications
-      </button>
-    </div>
     <button (click)="handleMenu()">
-      <img id="profile_image" src="../../assets/sample_image.png">
+      <img id="profile_image" src="{{ currentUser.foto == null ? '../../../../../assets/UserGenerico.png' : currentUser.foto }}">
     </button>
   </div>
 </div>
 
-<div id="menu_content" (blur)="handleMenu()" [ngStyle]="{'right': openMenu ? '0px' : '-20vw'}" >
-  <div class="menu_header" >
-    <span class="material-icons" (click)="handleMenu()" style="cursor: pointer;">
+<div id="menu_content" (blur)="handleMenu()" [ngStyle]="{'right': openMenu ? '0px' : '-20vw'}">
+  <div class="menu_header">
+    <div>Minha Conta</div>
+    <span class="material-icons" id="close-menu-icon" (click)="handleMenu()" style="cursor: pointer;">
       close
     </span>
-    <span class="menu_title">
-      Joana C. Silva
-    </span>
-    <img id="profile_image" src="../../assets/sample_image.png">
   </div>
-  <ul style="list-style-type: none; padding-top: 24px;" id="menu_options">
-    <li> <a href="#"> Meu Perfil </a> </li>
-    <li> <a href="#"> Sair </a> </li>
+  <div class="menu_sub_header">
+    <span class="menu_title">
+      {{ currentUser.nome }}
+    </span>
+    <img id="profile_image" src="{{ currentUser.foto == null ? '../../../../../assets/UserGenerico.png' : currentUser.foto }}">
+  </div>
+  <ul style="list-style-type: none;" id="menu_options">
+    <li> <a class="menu_item" [routerLink]="['/perfil']"> Meu Perfil </a> </li>
+    <li> <a class="menu_item" [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}" [routerLink]="['/listaPacientes']">Lista De Pacientes </a> </li>
+    <li> <a class="menu_item" [ngStyle]="{'display': usuario === 'Psicologo' ? 'none' : 'block'}"(click)="irParaDiarios()"> Meu Diario </a> </li>
+    <li> <a class="menu_item" (click)="logout()"> Sair </a> </li>
   </ul>
 </div>

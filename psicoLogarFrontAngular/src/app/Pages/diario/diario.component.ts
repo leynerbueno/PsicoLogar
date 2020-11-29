@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Core/service/auth.service';
 import { DiarioService } from 'src/app/Core/service/diarioService.service';
 import { PacienteService } from 'src/app/Core/service/paciente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-diario',
@@ -38,7 +39,7 @@ export class DiarioComponent implements OnInit {
   idDiaExibido = this.hoje;
   idDiarioExibido;
   //FIM - estados da pagina
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -54,7 +55,7 @@ export class DiarioComponent implements OnInit {
       this.diarios = data.diario;
       this.renderHistoricoDiarios();
     });
-  } 
+  }
 
 
   ngOnInit(): void {
@@ -68,7 +69,7 @@ export class DiarioComponent implements OnInit {
     );
 
     this.loadDiario()
-  } 
+  }
 
   //INICIO - controle emocoes
   obtemInputRange(emocao) {
@@ -135,7 +136,10 @@ export class DiarioComponent implements OnInit {
       this.alteraEstadoEmocao(emotionInput, emotionInputvalue);
     }
     if (!this.exibindoHoje && this.usuario === 'Paciente') {
-      alert('Lamento, só é possível alterar o diário de hoje :(');
+      Swal.fire({
+        icon: 'error',
+        title: 'Lamento, só é possível alterar o diário de hoje!'
+      });
     }
   }
   //FIM - controle emocoes
@@ -153,7 +157,10 @@ export class DiarioComponent implements OnInit {
 
   alertaTextoNaoEditavel() {
     if (!this.exibindoHoje && this.usuario === 'Paciente') {
-      alert('Lamento, só é possível alterar o diário de hoje :(');
+      Swal.fire({
+        icon: 'error',
+        title: 'Lamento, só é possível alterar o diário de hoje!'
+      });
     }
   }
 
@@ -218,6 +225,7 @@ export class DiarioComponent implements OnInit {
       emotionInputRangeElement.style.width = emocao + '%';
 
       if (this.exibindoHoje) {
+        console.log('alterando estado emocao')
         this.alteraEstadoEmocao(baseEmotionInputId + i, emocao);
       }
     }
@@ -266,8 +274,9 @@ export class DiarioComponent implements OnInit {
     const diarioSelecionado = this.diarios.filter((diario) => {
       return diario.dataDoDiario === dataId;
     })[0]
+    console.log(diarioSelecionado);
 
-    this.idDiarioExibido = diarioSelecionado.id;
+    this.idDiarioExibido = diarioSelecionado && diarioSelecionado.id;
     this.preencheEmocoes(diarioSelecionado);
     this.preencheCamposTexto(diarioSelecionado);
   }
@@ -277,6 +286,7 @@ export class DiarioComponent implements OnInit {
 
   alteraDiaHistorico(elemento) {
     let diarioId = elemento.path[1].id;
+    console.log(diarioId)
 
     let diarioSelecionado = document.getElementById(diarioId);
     diarioSelecionado.className = 'dia-selecionado-item';
@@ -383,7 +393,7 @@ export class DiarioComponent implements OnInit {
 
     const sobrePacienteElement = document.getElementById('sobre-paciente-texto');
     const sobrePaciente = (<HTMLInputElement>(sobrePacienteElement)).value;
-    
+
     const sentimentosPacienteElement = document.getElementById('notas-texto');
     const sentimentosPaciente = (<HTMLInputElement>(sentimentosPacienteElement)).value;
 
@@ -400,17 +410,17 @@ export class DiarioComponent implements OnInit {
     const emocao4 = (<HTMLInputElement>(emotionInputElement4)).value
     const emotionInputElement5 = document.getElementById('emocao-input5');
     const emocao5 = (<HTMLInputElement>(emotionInputElement5)).value
-    
+
     this.encontrarIdDoDiarioHoje();
     const emocaoGeral = (
-      Number(this.emocao1) + 
-      Number(this.emocao2) + 
-      Number(this.emocao3) + 
-      Number(this.emocao4) + 
+      Number(this.emocao1) +
+      Number(this.emocao2) +
+      Number(this.emocao3) +
+      Number(this.emocao4) +
       Number(this.emocao5));
 
     const diarioCadastrado = {
-      emocao1: Number(emocao1), 
+      emocao1: Number(emocao1),
       emocao2: Number(emocao2),
       emocao3: Number(emocao3),
       emocao4: Number(emocao4),
@@ -422,7 +432,7 @@ export class DiarioComponent implements OnInit {
       dataDoDiario: this.idDiaExibido,
       pacienteId: this.id
     };
-    
+
     // return;
 
     const idDiarioUpdate = this.usuario === 'Psicologo' ? this.idDiarioExibido : this.idDiario;
@@ -430,18 +440,32 @@ export class DiarioComponent implements OnInit {
     if (this.idDiario != null || this.usuario === 'Psicologo') {
       this.diarioService.update(idDiarioUpdate, diarioCadastrado).subscribe(
         data => {
-          alert("Atualização Deu Certo!");
+          Swal.fire({
+            icon: 'success',
+          });
           window.location.reload();
         },
-        erro => alert("Atualização Deu Errado!")
+        erro => {
+          Swal.fire({
+            icon: 'error',
+            title: erro.error.mensagem,
+          });
+        }
       );
     } else {
       this.diarioService.create(diarioCadastrado).subscribe(
         data => {
-          alert("Cadastro Deu Certo!");
+          Swal.fire({
+            icon: 'success',
+          });
           window.location.reload();
         },
-        erro => alert("Cadastro Deu Errado!")
+        erro => {
+          Swal.fire({
+            icon: 'error',
+            title: erro.error.mensagem,
+          });
+        }
       );
     }
   }

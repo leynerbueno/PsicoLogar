@@ -1,4 +1,4 @@
-<app-header-Logado></app-header-Logado>
+<app-header></app-header>
 <div id="body">
   <main>
     <section>
@@ -6,93 +6,88 @@
         <div id="historico-diarios"></div>
       </div>
     </section>
-      <section [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}">
-        <div id="sobre-paciente-container">
-          <h2>Sobre o paciente:</h2>
-          <div class="textarea-container">
-            <textarea id="sobre-paciente-texto" placeholder="O paciente..."></textarea>
-          </div>
-
+    <section [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}">
+      <div id="sobre-paciente-container">
+        <h2>Sobre o paciente:</h2>
+        <div class="textarea-container">
+          <textarea id="sobre-paciente-texto" placeholder="O paciente..."></textarea>
         </div>
-      </section>
 
-      <hr [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}" class="dashed-line" />
+      </div>
+    </section>
 
-      <section>
-        <div id="content">
-          <div id="emocoes-container">
-            <h2>Como o paciente está se sentindo:</h2>
+    <hr [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}" class="dashed-line" />
 
-            <div class="emocao-container">
-              <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input1" type="range"
-                min="0" max="100" value="0" (click)="alterarEmocao($event)">
-              <div id="emocao-input-range1" class="emocao-input-range"></div>
-              <img src="../../../assets/emocao-example.svg" />
-              <h3>Altruísmo</h3>
-            </div>
+    <section>
+      <div id="content">
+        <div id="emocoes-container">
+          <h2>Como o paciente está se sentindo:</h2>
 
-            <div class="emocao-container">
-              <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input2" type="range"
-                min="0" max="100" value="0" (click)="alterarEmocao($event)">
-              <div id="emocao-input-range2" class="emocao-input-range"></div>
-              <img src="../../../assets/emocao-example.svg" />
-              <h3>Confiança</h3>
-            </div>
-
-            <div class="emocao-container">
-              <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input3" type="range"
-                min="0" max="100" value="0" (click)="alterarEmocao($event)">
-              <div id="emocao-input-range3" class="emocao-input-range"></div>
-              <img src="../../../../assets/emocao-example.svg" />
-              <h3>Felicidade</h3>
-            </div>
-
-            <div class="emocao-container">
-              <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input4" type="range"
-                min="0" max="100" value="0" (click)="alterarEmocao($event)">
-              <div id="emocao-input-range4" class="emocao-input-range"></div>
-              <img src="../../../assets/emocao-example.svg" />
-              <h3>Empatia</h3>
-            </div>
-
-            <div class="emocao-container">
-              <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input5" type="range"
-                min="0" max="100" value="0" (click)="alterarEmocao($event)">
-              <div id="emocao-input-range5" class="emocao-input-range"></div>
-              <img src="../../../assets/emocao-example.svg" />
-              <h3>Orgulho</h3>
-            </div>
+          <div class="emocao-container">
+            <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input1" type="range"
+              min="0" max="100" value="0" (click)="alterarEmocao($event)">
+            <div id="emocao-input-range1" class="emocao-input-range"></div>
+            <img src="../../../assets/emocao-example.svg" />
+            <h3>Altruísmo</h3>
           </div>
 
-          <div id="notas-container">
-            <h2>Contando um pouco mais:</h2>
-            <div class="textarea-container">
-              <textarea [readonly]="usuario == 'Psicologo'" id="notas-texto" placeholder="Hoje estou me sentindo..."
-                (change)="alterarTexto($event)" (click)="alertaTextoNaoEditavel()">
+          <div class="emocao-container">
+            <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input2" type="range"
+              min="0" max="100" value="0" (click)="alterarEmocao($event)">
+            <div id="emocao-input-range2" class="emocao-input-range"></div>
+            <img src="../../../assets/emocao-example.svg" />
+            <h3>Confiança</h3>
+          </div>
+
+          <div class="emocao-container">
+            <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input3" type="range"
+              min="0" max="100" value="0" (click)="alterarEmocao($event)">
+            <div id="emocao-input-range3" class="emocao-input-range"></div>
+            <img src="../../../../assets/emocao-example.svg" />
+            <h3>Felicidade</h3>
+          </div>
+
+          <div class="emocao-container">
+            <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input4" type="range"
+              min="0" max="100" value="0" (click)="alterarEmocao($event)">
+            <div id="emocao-input-range4" class="emocao-input-range"></div>
+            <img src="../../../assets/emocao-example.svg" />
+            <h3>Empatia</h3>
+          </div>
+
+          <div class="emocao-container">
+            <input [ngStyle]="{'cursor': usuario == 'Paciente' ? 'pointer' : ''}" id="emocao-input5" type="range"
+              min="0" max="100" value="0" (click)="alterarEmocao($event)">
+            <div id="emocao-input-range5" class="emocao-input-range"></div>
+            <img src="../../../assets/emocao-example.svg" />
+            <h3>Orgulho</h3>
+          </div>
+        </div>
+
+        <div id="notas-container">
+          <h2>Contando um pouco mais:</h2>
+          <div class="textarea-container">
+            <textarea [readonly]="usuario == 'Psicologo'" id="notas-texto" placeholder="Hoje estou me sentindo..."
+              (change)="alterarTexto($event)" (click)="alertaTextoNaoEditavel()">
             </textarea>
-            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}" class="dashed-line" />
+    <hr [ngStyle]="{'display': usuario === 'Paciente' ? 'none' : 'block'}" class="dashed-line" />
 
-      <section [ngStyle]="{'display': usuario == 'Paciente' ? 'none' : 'block'}">
-        <div id="psicologo-comentarios-container">
-          <h2>Comentários do psicólogo:</h2>
-          <div class="textarea-container">
-            <textarea id="psicologo-comentarios-texto" placeholder="O paciente..."></textarea>
-          </div>
+    <section [ngStyle]="{'display': usuario == 'Paciente' ? 'none' : 'block'}">
+      <div id="psicologo-comentarios-container">
+        <h2>Comentários do psicólogo:</h2>
+        <div class="textarea-container">
+          <textarea id="psicologo-comentarios-texto" placeholder="O paciente..."></textarea>
         </div>
-      </section>
-    <button [ngStyle]="{'display': usuario == 'Paciente' && !exibindoHoje ? 'none' : 'block'}" 
-      class="material-icons" id="save-button" (click)="salvarDiario()"
-    >
+      </div>
+    </section>
+    <button [ngStyle]="{'display': usuario == 'Paciente' && !exibindoHoje ? 'none' : 'block'}" class="material-icons"
+      id="save-button" (click)="salvarDiario()">
       save
     </button>
-    <!-- 
-    <button id="troca-usuario-button" (click)="TrocaUsuario()">
-      troca
-    </button> -->
   </main>
 </div>

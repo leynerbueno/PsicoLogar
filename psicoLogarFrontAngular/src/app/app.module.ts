@@ -9,8 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { CadastroComponent } from './Pages/cadastro/cadastro.component';
 import { DiarioComponent } from './Pages/diario/diario.component';
-import { HeaderCadastroComponent } from './Components/header-Cadastro/header-Cadastro.component';
-import { HeaderLogadoComponent } from './Components/header-Logado/header-Logado.component';
+import { HeaderComponent } from './Components/header/header.component';
 import { ListaPacientesComponent } from './Pages/lista-pacientes/lista-pacientes.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './Core/service/auth-guard.service';
@@ -23,8 +22,7 @@ import { HttpTokenInterceptor } from './Core/interceptors/http-token.interceptor
     HomeComponent,
     CadastroComponent,
     DiarioComponent,
-    HeaderCadastroComponent,
-    HeaderLogadoComponent,
+    HeaderComponent,
     ListaPacientesComponent,
     PerfilComponent,
     FooterComponent
